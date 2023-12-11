@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SecurityManager_Fun\SecurityManager_Fun.csproj" />
+  </ItemGroup>
+
 </Project>
