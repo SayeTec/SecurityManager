@@ -5,13 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Security Manager" Height="450" Width="800" SizeChanged="Window_SizeChanged">
 
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-        <Button x:Name="ButtonLogin" Content="Login" HorizontalAlignment="Center" Margin="0,222,0,0" VerticalAlignment="Top" Width="86" Height="29"/>
-        <TextBox x:Name="Text" TextWrapping="Wrap" Text="TextBox" Margin="304,142,304,263"/>
-        <TextBox TextWrapping="Wrap" Text="TextBox" Margin="304,188,304,217"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!-- Nagłówek -->
+        <Border Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="5">
+            <TextBlock Text="Security Manager" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+        </Border>
+
+        <!-- Treść -->
+        <StackPanel Grid.Row="1" Margin="10">
+            <!-- Pole loginu -->
+            <TextBlock Text="Login:" VerticalAlignment="Center"/>
+            <TextBox x:Name="TextBoxLogin" Margin="5" MaxWidth="200"/>
+
+            <!-- Pole hasła -->
+            <TextBlock Text="Password:" VerticalAlignment="Center"/>
+            <PasswordBox x:Name="TextBoxPassword" Margin="5" MaxWidth="200"/>
+
+            <!-- Przycisk logowania -->
+            <Button x:Name="ButtonLogin" Content="Login" HorizontalAlignment="Center" Margin="5" Click="ButtonLogin_Click"/>
+
+            <!-- Dodatkowe opcje, na przykład: "Zapomniałeś hasła?" -->
+            <TextBlock Text="Forgot your password?" HorizontalAlignment="Center" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" Margin="5"/>
+        </StackPanel>
     </Grid>
-
 </Window>
