@@ -12,7 +12,6 @@ namespace SecurityManager_Fun.Data
 
         private static readonly string MYSQL_CONNECTION_CONFIG = $"server={server};database={database};user={user};password={password};";
 
-
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Department> Departments { get; set; }
@@ -21,6 +20,5 @@ namespace SecurityManager_Fun.Data
         public DbSet<Country> Countries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseMySQL(MYSQL_CONNECTION_CONFIG);
-        
     }
 }

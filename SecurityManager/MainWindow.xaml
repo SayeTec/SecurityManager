@@ -8,6 +8,9 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <Button x:Name="ButtonLogin" Content="Login" HorizontalAlignment="Center" Margin="0,222,0,0" VerticalAlignment="Top" Width="86" Height="29"/>
+        <TextBox x:Name="Text" TextWrapping="Wrap" Text="TextBox" Margin="304,142,304,263"/>
+        <TextBox TextWrapping="Wrap" Text="TextBox" Margin="304,188,304,217"/>
 
     </Grid>
 
