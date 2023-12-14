@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecurityManager_GUI.MenuOptions.EmployeeOptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,9 @@ namespace SecurityManager_GUI
     /// <summary>
     /// Interaction logic for EmoloyeeWindow.xaml
     /// </summary>
-    public partial class EmoloyeeWindow : Window
+    public partial class EmployeeWindow : Window
     {
-        public EmoloyeeWindow()
+        public EmployeeWindow()
         {
             InitializeComponent();
         }
@@ -29,6 +30,12 @@ namespace SecurityManager_GUI
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
             Close();
+        }
+
+        private void ButtonAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
+            addEmployeeWindow.Show();
         }
     }
 }

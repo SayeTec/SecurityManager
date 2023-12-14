@@ -1,0 +1,19 @@
+﻿<Window x:Class="SecurityManager_GUI.MenuOptions.EmployeeOptions.AddEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.EmployeeOptions"
+        mc:Ignorable="d"
+        Title="AddEmployeeWindow" Height="315" Width="324">
+    <Grid Margin="0,0,0,-172">
+        <TextBox x:Name="TextBoxFirstName" TextWrapping="Wrap" Text="Imie" Margin="36,50,161,384"/>
+        <StackPanel Margin="0,0,0,415">
+            <TextBlock Height="51" TextAlignment="Center" FontSize="18" FontWeight="Bold"><Run/><LineBreak/><Run Text="Dodawanie pracownika"/></TextBlock>
+        </StackPanel>
+        <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Margin="174,215,10,214"/>
+        <Button x:Name="ButtonSave" Content="Zapisz" Margin="19,218,172,217" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15"/>
+        <TextBox x:Name="TextBoxLastName" TextWrapping="Wrap" Text="Nazwisko" Margin="36,91,161,343"/>
+        <ComboBox x:Name="ComboboxEmployeeStatus" Margin="36,132,162,303"/>
+    </Grid>
+</Window>

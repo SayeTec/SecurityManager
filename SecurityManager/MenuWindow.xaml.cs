@@ -60,7 +60,7 @@ namespace SecurityManager_GUI
 
         private void ButtonEmployeeManagement_Click(object sender, RoutedEventArgs e)
         {
-            EmoloyeeWindow emoloyeeWindow = new EmoloyeeWindow();
+            EmployeeWindow emoloyeeWindow = new EmployeeWindow();
             emoloyeeWindow.Show();
             Close();
         }

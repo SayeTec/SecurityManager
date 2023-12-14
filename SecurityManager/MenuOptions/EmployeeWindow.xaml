@@ -1,4 +1,4 @@
-﻿<Window x:Class="SecurityManager_GUI.EmoloyeeWindow"
+﻿<Window x:Class="SecurityManager_GUI.EmployeeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,5 +14,6 @@
         <Button x:Name="ButtonBack" Content="Back" Margin="626,419,24,10" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="35,125,24,60"/>
         <StackPanel/>
+        <Button x:Name="ButtonAddEmployee" Content="Dodaj pracownika" Margin="646,80,46,354" Click="ButtonAddEmployee_Click"/>
     </Grid>
 </Window>
