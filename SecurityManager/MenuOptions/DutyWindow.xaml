@@ -1,18 +1,18 @@
-﻿<Window x:Class="SecurityManager_GUI.MenuOptions.SalariesWindow"
+﻿<Window x:Class="SecurityManager_GUI.MenuOptions.DutyWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions"
         mc:Ignorable="d"
-        Title="SalariesWindow" Height="475" Width="800">
+        Title="DutyWindow" Height="475" Width="800">
     <Grid>
         <StackPanel Grid.Column="0" Margin="10,10,10,60">
-            <ComboBox x:Name="EmployeesCombobox" Height="25" Width="129" Margin="10,10,640,0" Text="Wybierz"/>
+            <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="16" Foreground="White"/>
         </StackPanel>
 
         <StackPanel Margin="10,399,10,5">
-            <Button x:Name="ButtonBack" Content="Back"  Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
+            <Button x:Name="ButtonBack" Content="Back" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -9,7 +9,7 @@
 
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="200"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
@@ -20,18 +20,18 @@
 
         <!-- Treść -->
         <StackPanel Grid.Column="0" Margin="10">
-            <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="16" Foreground="White"/>
+            <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="18" Foreground="White" FontWeight="Bold"/>
 
             <!-- Przyciski -->
             <Button x:Name="ButtonEmployeeManagement" Content="Pracownicy" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonEmployeeManagement_Click"/>
             <Button x:Name="ButtonStatistics" Content="Wynagrodzenia" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonStatistics_Click"/>
+            <Button x:Name="ButtonDutiesManagement" Content="Dyżury" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonDutiesManagement_Click"/>
             <Button x:Name="buttonScheduleDesigner" Content="Grafik dyżurów" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="buttonScheduleDesigner_Click"/>
-            <Button x:Name="ButtonDutiesManagement" Content="Dyżury" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
             <Button x:Name="ButtonBack" Content="Wyloguj" Margin="0,120,0,0" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonBack_Click"/>
 
         </StackPanel>
 
         <!-- Etykieta -->
-        <Label Grid.Column="1" Content="Centrum Administratora" Margin="10" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
+        <Label Grid.Column="1" Content="Panel Administratora" Margin="10" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
     </Grid>
 </Window>

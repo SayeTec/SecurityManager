@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI"
         mc:Ignorable="d"
-        Title="EmoloyeeWindow" Height="475" Width="800">
+        Title="EmoloyeeWindow" Height="500" Width="840">
     <Grid>
-        <StackPanel Grid.Column="0" Margin="10,10,10,60">
-            <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="16" Foreground="White"/>
-        </StackPanel>
-        
-        <StackPanel Margin="10,399,10,5">
-            <Button x:Name="ButtonBack" Content="Back" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
-        </StackPanel>
+        <Label x:Name="EmployeeLabel" Content="Wybierz pracownika:" HorizontalAlignment="Left" Margin="35,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.469" Width="122" HorizontalContentAlignment="Center" Height="24"/>
+        <Label x:Name="CompanyLabel" Content="Wybierz obiekt:" HorizontalAlignment="Left" Margin="217,52,0,0" VerticalAlignment="Top" Width="124" HorizontalContentAlignment="Center" Height="24"/>
+        <ComboBox x:Name="EmployeesCombobox" Margin="33,80,643,354"/>
+        <ComboBox x:Name="CompanyCombobox" Width="124" Margin="217,80,459,354"/>
+        <Button x:Name="ButtonBack" Content="Back" Margin="626,419,24,10" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="35,125,24,60"/>
+        <StackPanel/>
     </Grid>
 </Window>

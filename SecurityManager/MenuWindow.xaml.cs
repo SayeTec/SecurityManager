@@ -78,5 +78,12 @@ namespace SecurityManager_GUI
             dutyScheduleWindow.Show();
             Close();
         }
+
+        private void ButtonDutiesManagement_Click(object sender, RoutedEventArgs e)
+        {
+            MenuOptions.DutyWindow dutyWindow = new MenuOptions.DutyWindow();
+            dutyWindow.Show();
+            Close();
+        }
     }
 }
