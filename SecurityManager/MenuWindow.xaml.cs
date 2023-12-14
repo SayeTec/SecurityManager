@@ -71,5 +71,12 @@ namespace SecurityManager_GUI
             salariesWindow.Show();
             Close();
         }
+
+        private void buttonScheduleDesigner_Click(object sender, RoutedEventArgs e)
+        {
+            MenuOptions.DutyScheduleWindow dutyScheduleWindow = new MenuOptions.DutyScheduleWindow();
+            dutyScheduleWindow.Show();
+            Close();
+        }
     }
 }
