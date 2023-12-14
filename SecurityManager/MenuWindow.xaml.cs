@@ -64,5 +64,12 @@ namespace SecurityManager_GUI
             emoloyeeWindow.Show();
             Close();
         }
+
+        private void ButtonStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            MenuOptions.SalariesWindow salariesWindow = new MenuOptions.SalariesWindow();
+            salariesWindow.Show();
+            Close();
+        }
     }
 }

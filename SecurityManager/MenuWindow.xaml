@@ -24,7 +24,7 @@
 
             <!-- Przyciski -->
             <Button x:Name="ButtonEmployeeManagement" Content="Pracownicy" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonEmployeeManagement_Click"/>
-            <Button x:Name="ButtonStatistics" Content="Wynagrodzenia" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
+            <Button x:Name="ButtonStatistics" Content="Wynagrodzenia" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonStatistics_Click"/>
             <Button x:Name="buttonScheduleDesigner" Content="Grafik dyżurów" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
             <Button x:Name="ButtonDutiesManagement" Content="Dyżury" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
             <Button x:Name="ButtonBack" Content="Wyloguj" Margin="0,0,0,10" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonBack_Click"/>
