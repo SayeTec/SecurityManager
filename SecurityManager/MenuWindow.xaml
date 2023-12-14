@@ -1,4 +1,4 @@
-﻿<Window x:Class="SecurityManager_GUI.Menu"
+﻿<Window x:Class="SecurityManager_GUI.MenuWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -15,7 +15,7 @@
 
         <!-- Nagłówek -->
         <Border Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="5">
-            <TextBlock Text="Centrum Administratora" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Foreground="White"/>
+           
         </Border>
 
         <!-- Treść -->
@@ -23,10 +23,12 @@
             <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="16" Foreground="White"/>
 
             <!-- Przyciski -->
-            <Button x:Name="ButtonEmployeeManagement" Content="Pracownicy" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
+            <Button x:Name="ButtonEmployeeManagement" Content="Pracownicy" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonEmployeeManagement_Click"/>
             <Button x:Name="ButtonStatistics" Content="Wynagrodzenia" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
             <Button x:Name="buttonScheduleDesigner" Content="Grafik dyżurów" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
             <Button x:Name="ButtonDutiesManagement" Content="Dyżury" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40"/>
+            <Button x:Name="ButtonBack" Content="Wyloguj" Margin="0,0,0,10" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonBack_Click"/>
+
         </StackPanel>
 
         <!-- Etykieta -->

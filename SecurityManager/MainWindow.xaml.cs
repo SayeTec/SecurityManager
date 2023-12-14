@@ -35,9 +35,9 @@ namespace SecurityManager
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            Close();
-            Menu menuWindow = new Menu();
+            MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
+            Close();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecurityManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,9 @@ namespace SecurityManager_GUI
     /// <summary>
     /// Interaction logic for Menu.xaml
     /// </summary>
-    public partial class Menu : Window
+    public partial class MenuWindow : Window
     {
-        public Menu()
+        public MenuWindow()
         {
             InitializeComponent();
             SizeChanged += Window_SizeChanged;
@@ -38,6 +39,7 @@ namespace SecurityManager_GUI
                 ButtonStatistics.MaxWidth = ActualWidth - 62;
                 buttonScheduleDesigner.MaxWidth = ActualWidth - 62;
                 ButtonDutiesManagement.MaxWidth = ActualWidth - 62;
+                ButtonBack.MaxWidth = ActualWidth - 62;
             }
             else
             {
@@ -45,7 +47,22 @@ namespace SecurityManager_GUI
                 ButtonStatistics.MaxWidth = 200;
                 buttonScheduleDesigner.MaxWidth = 200;
                 ButtonDutiesManagement.MaxWidth = 200;
+                ButtonBack.MaxWidth = 200;
             }
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
+
+        private void ButtonEmployeeManagement_Click(object sender, RoutedEventArgs e)
+        {
+            EmoloyeeWindow emoloyeeWindow = new EmoloyeeWindow();
+            emoloyeeWindow.Show();
+            Close();
         }
     }
 }
