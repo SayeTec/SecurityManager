@@ -7,13 +7,21 @@
         mc:Ignorable="d"
         Title="AddEmployeeWindow" Height="315" Width="324">
     <Grid Margin="0,0,0,-172">
-        <TextBox x:Name="TextBoxFirstName" TextWrapping="Wrap" Text="Imie" Margin="36,50,161,384"/>
+        
+        <TextBox x:Name="TextBoxFirstName" TextWrapping="Wrap" Text="" Margin="174,64,24,370"/>
+        <TextBox x:Name="TextBoxLastName" TextWrapping="Wrap" Text="" Margin="174,106,24,328"/>
+        <TextBox x:Name="TextBoxPhoneNumber" TextWrapping="Wrap" Text="" Margin="174,148,24,286"/>
+        <ComboBox x:Name="ComboboxEmployeeRole" Margin="174,190,24,244"/>
+                
+        <Label Content="Imię" Margin="31,70,162,376"/>
+        <Label Content="Nazwisko" Margin="31,112,162,334"/>
+        <Label Content="Numer telefonu" Margin="31,154,162,292"/>
+        <Label Content="Rola" Margin="31,196,162,250"/>
+
         <StackPanel Margin="0,0,0,415">
             <TextBlock Height="51" TextAlignment="Center" FontSize="18" FontWeight="Bold"><Run/><LineBreak/><Run Text="Dodawanie pracownika"/></TextBlock>
         </StackPanel>
-        <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Margin="174,215,10,214"/>
-        <Button x:Name="ButtonSave" Content="Zapisz" Margin="19,218,172,217" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15"/>
-        <TextBox x:Name="TextBoxLastName" TextWrapping="Wrap" Text="Nazwisko" Margin="36,91,161,343"/>
-        <ComboBox x:Name="ComboboxEmployeeStatus" Margin="36,132,162,303"/>
+        <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Margin="162,261,12,180"/>
+        <Button x:Name="ButtonSave" Content="Zapisz" Margin="7,261,167,180" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15"/>
     </Grid>
 </Window>
