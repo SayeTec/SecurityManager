@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Model
 {
-    internal class Role
+    public class Role
     {
         public int ID { get; set; }
         public string Name { get; set; }

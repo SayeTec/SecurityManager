@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Model
 {
-    internal class Settlement
+    public class Settlement
     {
         public int ID { get; set; }
         public string Name { get; set; }

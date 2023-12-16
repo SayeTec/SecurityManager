@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Model
 {
-    internal class Department
+    public class Department
     {
         public int ID { get; set; }
         public string Address { get; set; }

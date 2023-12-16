@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Model
 {
-    internal class WorkSchedule
+    public class WorkSchedule
     {
         public int ID { get; set; }
         public DateOnly Day { get; set; }
