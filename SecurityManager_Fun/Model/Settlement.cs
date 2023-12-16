@@ -1,10 +1,4 @@
-﻿using Org.BouncyCastle.Crypto.Utilities;
-using SecurityManager_Fun.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SecurityManager_Fun.Data;
 
 namespace SecurityManager_Fun.Model
 {
@@ -32,7 +26,7 @@ namespace SecurityManager_Fun.Model
                     $"{Type} Value:" +
                     $"{Value}{(IsPercentage ? "%" : "$")} Country:" +
                     $"{context.Countries.Find(CountryID)}";
-            } 
+            }
         }
     }
 }

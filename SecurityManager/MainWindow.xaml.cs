@@ -1,5 +1,6 @@
-﻿using System.Windows;
+﻿using SecurityManager_Fun.Logic;
 using SecurityManager_GUI;
+using System.Windows;
 
 namespace SecurityManager
 {

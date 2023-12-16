@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SecurityManager_Fun.Model
+﻿namespace SecurityManager_Fun.Model
 {
     public class Role
     {

@@ -1,16 +1,11 @@
-﻿using Org.BouncyCastle.Tls;
-using SecurityManager_Fun.Data;
+﻿using SecurityManager_Fun.Data;
 using SecurityManager_Fun.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Logic
 {
-    internal class AccountService
+    public class AccountService
     {
         private static int ITERATIONS = 350000;
         private static int KEY_SIZE = 64;
@@ -32,7 +27,7 @@ namespace SecurityManager_Fun.Logic
         }
 
         //salt with out here is used to generate salt with hash and then write the whole password(with pattern: hash:salt) to the DB
-        public static string HashPassword(string password, out byte[] salt) 
+        public static string HashPassword(string password, out byte[] salt)
         {
             salt = RandomNumberGenerator.GetBytes(KEY_SIZE);
 

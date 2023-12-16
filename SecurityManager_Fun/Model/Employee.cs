@@ -14,10 +14,11 @@ namespace SecurityManager_Fun.Model
         public string Login { get; set; }
         public string Password { get; set; }
         public decimal GrossRate { get; set; }
-        
+
         public override string ToString()
         {
-            using (var context = new AppDBContex()) {
+            using (var context = new AppDBContex())
+            {
                 return $"{ID}: {Name} {Surname} Contacts: " +
                     $"{Phone} {Email} System login:" +
                     $"{Login} Role:" +

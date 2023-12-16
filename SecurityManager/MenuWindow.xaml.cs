@@ -1,17 +1,6 @@
 ﻿using SecurityManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SecurityManager_GUI.MenuOptions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SecurityManager_GUI
 {
@@ -25,6 +14,8 @@ namespace SecurityManager_GUI
             InitializeComponent();
             SizeChanged += Window_SizeChanged;
         }
+
+
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -67,21 +58,21 @@ namespace SecurityManager_GUI
 
         private void ButtonStatistics_Click(object sender, RoutedEventArgs e)
         {
-            MenuOptions.SalariesWindow salariesWindow = new MenuOptions.SalariesWindow();
+            MenuOptions.SalariesWindow salariesWindow = new SalariesWindow();
             salariesWindow.Show();
             Close();
         }
 
         private void buttonScheduleDesigner_Click(object sender, RoutedEventArgs e)
         {
-            MenuOptions.DutyScheduleWindow dutyScheduleWindow = new MenuOptions.DutyScheduleWindow();
+            MenuOptions.DutyScheduleWindow dutyScheduleWindow = new DutyScheduleWindow();
             dutyScheduleWindow.Show();
             Close();
         }
 
         private void ButtonDutiesManagement_Click(object sender, RoutedEventArgs e)
         {
-            MenuOptions.DutyWindow dutyWindow = new MenuOptions.DutyWindow();
+            MenuOptions.DutyWindow dutyWindow = new DutyWindow();
             dutyWindow.Show();
             Close();
         }
