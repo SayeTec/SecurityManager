@@ -1,13 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
+using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 public class Program
 {
     public static void Main(String[] args)
     {
-        using (var context = new AppDBContex())
+        byte[] salt;
+        string hash = AccountService.HashPassword("123", out salt);
+
+        string saltString = Convert.ToHexString(salt);
+        Console.WriteLine("Salt string => " + saltString); 
+        Console.WriteLine("Hash => " + hash);
+        Console.WriteLine(AccountService.VerifyPassword("123", hash, Convert.FromHexString(saltString)) ? "Cool" : "Not cool");
+
+        using (var context = new AppDBContext())
         {
             int answer = 0;
 

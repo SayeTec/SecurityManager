@@ -22,6 +22,6 @@
             <TextBlock Height="51" TextAlignment="Center" FontSize="18" FontWeight="Bold"><Run/><LineBreak/><Run Text="Dodawanie pracownika"/></TextBlock>
         </StackPanel>
         <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Margin="162,261,12,180"/>
-        <Button x:Name="ButtonSave" Content="Zapisz" Margin="7,261,167,180" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15"/>
+        <Button x:Name="ButtonSave" Content="Zapisz" Margin="7,261,167,180" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Height="15" Click="ButtonSave_Click"/>
     </Grid>
 </Window>

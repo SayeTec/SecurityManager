@@ -1,4 +1,5 @@
 ﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Model;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,43 +16,40 @@ namespace SecurityManager_Fun.Logic
         {
             Employee employee;
 
-            using (var context = new AppDBContex())
-            {
-                employee = context.Employees.FirstOrDefault(e => e.Login == login);
-                if (employee == null) return null;
-            }
+            employee = EmployeeRepository.GetEmployeeByLogin(login);
+            if (employee == null) return null;
 
             string[] passwordParts = employee.Password.Split(":");
 
-            return employee.Password == password ? employee : null;
-            //return (VerifyPassword(password, passwordParts[0], Encoding.UTF8.GetBytes(passwordParts[1])) ? employee : null);
+            return (VerifyPassword(password, passwordParts[0], Convert.FromHexString(passwordParts[1])) ? employee : null);
         }
 
-        public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int RoleID) { 
-            using (var context = new AppDBContex())
-            {
-                byte[] salt;
-                //TODO: Talk about default values for new Employee
-                string login = string.Format("{0}.{1}", firstName.ToLower(), lastName.ToLower());
-                string defaultPassword = string.Format("{0}:{1}",   
-                                    HashPassword(login + "_SM", out salt),
-                                    salt.ToString());
-                decimal defaultGrossRate = 4000m;
+        public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int RoleID) {
 
-                context.Add(
-                    new Employee
-                    {
-                        Name = firstName,
-                        Surname = lastName,
-                        Phone = phoneNumber,
-                        RoleID = RoleID,
-                        Login = login,
-                        Email = string.Format("{0}.{1}@gmail.com", firstName.ToLower(), lastName.ToLower()), //TODO: talk about email domain
-                        Password = defaultPassword,
-                        GrossRate = defaultGrossRate
-                    });
-                context.SaveChanges();
-            }
+            byte[] salt;
+            string defaultLogin = DefaultValuesGenerator.GenerateDefaultEmployeeLogin(firstName, lastName);
+            string defaultEmail = DefaultValuesGenerator.GenerateDefaultEmployeeEmail(defaultLogin);
+            string defaultPassword = DefaultValuesGenerator.GenerateDefaultEmployeePassword(HashPassword(defaultLogin + "_SM", out salt), salt);
+            decimal defaultGrossRate = DefaultValuesGenerator.GenerateDefaultEmployeeGrossRate();
+
+            //TODO: Add verification of provided data in this class
+
+            if (EmployeeRepository.CheckIfEmployeeAlreadyExistsByLogin(defaultLogin)) return;
+
+            EmployeeRepository.AddNewEmployee(
+                new Employee
+                {
+                    Name = firstName,
+                    Surname = lastName,
+                    Phone = phoneNumber,
+                    RoleID = RoleID,
+                    DepartmentID = null,
+                    Login = defaultLogin,
+                    Email = defaultEmail,
+                    Password = defaultPassword,
+                    GrossRate = defaultGrossRate
+                });
+
         }
 
         //salt with out here is used to generate salt with hash and then write the whole password(with pattern: hash:salt) to the DB
