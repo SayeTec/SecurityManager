@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SecurityManager_Fun.Model;
+using static SecurityManager_Fun.Model.Role;
 
 namespace SecurityManager_Fun.Data.Repositories
 {
     public class RoleRepository
     {
-        private readonly AppDBContext dbContext;
-
-        public RoleRepository(AppDBContext dbContext)
+        public static List<Role> GetRolesUnderPriority(PriorityType priority)
         {
-            this.dbContext = dbContext;
+            using (var context = new AppDBContext())
+            {
+                return context.Roles.Where(role => (int)role.Priority > (int)priority + 1).ToList();
+            }
         }
     }
 }

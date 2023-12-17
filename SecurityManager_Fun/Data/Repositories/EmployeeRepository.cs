@@ -6,7 +6,7 @@ namespace SecurityManager_Fun.Data.Repositories
     {
         public static Employee GetEmployeeByLogin(string login)
         {
-            using(var dbContext = new AppDBContext())
+            using (var dbContext = new AppDBContext())
             {
                 return dbContext.Employees.SingleOrDefault(employee => employee.Login == login);
             }
@@ -15,6 +15,15 @@ namespace SecurityManager_Fun.Data.Repositories
         public static bool CheckIfEmployeeAlreadyExistsByLogin(string login)
         {
             return GetEmployeeByLogin(login) != null;
+        }
+
+        public static void AddNewEmployee(Employee employee)
+        {
+            using (var context = new AppDBContext())
+            {
+                context.Employees.Add(employee);
+                context.SaveChanges();
+            }
         }
     }
 }
