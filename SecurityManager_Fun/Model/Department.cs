@@ -11,7 +11,7 @@ namespace SecurityManager_Fun.Model
 
         public override string ToString()
         {
-            using (var context = new AppDBContex())
+            using (var context = new AppDBContext())
             {
                 return $"{ID}: {Address} Capacity:" +
                     $"{Capacity} Country:" +
