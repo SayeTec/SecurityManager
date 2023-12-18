@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System;
 using System.Text;
+using System.Windows.Markup;
 
 namespace SecurityManager_GUI
 {
@@ -25,7 +26,7 @@ namespace SecurityManager_GUI
             InitializeComponent();
             Employees = LoadEmployeesFromJson();
             DataGridEmployees.ItemsSource = Employees;
-
+            
         }
         private void SaveEmployeesToJson()
         {
