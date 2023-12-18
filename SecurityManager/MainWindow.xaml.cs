@@ -40,8 +40,10 @@ namespace SecurityManager
             Employee employee = AccountService.LogIn(TextBoxLogin.Text, TextBoxPassword.Password);
             
             if (employee == null) { CleanTextBoxes(); return; }
+
+            SessionManager.Instance.SetCurrentEmployee(employee);
             
-            MenuWindow menuWindow = new MenuWindow(employee);
+            MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
             Close();
         }
