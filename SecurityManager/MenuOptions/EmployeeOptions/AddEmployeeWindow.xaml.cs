@@ -40,7 +40,20 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (ComboboxEmployeeRole.SelectedItem == null) return;
+            if (ComboboxEmployeeRole.SelectedItem == null || TextBoxFirstName.Text == null || TextBoxLastName.Text == null || TextBoxPhoneNumber == null)
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!");
+            }
+            else
+            {
+                //TODO: Add employee to database.
+
+
+
+                Close();
+            }
+
+            
 
             //AccountService.RegisterNewEmployee(TextBoxFirstName.Text,
             //    TextBoxLastName.Text, 
@@ -79,5 +92,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 textBox.Foreground = System.Windows.Media.Brushes.Gray;
             }
         }
+
+        
     }
 }

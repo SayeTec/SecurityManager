@@ -15,7 +15,9 @@ namespace SecurityManager_GUI
     /// 
 
     //Employee list with options to add, edit and delete employees
-    //For each employee can be two instances, one can work in different departments
+    //First is loading all hours from all objects and if object is selected it shows only hours from this object
+    //Data is loaded for month after 11th day of month (if it is March 7th it will show hours from February, [IMPORTANTE KOMANDORE BOMBARDIERO])
+    //If date is selected it will show employees with their data only from this date
 
     public partial class EmployeeWindow : Window
     {
@@ -24,6 +26,7 @@ namespace SecurityManager_GUI
         public EmployeeWindow()
         {
             InitializeComponent();
+            DataGridEmployees.Language = XmlLanguage.GetLanguage("pl-PL"); 
             Employees = LoadEmployeesFromJson();
             DataGridEmployees.ItemsSource = Employees;
             
@@ -44,7 +47,6 @@ namespace SecurityManager_GUI
 
                     if (loadedEmployees != null)
                     {
-                        // Aktualizuj listę pracowników i odśwież widok DataGrid
                         Employees = loadedEmployees;
                         DataGridEmployees.ItemsSource = Employees;
 
@@ -65,7 +67,6 @@ namespace SecurityManager_GUI
                 Console.WriteLine("Plik JSON nie istnieje.");
             }
 
-            // Domyślne dane, jeśli coś poszło nie tak
             return new List<Employee>();
         }
 
