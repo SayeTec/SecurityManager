@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using SecurityManager_Fun.Logic;
+using SecurityManager_Fun.Model;
 using SecurityManager_GUI;
+using System.Windows;
 
 namespace SecurityManager
 {
@@ -35,9 +37,19 @@ namespace SecurityManager
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            MenuWindow menuWindow = new MenuWindow();
+            Employee employee = AccountService.LogIn(TextBoxLogin.Text, TextBoxPassword.Password);
+            
+            if (employee == null) { CleanTextBoxes(); return; }
+            
+            MenuWindow menuWindow = new MenuWindow(employee);
             menuWindow.Show();
             Close();
+        }
+
+        private void CleanTextBoxes()
+        {
+            TextBoxLogin.Text = string.Empty;
+            TextBoxPassword.Password = string.Empty;
         }
     }
 }

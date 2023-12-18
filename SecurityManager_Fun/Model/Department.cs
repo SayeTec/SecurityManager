@@ -1,13 +1,8 @@
 ﻿using SecurityManager_Fun.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Model
 {
-    internal class Department
+    public class Department
     {
         public int ID { get; set; }
         public string Address { get; set; }
@@ -16,7 +11,8 @@ namespace SecurityManager_Fun.Model
 
         public override string ToString()
         {
-            using (var context = new AppDBContex()) { 
+            using (var context = new AppDBContext())
+            {
                 return $"{ID}: {Address} Capacity:" +
                     $"{Capacity} Country:" +
                     $"{context.Countries.Find(CountryID)}";

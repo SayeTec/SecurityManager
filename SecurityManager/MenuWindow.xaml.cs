@@ -1,17 +1,7 @@
 ﻿using SecurityManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SecurityManager_Fun.Model;
+using SecurityManager_GUI.MenuOptions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SecurityManager_GUI
 {
@@ -20,10 +10,21 @@ namespace SecurityManager_GUI
     /// </summary>
     public partial class MenuWindow : Window
     {
+        public Employee loggedEmployee { get; }
+
         public MenuWindow()
         {
             InitializeComponent();
             SizeChanged += Window_SizeChanged;
+        }
+
+        public MenuWindow(Employee employee)
+        {
+            loggedEmployee = employee;
+            InitializeComponent();
+            SizeChanged += Window_SizeChanged;
+
+            EmployeeLabel.Content = loggedEmployee.ToString();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -67,21 +68,21 @@ namespace SecurityManager_GUI
 
         private void ButtonStatistics_Click(object sender, RoutedEventArgs e)
         {
-            MenuOptions.SalariesWindow salariesWindow = new MenuOptions.SalariesWindow();
+            SalariesWindow salariesWindow = new SalariesWindow();
             salariesWindow.Show();
             Close();
         }
 
         private void buttonScheduleDesigner_Click(object sender, RoutedEventArgs e)
         {
-            MenuOptions.DutyScheduleWindow dutyScheduleWindow = new MenuOptions.DutyScheduleWindow();
+            DutyScheduleWindow dutyScheduleWindow = new DutyScheduleWindow();
             dutyScheduleWindow.Show();
             Close();
         }
 
         private void ButtonDutiesManagement_Click(object sender, RoutedEventArgs e)
         {
-            MenuOptions.DutyWindow dutyWindow = new MenuOptions.DutyWindow();
+            DutyWindow dutyWindow = new DutyWindow();
             dutyWindow.Show();
             Close();
         }

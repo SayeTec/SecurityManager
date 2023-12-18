@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SecurityManager_Fun.Data.Repositories;
+using SecurityManager_Fun.Logic;
+using SecurityManager_Fun.Model;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using static SecurityManager_Fun.Model.Role;
 
 namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 {
@@ -22,6 +14,23 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
         public AddEmployeeWindow()
         {
             InitializeComponent();
+
+            InitializeComboBox();
+        }
+
+        private void InitializeComboBox()
+        {
+            ComboboxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderPriority(PriorityType.Admin);
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (ComboboxEmployeeRole.SelectedItem == null) return;
+
+            AccountService.RegisterNewEmployee(TextBoxFirstName.Text,
+                TextBoxLastName.Text, 
+                TextBoxPhoneNumber.Text,
+                (ComboboxEmployeeRole.SelectedItem as Role).ID);
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)

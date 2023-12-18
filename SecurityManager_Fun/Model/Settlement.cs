@@ -1,14 +1,8 @@
-﻿using Org.BouncyCastle.Crypto.Utilities;
-using SecurityManager_Fun.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SecurityManager_Fun.Data;
 
 namespace SecurityManager_Fun.Model
 {
-    internal class Settlement
+    public class Settlement
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -25,14 +19,14 @@ namespace SecurityManager_Fun.Model
 
         public override string ToString()
         {
-            using (var context = new AppDBContex())
+            using (var context = new AppDBContext())
             {
                 return $"{ID}: {Name} Description:" +
                     $"{(Description == null ? "None" : Description)} Type:" +
                     $"{Type} Value:" +
                     $"{Value}{(IsPercentage ? "%" : "$")} Country:" +
                     $"{context.Countries.Find(CountryID)}";
-            } 
+            }
         }
     }
 }

@@ -32,6 +32,6 @@
         </StackPanel>
 
         <!-- Etykieta -->
-        <Label Grid.Column="1" Content="Panel Administratora" Margin="10" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
+        <Label x:Name="EmployeeLabel" Grid.Column="1" Content="Panel Administratora" Margin="10" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
     </Grid>
 </Window>

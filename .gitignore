@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore Program.cs file as it is a sandbox
+SecurityManager_Fun/Program.cs

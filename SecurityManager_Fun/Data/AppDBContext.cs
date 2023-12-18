@@ -3,7 +3,7 @@ using SecurityManager_Fun.Model;
 
 namespace SecurityManager_Fun.Data
 {
-    internal class AppDBContex : DbContext
+    public class AppDBContext : DbContext
     {
         private static string server = "localhost";
         private static string database = "test";

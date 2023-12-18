@@ -1,16 +1,12 @@
-﻿using Org.BouncyCastle.Tls;
-using SecurityManager_Fun.Data;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Logic
 {
-    internal class AccountService
+    public class AccountService
     {
         private static int ITERATIONS = 350000;
         private static int KEY_SIZE = 64;
@@ -20,19 +16,44 @@ namespace SecurityManager_Fun.Logic
         {
             Employee employee;
 
-            using (var context = new AppDBContex())
-            {
-                employee = context.Employees.FirstOrDefault(e => e.Login == login);
-                if (employee == null) return null;
-            }
+            employee = EmployeeRepository.GetEmployeeByLogin(login);
+            if (employee == null) return null;
 
             string[] passwordParts = employee.Password.Split(":");
 
-            return (VerifyPassword(password, passwordParts[0], Encoding.UTF8.GetBytes(passwordParts[1])) ? employee : null);
+            return (VerifyPassword(password, passwordParts[0], Convert.FromHexString(passwordParts[1])) ? employee : null);
+        }
+
+        public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int RoleID) {
+
+            byte[] salt;
+            string defaultLogin = DefaultValuesGenerator.GenerateDefaultEmployeeLogin(firstName, lastName);
+            string defaultEmail = DefaultValuesGenerator.GenerateDefaultEmployeeEmail(defaultLogin);
+            string defaultPassword = DefaultValuesGenerator.GenerateDefaultEmployeePassword(HashPassword(defaultLogin + "_SM", out salt), salt);
+            decimal defaultGrossRate = DefaultValuesGenerator.GenerateDefaultEmployeeGrossRate();
+
+            //TODO: Add verification of provided data in this class
+
+            if (EmployeeRepository.CheckIfEmployeeAlreadyExistsByLogin(defaultLogin)) return;
+
+            EmployeeRepository.AddNewEmployee(
+                new Employee
+                {
+                    Name = firstName,
+                    Surname = lastName,
+                    Phone = phoneNumber,
+                    RoleID = RoleID,
+                    DepartmentID = null,
+                    Login = defaultLogin,
+                    Email = defaultEmail,
+                    Password = defaultPassword,
+                    GrossRate = defaultGrossRate
+                });
+
         }
 
         //salt with out here is used to generate salt with hash and then write the whole password(with pattern: hash:salt) to the DB
-        public static string HashPassword(string password, out byte[] salt) 
+        public static string HashPassword(string password, out byte[] salt)
         {
             salt = RandomNumberGenerator.GetBytes(KEY_SIZE);
 
