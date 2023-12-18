@@ -22,7 +22,7 @@
             </StackPanel>
 
             <!-- Drugi wiersz -->
-            <DataGrid x:Name="DataGridEmployees" Margin="10,10,10,10" Grid.Row="1"/>
+            <DataGrid x:Name="DataGridEmployees" Margin="10,10,10,10" Grid.Row="1" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" FontFamily="Arial"/>
         </Grid>
     </Viewbox>
 </Window>

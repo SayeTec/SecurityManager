@@ -1,0 +1,34 @@
+[
+  {
+    "ID": 1,
+    "Name": "Jan",
+    "Surname": "Kowalski",
+    "Status": "Aktywny",
+    "Object": "Oddzia³ A",
+    "WorkedHours": 160
+  },
+  {
+    "ID": 2,
+    "Name": "Anna",
+    "Surname": "Nowak",
+    "Status": "Nieaktywny",
+    "Object": "Oddzia³ B",
+    "WorkedHours": 140
+  },
+  {
+    "ID": 3,
+    "Name": "Marek",
+    "Surname": "Wiœniewski",
+    "Status": "Aktywny",
+    "Object": "Oddzia³ C",
+    "WorkedHours": 180
+  },
+  {
+    "ID": 4,
+    "Name": "Maciek",
+    "Surname": "Tekliñski",
+    "Status": "Aktywny",
+    "Object": "Oddzia³ C",
+    "WorkedHours": 240
+  }
+]

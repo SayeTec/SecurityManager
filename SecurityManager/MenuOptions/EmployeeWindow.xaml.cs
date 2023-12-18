@@ -1,8 +1,10 @@
 ﻿using SecurityManager_GUI.MenuOptions.EmployeeOptions;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
+using Newtonsoft.Json;
+using System.IO;
+using System;
+using System.Text;
 
 namespace SecurityManager_GUI
 {
@@ -16,22 +18,59 @@ namespace SecurityManager_GUI
 
     public partial class EmployeeWindow : Window
     {
+        private string FilePath = @"Data\employee.json";
+        private List<Employee> Employees;
         public EmployeeWindow()
         {
             InitializeComponent();
+            Employees = LoadEmployeesFromJson();
+            DataGridEmployees.ItemsSource = Employees;
 
-            List<Employee1> employees = new List<Employee1>
+        }
+        private void SaveEmployeesToJson()
+        {
+            string json = JsonConvert.SerializeObject(Employees);
+            File.WriteAllText(FilePath, json, Encoding.UTF8);
+        }
+        private List<Employee> LoadEmployeesFromJson()
+        {
+            if (File.Exists(FilePath))
             {
-                new Employee1 { ID = 1, Name = "Jan", Surname = "Kowalski", Status = "Aktywny", Object = "Oddział A", WorkedHours = 160 },
-                new Employee1 { ID = 2, Name = "Anna", Surname = "Nowak", Status = "Nieaktywny", Object = "Oddział B", WorkedHours = 140 },
-                new Employee1 { ID = 3, Name = "Marek", Surname = "Wiśniewski", Status = "Aktywny", Object = "Oddział C", WorkedHours = 180 }
-            };
+                try
+                {
+                    string json = File.ReadAllText(FilePath, Encoding.UTF8);
+                    List<Employee> loadedEmployees = JsonConvert.DeserializeObject<List<Employee>>(json);
 
-            DataGridEmployees.ItemsSource = employees;
+                    if (loadedEmployees != null)
+                    {
+                        // Aktualizuj listę pracowników i odśwież widok DataGrid
+                        Employees = loadedEmployees;
+                        DataGridEmployees.ItemsSource = Employees;
+
+                        return loadedEmployees;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Błąd deserializacji JSON. Lista pracowników jest nullem.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Błąd podczas deserializacji JSON: {ex.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Plik JSON nie istnieje.");
+            }
+
+            // Domyślne dane, jeśli coś poszło nie tak
+            return new List<Employee>();
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
+            SaveEmployeesToJson();
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
             Close();
@@ -54,7 +93,7 @@ namespace SecurityManager_GUI
             
         }
     }
-    public class Employee1
+    public class Employee
     {
         public int ID { get; set; }
         public string Name { get; set; }
