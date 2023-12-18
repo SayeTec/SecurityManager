@@ -22,16 +22,7 @@
             </StackPanel>
 
             <!-- Drugi wiersz -->
-            <DataGrid x:Name="DataGridEmployees" Margin="10,10,10,10" Grid.Row="1">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" />
-                    <DataGridTextColumn Header="Imię" Binding="{Binding Path=Imie}" />
-                    <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=Nazwisko}" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" />
-                    <DataGridTextColumn Header="Obiekt" Binding="{Binding Path=Obiekt}" />
-                    <DataGridTextColumn Header="Godziny w wybranym miesiącu" Binding="{Binding Path=PrzepracowaneGodziny}" />
-                </DataGrid.Columns>
-            </DataGrid>
+            <DataGrid x:Name="DataGridEmployees" Margin="10,10,10,10" Grid.Row="1"/>
         </Grid>
     </Viewbox>
 </Window>
