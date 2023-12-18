@@ -24,8 +24,8 @@ namespace SecurityManager_Fun.Logic
             return (VerifyPassword(password, passwordParts[0], Convert.FromHexString(passwordParts[1])) ? employee : null);
         }
 
-        public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int RoleID) {
-
+        public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int RoleID) 
+        {
             byte[] salt;
             string defaultLogin = DefaultValuesGenerator.GenerateDefaultEmployeeLogin(firstName, lastName);
             string defaultEmail = DefaultValuesGenerator.GenerateDefaultEmployeeEmail(defaultLogin);
