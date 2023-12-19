@@ -1,6 +1,11 @@
 ﻿using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 //using static SecurityManager_Fun.Model.Role;
@@ -38,7 +43,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
         {
             //ComboboxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderPriority(PriorityType.Admin);
         }
-
+        
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (ComboboxEmployeeRole.SelectedItem == null || TextBoxFirstName.Text == null || TextBoxLastName.Text == null || TextBoxPhoneNumber == null)
@@ -93,7 +98,96 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 textBox.Foreground = System.Windows.Media.Brushes.Gray;
             }
         }
+        private void FirstLetterToUpper(TextBox textBox)
+        {
+            if (textBox.Text.Length <= 0) return;
+            string s = textBox.Text.Substring(0, 1);
+            if (s != s.ToUpper())
+            {
+                int curSelStart = textBox.SelectionStart;
+                int curSelLength = textBox.SelectionLength;
+                textBox.SelectionStart = 0;
+                textBox.SelectionLength = 1;
+                textBox.SelectedText = s.ToUpper();
+                textBox.SelectionStart = curSelStart;
+                textBox.SelectionLength = curSelLength;
+            }
+        }
+        private void TextBoxFirstName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FirstLetterToUpper(TextBoxFirstName);
+        }
 
-        
+        private void TextBoxLastName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FirstLetterToUpper(TextBoxLastName);
+        }
+
+        private bool isUpdating = false;
+
+        private void TextBoxPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (isUpdating)
+            {
+                return;
+            }
+
+            TextBox textBox = sender as TextBox;
+
+            // Usuń wszystkie spacje z aktualnego tekstu
+            string textWithoutSpaces = textBox.Text.Replace(" ", "");
+
+            // Sprawdź, czy tekst zawiera tylko cyfry
+            if (!IsNumeric(textWithoutSpaces))
+            {
+                // Jeśli tekst nie zawiera tylko cyfr, cofnij ostatnią zmianę
+                TextChange textChange = e.Changes.ElementAt(0);
+                int iAddedLength = textChange.AddedLength;
+                int iOffset = textChange.Offset;
+
+                // Wyłącz tymczasowo zdarzenie TextChanged
+                isUpdating = true;
+                textBox.Text = textBox.Text.Remove(iOffset, iAddedLength);
+                isUpdating = false;
+
+                return;
+            }
+
+            // Wyczyszczenie obecnych spacji
+            textBox.Text = textWithoutSpaces;
+
+            // Dodanie spacji co trzy cyfry, jeśli tekst jest dłuższy niż 3 cyfry
+            if (textWithoutSpaces.Length > 3)
+            {
+                int groupsOfThree = (textWithoutSpaces.Length - 1) / 3; // Oblicz, ile grup trzech cyfr jest potrzebnych
+                int additionalSpaces = groupsOfThree > 1 ? groupsOfThree - 1 : 0; // Oblicz, ile dodatkowych spacji będzie potrzebnych
+
+                StringBuilder formattedText = new StringBuilder();
+                for (int i = 0; i < textWithoutSpaces.Length; i++)
+                {
+                    if (i > 0 && i % 3 == 0)
+                    {
+                        if (additionalSpaces > 0)
+                        {
+                            formattedText.Append(" ");
+                            additionalSpaces--;
+                        }
+                    }
+                    formattedText.Append(textWithoutSpaces[i]);
+                }
+
+                // Wyłącz tymczasowo zdarzenie TextChanged
+                isUpdating = true;
+                textBox.Text = formattedText.ToString();
+                isUpdating = false;
+
+                // Ustawienie kursora na końcu tekstu
+                textBox.SelectionStart = textBox.Text.Length;
+            }
+        }
+        private bool IsNumeric(string text)
+        {
+            return int.TryParse(text, out _);
+        }
     }
 }

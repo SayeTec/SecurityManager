@@ -62,6 +62,9 @@ namespace SecurityManager_GUI
             Employees.Add(employee);
             string json = JsonConvert.SerializeObject(Employees);
             File.WriteAllText(_filePath, json, Encoding.UTF8);
+            
+            
+
             return Employees;
         }
         private List<Employee> LoadEmployeesFromJson()
@@ -121,6 +124,12 @@ namespace SecurityManager_GUI
         private void DataGridEmployees_Initialized(object sender, System.EventArgs e)
         {
             
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MenuWindow menuWindow = new MenuWindow();
+            menuWindow.Show();
         }
     }
     public class Employee
