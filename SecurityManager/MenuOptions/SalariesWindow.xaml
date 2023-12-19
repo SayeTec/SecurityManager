@@ -7,12 +7,25 @@
         mc:Ignorable="d"
         Title="SalariesWindow" Height="475" Width="800">
     <Grid>
-        <StackPanel Grid.Column="0" Margin="10,10,10,60">
-            <ComboBox x:Name="EmployeesCombobox" Height="25" Width="129" Margin="10,10,640,0" Text="Wybierz"/>
+        <StackPanel Grid.Column="0" Margin="448,12,209,396">
+            <ComboBox x:Name="ComboBoxObject" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </StackPanel>
 
         <StackPanel Margin="10,399,10,5">
-            <Button x:Name="ButtonBack" Content="Back"  Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
+            <Button x:Name="ButtonBack" Content="Back"  Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149" Margin="0,15,0,0"/>
+        </StackPanel>
+        <DataGrid  Margin="10,66,10,65"/>
+        <StackPanel Margin="10,0,655,400">
+            <TextBlock Text="Należności" Height="36" Width="132" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" TextAlignment="Center" Margin="0,15,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Margin="300,12,357,396">
+            <ComboBox x:Name="ComboBoxCompany" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Margin="152,12,505,396">
+            <ComboBox x:Name="ComboBoxEmployee" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Margin="591,12,66,396">
+            <ComboBox x:Name="ComboBoxPayStatus" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </StackPanel>
     </Grid>
 </Window>
