@@ -6,7 +6,7 @@ namespace SecurityManager_Fun.Logic
     {
         private static readonly SessionManager instance = new SessionManager();
 
-        public Employee CurrentEmployee { get; private set; }
+        public Employee currentEmployee { get; private set; }
 
         private SessionManager() { }
 
@@ -14,12 +14,12 @@ namespace SecurityManager_Fun.Logic
 
         public void SetCurrentEmployee(Employee employee)
         {
-            CurrentEmployee = employee;
+            currentEmployee = employee;
         }
 
         public void ClearCurrentEmployee()
         {
-            CurrentEmployee = null;
+            currentEmployee = null;
         }
     }
 }
