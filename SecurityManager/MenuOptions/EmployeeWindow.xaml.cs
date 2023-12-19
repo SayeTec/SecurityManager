@@ -21,8 +21,21 @@ namespace SecurityManager_GUI
 
     public partial class EmployeeWindow : Window
     {
-        private string FilePath = @"Data\employee.json";
+        private string _filePath = @"Data\employee.json";
         private List<Employee> Employees;
+
+        private static EmployeeWindow _instance;
+        public static EmployeeWindow Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new EmployeeWindow();
+                }
+                return _instance;
+            }
+        }
         public EmployeeWindow()
         {
             InitializeComponent();
@@ -34,15 +47,30 @@ namespace SecurityManager_GUI
         private void SaveEmployeesToJson()
         {
             string json = JsonConvert.SerializeObject(Employees);
-            File.WriteAllText(FilePath, json, Encoding.UTF8);
+            File.WriteAllText(_filePath, json, Encoding.UTF8);
+        }
+        public List<Employee> SaveEmployeeToJson(string name, string surname, int PhoneNumber)
+        {
+            Employee employee = new Employee();
+            employee.Name = name;
+            employee.Surname = surname;
+            employee.PhoneNumber = PhoneNumber;
+            employee.ID = Employees.Count + 1;
+            employee.Status = "Active";
+            employee.WorkedHours = 0;
+            
+            Employees.Add(employee);
+            string json = JsonConvert.SerializeObject(Employees);
+            File.WriteAllText(_filePath, json, Encoding.UTF8);
+            return Employees;
         }
         private List<Employee> LoadEmployeesFromJson()
         {
-            if (File.Exists(FilePath))
+            if (File.Exists(_filePath))
             {
                 try
                 {
-                    string json = File.ReadAllText(FilePath, Encoding.UTF8);
+                    string json = File.ReadAllText(_filePath, Encoding.UTF8);
                     List<Employee> loadedEmployees = JsonConvert.DeserializeObject<List<Employee>>(json);
 
                     if (loadedEmployees != null)
@@ -101,7 +129,7 @@ namespace SecurityManager_GUI
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Status { get; set; }
-        public string Object { get; set; }
+        public int PhoneNumber { get; set; }
         public int WorkedHours { get; set; }
     }
 }

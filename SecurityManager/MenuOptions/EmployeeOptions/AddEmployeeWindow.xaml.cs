@@ -12,12 +12,13 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
     /// </summary>
     public partial class AddEmployeeWindow : Window
     {
+        private EmployeeWindow _instance = EmployeeWindow.Instance;
         public AddEmployeeWindow()
         {
             InitializeComponent();
 
             InitializeComboBox();
-
+            ComboboxEmployeeRole.Items.Add("Officer");
             TextBoxFirstName.GotFocus += TextBox_GotFocus;
             TextBoxFirstName.LostFocus += TextBox_LostFocus;
 
@@ -47,7 +48,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             else
             {
                 //TODO: Add employee to database.
-
+                _instance.SaveEmployeeToJson(TextBoxFirstName.Text, TextBoxLastName.Text, int.Parse(TextBoxPhoneNumber.Text));
 
 
                 Close();
