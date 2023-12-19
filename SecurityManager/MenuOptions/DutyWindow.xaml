@@ -5,14 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions"
         mc:Ignorable="d"
-        Title="DutyWindow" Height="475" Width="800">
+        Title="Zarządzanie dyżurami" Height="475" Width="800">
     <Grid>
-        <StackPanel Grid.Column="0" Margin="10,10,10,60">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock TextWrapping="Wrap" Text="Dyżury" Height="45" FontWeight="Bold" FontSize="22" TextAlignment="Center"/>
             <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="16" Foreground="White"/>
         </StackPanel>
 
-        <StackPanel Margin="10,399,10,5">
-            <Button x:Name="ButtonBack" Content="Back" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
+        <StackPanel Grid.Column="1" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Data:" VerticalAlignment="Center" Foreground="White"/>
+                <DatePicker Height="38" Width="120" HorizontalAlignment="Left" Background="#FF9C4B5A" Foreground="White"/>
+                <TextBlock Text="Opcja:" VerticalAlignment="Center" Foreground="White" Margin="10,0,0,0"/>
+                <ComboBox x:Name="ComboBoxObject" Width="120" Height="35" Margin="0,0,0,0" Background="#FF9C4B5A" Foreground="White"/>
+            </StackPanel>
+
+            <DataGrid Height="306"/>
         </StackPanel>
+
+        <Button x:Name="ButtonBack" Content="Back" Background="#FF9C4B5A" Foreground="White" MinWidth="80" MinHeight="25" Click="ButtonBack_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"/>
     </Grid>
 </Window>

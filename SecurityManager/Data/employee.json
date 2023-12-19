@@ -1,0 +1,34 @@
+[
+  {
+    "ID": 1,
+    "Name": "Jan",
+    "Surname": "Kowalski",
+    "Status": "Aktywny",
+    "PhoneNumber": 123456789,
+    "WorkedHours": 160
+  },
+  {
+    "ID": 2,
+    "Name": "Anna",
+    "Surname": "Nowak",
+    "Status": "Nieaktywny",
+    "PhoneNumber": 123412345,
+    "WorkedHours": 140
+  },
+  {
+    "ID": 3,
+    "Name": "Marek",
+    "Surname": "Wiśniewski",
+    "Status": "Aktywny",
+    "PhoneNumber": 123412345,
+    "WorkedHours": 180
+  },
+  {
+    "ID": 4,
+    "Name": "Maciek",
+    "Surname": "Tekliński",
+    "Status": "Aktywny",
+    "PhoneNumber": 923412345,
+    "WorkedHours": 240
+  }
+]
