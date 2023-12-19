@@ -37,12 +37,13 @@ namespace SecurityManager
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Unlock this code when DB will be ready
-            //Employee employee = AccountService.LogIn(TextBoxLogin.Text, TextBoxPassword.Password);
+            Employee employee = AccountService.LogIn(TextBoxLogin.Text, TextBoxPassword.Password);
+            
+            if (employee == null) { CleanTextBoxes(); return; }
 
-            //if (employee == null) { CleanTextBoxes(); return; }
-
-            MenuWindow menuWindow = new MenuWindow(/*employee*/);
+            SessionManager.Instance.SetCurrentEmployee(employee);
+            
+            MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
             Close();
         }

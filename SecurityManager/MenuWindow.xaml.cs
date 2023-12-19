@@ -1,4 +1,5 @@
 ﻿using SecurityManager;
+using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions;
 using System.Windows;
@@ -16,13 +17,7 @@ namespace SecurityManager_GUI
         {
             InitializeComponent();
             SizeChanged += Window_SizeChanged;
-        }
-
-        public MenuWindow(Employee employee)
-        {
-            loggedEmployee = employee;
-            InitializeComponent();
-            SizeChanged += Window_SizeChanged;
+            loggedEmployee = SessionManager.Instance.CurrentEmployee;
 
             EmployeeLabel.Content = loggedEmployee.ToString();
         }
@@ -54,6 +49,7 @@ namespace SecurityManager_GUI
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
+            SessionManager.Instance.ClearCurrentEmployee();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();
