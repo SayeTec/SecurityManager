@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI"
         mc:Ignorable="d"
-        Title="EmployeeWindow" Height="500" Width="840">
+        Title="EmployeeWindow" Height="522" Width="840" Closing="Window_Closing">
     <Viewbox>
         <Grid Height="301" Width="522">
             <Grid.RowDefinitions>

@@ -4,7 +4,7 @@
     "Name": "Jan",
     "Surname": "Kowalski",
     "Status": "Aktywny",
-    "Object": "Oddzia≥ A",
+    "PhoneNumber": 123456789,
     "WorkedHours": 160
   },
   {
@@ -12,23 +12,23 @@
     "Name": "Anna",
     "Surname": "Nowak",
     "Status": "Nieaktywny",
-    "Object": "Oddzia≥ B",
+    "PhoneNumber": 123412345,
     "WorkedHours": 140
   },
   {
     "ID": 3,
     "Name": "Marek",
-    "Surname": "Wiúniewski",
+    "Surname": "Wi≈õniewski",
     "Status": "Aktywny",
-    "Object": "Oddzia≥ C",
+    "PhoneNumber": 123412345,
     "WorkedHours": 180
   },
   {
     "ID": 4,
     "Name": "Maciek",
-    "Surname": "TekliÒski",
+    "Surname": "Tekli≈Ñski",
     "Status": "Aktywny",
-    "Object": "Oddzia≥ C",
+    "PhoneNumber": 923412345,
     "WorkedHours": 240
   }
 ]
