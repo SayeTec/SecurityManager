@@ -7,10 +7,15 @@
         mc:Ignorable="d"
         Title="DutyScheduleWindow" Height="475" Width="800">
     <Grid>
-        <StackPanel Grid.Column="0" Margin="10,10,10,60">
-            <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="16" Foreground="White"/>
+        <StackPanel Grid.Column="0" Margin="10,3,609,406">
+            <TextBlock TextWrapping="Wrap" Text="Grafik" Height="34" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="22" FontWeight="Bold"/>
         </StackPanel>
+        <StackPanel Grid.Column="0" Margin="196,3,423,406">
+            <ComboBox Width="120" Margin="0,15,0,0"/>
 
+            <StackPanel Height="50"/>
+
+        </StackPanel>
         <StackPanel Margin="10,399,10,5">
             <Button x:Name="ButtonBack" Content="Back" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149"/>
         </StackPanel>

@@ -24,12 +24,12 @@ namespace SecurityManager_Fun.Logic
             return (VerifyPassword(password, passwordParts[0], Convert.FromHexString(passwordParts[1])) ? employee : null);
         }
 
-        public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int RoleID) 
+        public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int roleID) 
         {
             byte[] salt;
             string defaultLogin = DefaultValuesGenerator.GenerateDefaultEmployeeLogin(firstName, lastName);
             string defaultEmail = DefaultValuesGenerator.GenerateDefaultEmployeeEmail(defaultLogin);
-            string defaultPassword = DefaultValuesGenerator.GenerateDefaultEmployeePassword(HashPassword(defaultLogin + "_SM", out salt), salt);
+            string defaultPassword = DefaultValuesGenerator.GenerateDefaultEmployeePassword(HashPassword(GenerateRandomPassword(defaultLogin), out salt), salt);
             decimal defaultGrossRate = DefaultValuesGenerator.GenerateDefaultEmployeeGrossRate();
 
             //TODO: Add verification of provided data in this class
@@ -42,7 +42,7 @@ namespace SecurityManager_Fun.Logic
                     Name = firstName,
                     Surname = lastName,
                     Phone = phoneNumber,
-                    RoleID = RoleID,
+                    RoleID = roleID,
                     DepartmentID = null,
                     Login = defaultLogin,
                     Email = defaultEmail,
@@ -67,6 +67,15 @@ namespace SecurityManager_Fun.Logic
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, ITERATIONS, HASH_ALGORITHM, KEY_SIZE);
 
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
+        }
+        private static string GenerateRandomPassword(string login)
+        {
+            int min = 0000;
+            int max = 9999;
+
+            Random random = new Random();
+            string password = "u" + login + random.Next(min, max).ToString();
+            return password;
         }
     }
 }
