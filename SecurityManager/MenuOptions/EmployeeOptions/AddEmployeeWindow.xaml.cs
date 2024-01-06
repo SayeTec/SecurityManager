@@ -1,14 +1,11 @@
 ﻿using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
-using System;
-using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-//using static SecurityManager_Fun.Model.Role;
+using static SecurityManager_Fun.Model.Role;
 
 namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 {
@@ -23,7 +20,6 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             InitializeComponent();
 
             InitializeComboBox();
-            ComboboxEmployeeRole.Items.Add("Officer");
             TextBoxFirstName.GotFocus += TextBox_GotFocus;
             TextBoxFirstName.LostFocus += TextBox_LostFocus;
 
@@ -41,9 +37,9 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void InitializeComboBox()
         {
-            //ComboboxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderPriority(PriorityType.Admin);
+            ComboboxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderEmployeePriority(Session.Instance.CurrentEmployee);
         }
-        
+
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (ComboboxEmployeeRole.SelectedItem == null || TextBoxFirstName.Text == null || TextBoxLastName.Text == null || TextBoxPhoneNumber == null)
@@ -53,18 +49,15 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             else
             {
                 //TODO: Add employee to database.
-                _instance.SaveEmployeeToJson(TextBoxFirstName.Text, TextBoxLastName.Text, int.Parse(TextBoxPhoneNumber.Text));
+                //_instance.SaveEmployeeToJson(TextBoxFirstName.Text, TextBoxLastName.Text, int.Parse(TextBoxPhoneNumber.Text));
 
+                AccountService.RegisterNewEmployee(TextBoxFirstName.Text,
+                    TextBoxLastName.Text,
+                    TextBoxPhoneNumber.Text,
+                    (ComboboxEmployeeRole.SelectedItem as Role).ID);
 
                 Close();
             }
-
-            
-
-            //AccountService.RegisterNewEmployee(TextBoxFirstName.Text,
-            //    TextBoxLastName.Text, 
-            //    TextBoxPhoneNumber.Text,
-            //    (ComboboxEmployeeRole.SelectedItem as Role).ID);
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
@@ -85,7 +78,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             if (textBox != null && textBox.Text == textBox.Tag as string)
             {
                 textBox.Text = string.Empty;
-                textBox.Foreground = System.Windows.Media.Brushes.Black;            
+                textBox.Foreground = System.Windows.Media.Brushes.Black;
             }
         }
 

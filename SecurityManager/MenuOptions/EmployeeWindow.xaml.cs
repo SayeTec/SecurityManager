@@ -6,6 +6,7 @@ using System.IO;
 using System;
 using System.Text;
 using System.Windows.Markup;
+using SecurityManager_Fun.Model;
 
 namespace SecurityManager_GUI
 {
@@ -40,11 +41,11 @@ namespace SecurityManager_GUI
         {
             InitializeComponent();
             DataGridEmployees.Language = XmlLanguage.GetLanguage("pl-PL"); 
-            Employees = LoadEmployeesFromJson();
+            //Employees = LoadEmployeesFromJson();
             DataGridEmployees.ItemsSource = Employees;
             
         }
-        private void SaveEmployeesToJson()
+        /*private void SaveEmployeesToJson()
         {
             string json = JsonConvert.SerializeObject(Employees);
             File.WriteAllText(_filePath, json, Encoding.UTF8);
@@ -99,11 +100,11 @@ namespace SecurityManager_GUI
             }
 
             return new List<Employee>();
-        }
+        }*/
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            SaveEmployeesToJson();
+            //SaveEmployeesToJson();
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
             Close();
@@ -132,7 +133,7 @@ namespace SecurityManager_GUI
             menuWindow.Show();
         }
     }
-    public class Employee
+    /*public class Employee
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -140,5 +141,5 @@ namespace SecurityManager_GUI
         public string Status { get; set; }
         public int PhoneNumber { get; set; }
         public int WorkedHours { get; set; }
-    }
+    }*/
 }

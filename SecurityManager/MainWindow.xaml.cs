@@ -41,7 +41,7 @@ namespace SecurityManager
             
             if (employee == null) { CleanTextBoxes(); return; }
 
-            SessionManager.Instance.SetCurrentEmployee(employee);
+            Session.Instance.SetCurrentEmployee(employee);
             
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
