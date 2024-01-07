@@ -17,6 +17,9 @@ namespace SecurityManager_Fun.Model
             None = 0, Tax = 1, Bonus = 2
         }
 
+        // Navigation property
+        public Country Country { get; set; }
+
         public override string ToString()
         {
             using (var context = new AppDBContext())

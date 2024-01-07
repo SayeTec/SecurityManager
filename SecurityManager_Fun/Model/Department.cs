@@ -9,6 +9,9 @@ namespace SecurityManager_Fun.Model
         public int Capacity { get; set; }
         public int CountryID { get; set; }
 
+        // Navigation property
+        public Country Country { get; set; }
+
         public override string ToString()
         {
             using (var context = new AppDBContext())

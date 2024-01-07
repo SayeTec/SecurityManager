@@ -16,5 +16,7 @@
             Vacation = 3
         }
 
+        // Navigation property
+        public Employee Employee { get; set; }
     }
 }
