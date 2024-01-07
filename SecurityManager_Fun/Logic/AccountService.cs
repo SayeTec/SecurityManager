@@ -52,7 +52,6 @@ namespace SecurityManager_Fun.Logic
 
         }
 
-        //salt with out here is used to generate salt with hash and then write the whole password(with pattern: hash:salt) to the DB
         public static string HashPassword(string password, out byte[] salt)
         {
             salt = RandomNumberGenerator.GetBytes(KEY_SIZE);

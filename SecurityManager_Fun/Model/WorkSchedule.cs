@@ -3,7 +3,7 @@
     public class WorkSchedule
     {
         public int ID { get; set; }
-        public DateOnly Day { get; set; }
+        public DateTime Day { get; set; }
         public int WorkHours { get; set; } //TODO: Needs to be regulated, is not it just StartTime and EndTime
         public int EmployeeID { get; set; }
         public WorkDayType DayType { get; set; }

@@ -17,7 +17,7 @@ namespace SecurityManager_GUI
         {
             InitializeComponent();
             SizeChanged += Window_SizeChanged;
-            loggedEmployee = SessionManager.Instance.CurrentEmployee;
+            loggedEmployee = Session.Instance.CurrentEmployee;
 
             EmployeeLabel.Content = loggedEmployee.ToString();
         }
@@ -49,7 +49,7 @@ namespace SecurityManager_GUI
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            SessionManager.Instance.ClearCurrentEmployee();
+            Session.Instance.ClearCurrentEmployee();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             Close();

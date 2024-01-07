@@ -5,11 +5,19 @@ namespace SecurityManager_Fun.Data.Repositories
 {
     public class RoleRepository
     {
+        public static List<Role> GetRolesUnderEmployeePriority(Employee employee)
+        {
+            using (var context = new AppDBContext())
+            {
+                return GetRolesUnderPriority(context.Roles.Find(employee.RoleID).Priority);
+            }
+        }
+
         public static List<Role> GetRolesUnderPriority(PriorityType priority)
         {
             using (var context = new AppDBContext())
             {
-                return context.Roles.Where(role => (int)role.Priority > (int)priority + 1).ToList();
+                return context.Roles.Where(role => (int)role.Priority > (int)priority).ToList();
             }
         }
     }

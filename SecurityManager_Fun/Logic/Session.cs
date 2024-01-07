@@ -2,15 +2,15 @@
 
 namespace SecurityManager_Fun.Logic
 {
-    public class SessionManager
+    public class Session
     {
-        private static readonly SessionManager instance = new SessionManager();
+        private static readonly Session instance = new Session();
 
         public Employee CurrentEmployee { get; private set; }
 
-        private SessionManager() { }
+        private Session() { }
 
-        public static SessionManager Instance { get {  return instance; } }
+        public static Session Instance { get {  return instance; } }
 
         public void SetCurrentEmployee(Employee employee)
         {
