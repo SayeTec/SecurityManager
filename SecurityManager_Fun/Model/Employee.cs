@@ -15,6 +15,10 @@ namespace SecurityManager_Fun.Model
         public string Password { get; set; }
         public decimal GrossRate { get; set; }
 
+        // Navigation properties
+        public Role Role { get; set; }
+        public Department Department { get; set; }
+
         public override string ToString()
         {
             using (var context = new AppDBContext())

@@ -14,8 +14,8 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
     /// </summary>
     public partial class AddEmployeeWindow : Window
     {
-        private EmployeeWindow _instance = EmployeeWindow.Instance;
-        public AddEmployeeWindow()
+        private EmployeeWindow previous;
+        public AddEmployeeWindow(EmployeeWindow employeeWindow)
         {
             InitializeComponent();
 
@@ -33,6 +33,8 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             ComboboxEmployeeRole.LostFocus += TextBox_LostFocus;
 
             SetPlaceholderText();
+
+            previous = employeeWindow;
         }
 
         private void InitializeComboBox()
@@ -56,6 +58,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                     TextBoxPhoneNumber.Text,
                     (ComboboxEmployeeRole.SelectedItem as Role).ID);
 
+                previous.LoadEmployeesFromDB();
                 Close();
             }
         }

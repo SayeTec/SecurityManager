@@ -28,5 +28,18 @@ namespace SecurityManager_Fun.Data
         public DbSet<Country> Countries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(MYSQL_CONNECTION_CONFIG);
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.GrossRate)
+                .HasColumnType("decimal(10,2)");
+
+            modelBuilder.Entity<Settlement>()
+                .Property(s => s.Value)
+                .HasColumnType("decimal(10,4)");
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
