@@ -7,6 +7,8 @@ using System;
 using System.Text;
 using System.Windows.Markup;
 using SecurityManager_Fun.Model;
+using SecurityManager_Fun.Data.Repositories;
+using System.Linq;
 
 namespace SecurityManager_GUI
 {
@@ -25,7 +27,7 @@ namespace SecurityManager_GUI
         private string _filePath = @"Data\employee.json";
         private List<Employee> Employees;
 
-        private static EmployeeWindow _instance;
+        private static EmployeeWindow _instance = new EmployeeWindow();
         public static EmployeeWindow Instance
         {
             get
@@ -37,19 +39,53 @@ namespace SecurityManager_GUI
                 return _instance;
             }
         }
+
         public EmployeeWindow()
         {
             InitializeComponent();
-            DataGridEmployees.Language = XmlLanguage.GetLanguage("pl-PL"); 
-            //Employees = LoadEmployeesFromJson();
-            DataGridEmployees.ItemsSource = Employees;
-            
+            DataGridEmployees.Language = XmlLanguage.GetLanguage("pl-PL");
+            LoadEmployeesFromDB();
         }
-        /*private void SaveEmployeesToJson()
+
+        public void LoadEmployeesFromDB()
+        {
+            DataGridEmployees.ItemsSource = EmployeeRepository.GetAllEmployees();
+            DataGridEmployees.Items.Refresh();
+        }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            //SaveEmployeesToJson();
+            MenuWindow menuWindow = new MenuWindow();
+            menuWindow.Show();
+            Close();
+        }
+
+        private void ButtonAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow(this);
+            addEmployeeWindow.Show();
+        }
+
+        private void ButtonEditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            /*AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
+            addEmployeeWindow.Show();*/
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MenuWindow menuWindow = new MenuWindow();
+            menuWindow.Show();
+        }
+    }
+
+    /*private void SaveEmployeesToJson()
         {
             string json = JsonConvert.SerializeObject(Employees);
             File.WriteAllText(_filePath, json, Encoding.UTF8);
         }
+
         public List<Employee> SaveEmployeeToJson(string name, string surname, int PhoneNumber)
         {
             Employee employee = new Employee();
@@ -68,6 +104,7 @@ namespace SecurityManager_GUI
 
             return Employees;
         }
+
         private List<Employee> LoadEmployeesFromJson()
         {
             if (File.Exists(_filePath))
@@ -102,37 +139,7 @@ namespace SecurityManager_GUI
             return new List<Employee>();
         }*/
 
-        private void ButtonBack_Click(object sender, RoutedEventArgs e)
-        {
-            //SaveEmployeesToJson();
-            MenuWindow menuWindow = new MenuWindow();
-            menuWindow.Show();
-            Close();
-        }
 
-        private void ButtonAddEmployee_Click(object sender, RoutedEventArgs e)
-        {
-            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
-            addEmployeeWindow.Show();
-        }
-
-        private void ButtonEditEmployee_Click(object sender, RoutedEventArgs e)
-        {
-            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
-            addEmployeeWindow.Show();
-        }
-
-        private void DataGridEmployees_Initialized(object sender, System.EventArgs e)
-        {
-            
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            MenuWindow menuWindow = new MenuWindow();
-            menuWindow.Show();
-        }
-    }
     /*public class Employee
     {
         public int ID { get; set; }

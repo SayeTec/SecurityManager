@@ -22,7 +22,17 @@
             </StackPanel>
 
             <!-- Drugi wiersz -->
-            <DataGrid x:Name="DataGridEmployees" Margin="10,10,10,10" Grid.Row="1" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" FontFamily="Arial"/>
+            <DataGrid x:Name="DataGridEmployees" Margin="10,10,10,10" Grid.Row="1" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" FontFamily="Arial" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
+                    <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" />
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                    <DataGridTextColumn Header="Role" Binding="{Binding Role.Name}" />
+                    <DataGridTextColumn Header="Department" Binding="{Binding Department.Address}" />
+                    <DataGridTextColumn Header="Country" Binding="{Binding Department.Country.Name}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Viewbox>
 </Window>
