@@ -17,21 +17,17 @@
         <TextBlock Text="Należności" Height="36" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" TextAlignment="Center" Margin="0,10,0,10"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <ComboBox x:Name="ComboBoxObject" Height="25" Width="150" Margin="10">
-                <ComboBoxItem IsEnabled="False">Wybierz obiekt</ComboBoxItem>
-                <!-- Dodaj opcje tutaj -->
+            <ComboBox x:Name="ComboBoxObject" Height="25" Width="150" Margin="10" SelectedIndex="0">
+                <ComboBoxItem>Wybierz obiekt</ComboBoxItem>
             </ComboBox>
-            <ComboBox x:Name="ComboBoxCompany" Height="25" Width="150" Margin="10">
-                <ComboBoxItem IsEnabled="False">Wybierz firmę</ComboBoxItem>
-                <!-- Dodaj opcje tutaj -->
+            <ComboBox x:Name="ComboBoxCompany" Height="25" Width="150" Margin="10" SelectedIndex="0">
+                <ComboBoxItem>Wybierz firmę</ComboBoxItem>
             </ComboBox>
-            <ComboBox x:Name="ComboBoxEmployee" Height="25" Width="150" Margin="10">
-                <ComboBoxItem IsEnabled="False">Wybierz pracownika</ComboBoxItem>
-                <!-- Dodaj opcje tutaj -->
+            <ComboBox x:Name="ComboBoxEmployee" Height="25" Width="150" Margin="10" SelectedIndex="0">
+                <ComboBoxItem>Wybierz pracownika</ComboBoxItem>
             </ComboBox>
-            <ComboBox x:Name="ComboBoxPayStatus" Height="25" Width="150" Margin="10">
-                <ComboBoxItem IsEnabled="False">Wybierz status płatności</ComboBoxItem>
-                <!-- Dodaj opcje tutaj -->
+            <ComboBox x:Name="ComboBoxPayStatus" Height="25" Width="150" Margin="10" SelectedIndex="0">
+                <ComboBoxItem>Wybierz status płatności</ComboBoxItem>
             </ComboBox>
         </StackPanel>
 
