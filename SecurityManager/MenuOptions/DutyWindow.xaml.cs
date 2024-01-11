@@ -18,5 +18,11 @@ namespace SecurityManager_GUI.MenuOptions
             menuWindow.Show();
             Close();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MenuWindow menuWindow = new MenuWindow();
+            menuWindow.Show();
+        }
     }
 }

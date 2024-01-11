@@ -5,26 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions"
         mc:Ignorable="d"
-        Title="SalariesWindow" Height="475" Width="800">
+        Title="SalariesWindow" Height="475" Width="800" Closing="Window_Closing">
     <Grid>
-        <StackPanel Grid.Column="0" Margin="448,12,209,396">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="639*"/>
+            <ColumnDefinition Width="161*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="448,12,48,396">
             <ComboBox x:Name="ComboBoxObject" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </StackPanel>
 
-        <StackPanel Margin="10,399,10,5">
+        <StackPanel Margin="10,399,10,5" Grid.ColumnSpan="2">
             <Button x:Name="ButtonBack" Content="Back"  Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Click="ButtonBack_Click" Height="15" Width="149" Margin="0,15,0,0"/>
         </StackPanel>
-        <DataGrid  Margin="10,66,10,65"/>
-        <StackPanel Margin="10,0,655,400">
+        <DataGrid  Margin="10,66,10,65" Grid.ColumnSpan="2"/>
+        <StackPanel Margin="10,0,494,400">
             <TextBlock Text="Należności" Height="36" Width="132" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" TextAlignment="Center" Margin="0,15,0,0"/>
         </StackPanel>
-        <StackPanel Grid.Column="0" Margin="300,12,357,396">
+        <StackPanel Grid.Column="0" Margin="300,12,196,396">
             <ComboBox x:Name="ComboBoxCompany" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </StackPanel>
-        <StackPanel Grid.Column="0" Margin="152,12,505,396">
+        <StackPanel Grid.Column="0" Margin="152,12,344,396">
             <ComboBox x:Name="ComboBoxEmployee" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </StackPanel>
-        <StackPanel Grid.Column="0" Margin="591,12,66,396">
+        <StackPanel Grid.Column="0" Margin="591,12,66,396" Grid.ColumnSpan="2">
             <ComboBox x:Name="ComboBoxPayStatus" Height="25" Width="129" Text="Wybierz" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         </StackPanel>
     </Grid>
