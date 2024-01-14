@@ -52,8 +52,10 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 Phone = TextBoxPhoneNumber.Text,
                 Email = TextBoxEmail.Text,
                 Login = TextBoxLogin.Text,
-                Role = ComboBoxEmployeeRole.SelectedItem as Role == null ? employeeToEdit.Role : ComboBoxEmployeeRole.SelectedItem as Role,
-                Department = DataGridDepartments.SelectedItem as Department == null ? employeeToEdit.Department : DataGridDepartments.SelectedItem as Department,
+                RoleID = ComboBoxEmployeeRole.SelectedItem as Role == null ? 
+                employeeToEdit.RoleID : (ComboBoxEmployeeRole.SelectedItem as Role).ID,
+                DepartmentID = DataGridDepartments.SelectedItem as Department == null ? 
+                employeeToEdit.DepartmentID : (DataGridDepartments.SelectedItem as Department).ID,
                 Password = employeeToEdit.Password,
                 GrossRate = employeeToEdit.GrossRate
             };
@@ -87,6 +89,11 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void ButtonPasswordChange_Click(object sender, RoutedEventArgs e)
         {
+            if (Session.Instance.CurrentEmployee.Role.Priority > employeeToEdit.Role.Priority)
+            {
+                MessageBox.Show(DisplayMessages.Error.ATTEMPT_TO_UPDATE_EMPLOYEE_PASSWORD_WITH_LOWER_ROLE, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             ChangePassword changePassword = new ChangePassword(employeeToEdit);
             changePassword.ShowDialog();
         }
@@ -119,6 +126,8 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             string errorMessage = "";
 
+            //TODO: Add name and surname validation
+
             if (!ValuesValidation.ValidateLoginMatchesPattern(login, GetEmployeeWithData()))
                 errorMessage += $"{string.Format(DisplayMessages.Error.LOGIN_NOT_MATCH_PATTERN, login)}\n";
 
@@ -137,7 +146,8 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 return;
             }
 
-            EmployeeRepository.UpdateEmployee(GetEmployeeWithData());
+            PasswordConfirmation passwordConfirmation = new PasswordConfirmation(GetEmployeeWithData(), "update");
+            passwordConfirmation.ShowDialog();
             Close();
         }
     }

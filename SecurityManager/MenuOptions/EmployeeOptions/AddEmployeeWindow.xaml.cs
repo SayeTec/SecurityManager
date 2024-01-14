@@ -1,11 +1,11 @@
-﻿using SecurityManager_Fun.Data.Repositories;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using static SecurityManager_Fun.Model.Role;
 
 namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 {
@@ -27,7 +27,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             TextBoxPhoneNumber.GotFocus += TextBox_GotFocus;
             TextBoxPhoneNumber.LostFocus += TextBox_LostFocus;
-    
+
             TextBoxEmailAddress.GotFocus += TextBox_GotFocus;
             TextBoxEmailAddress.LostFocus += TextBox_LostFocus;
 
@@ -38,25 +38,29 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
         {
             ComboboxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderEmployeePriority(Session.Instance.CurrentEmployee);
         }
-        
+
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (ComboboxEmployeeRole.SelectedItem == null || TextBoxFirstName.Text == null || TextBoxLastName.Text == null || TextBoxPhoneNumber == null)
+            if (ComboboxEmployeeRole.SelectedItem == null || string.IsNullOrEmpty(TextBoxFirstName.Text)
+                || string.IsNullOrEmpty(TextBoxLastName.Text) || string.IsNullOrEmpty(TextBoxPhoneNumber.Text))
             {
-                MessageBox.Show("Wypełnij wszystkie pola!");
+                MessageBox.Show(DisplayMessages.Error.REQUIRED_DATA_NOT_PROVIDED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else
+
+            Employee newEmployee = new Employee()
             {
-                //TODO: Add employee to database.
-                //_instance.SaveEmployeeToJson(TextBoxFirstName.Text, TextBoxLastName.Text, int.Parse(TextBoxPhoneNumber.Text));
+                Name = TextBoxFirstName.Text,
+                Surname = TextBoxLastName.Text,
+                Phone = TextBoxPhoneNumber.Text,
+                Email = TextBoxEmailAddress.Text == "Email adres" ? string.Empty : TextBoxEmailAddress.Text,
+                RoleID = (ComboboxEmployeeRole.SelectedItem as Role).ID
+            };
 
-                AccountService.RegisterNewEmployee(TextBoxFirstName.Text,
-                    TextBoxLastName.Text,
-                    TextBoxPhoneNumber.Text,
-                    (ComboboxEmployeeRole.SelectedItem as Role).ID);
+            PasswordConfirmation passwordConfirmation = new PasswordConfirmation(newEmployee, "add");
+            passwordConfirmation.ShowDialog();
+            Close();
 
-                Close();
-            }
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)

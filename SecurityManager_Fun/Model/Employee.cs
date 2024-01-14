@@ -1,4 +1,5 @@
 ﻿using SecurityManager_Fun.Data;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SecurityManager_Fun.Model
 {
@@ -18,6 +19,8 @@ namespace SecurityManager_Fun.Model
         // Navigation properties
         public Role Role { get; set; }
         public Department Department { get; set; }
+
+        public string GetFullName() => Name + " " + Surname;
 
         public override string ToString()
         {
