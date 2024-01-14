@@ -19,9 +19,7 @@ namespace SecurityManager_Fun.Logic
             employee = EmployeeRepository.GetEmployeeByLogin(login);
             if (employee == null) return null;
 
-            string[] passwordParts = employee.Password.Split(":");
-
-            return (VerifyPassword(password, passwordParts[0], Convert.FromHexString(passwordParts[1])) ? employee : null);
+            return (VerifyPassword(password, employee.Password) ? employee : null);
         }
 
         public static void RegisterNewEmployee(string firstName, string lastName, string phoneNumber, int roleID) 
@@ -60,13 +58,20 @@ namespace SecurityManager_Fun.Logic
             return Convert.ToHexString(hash);
         }
 
-
-        public static bool VerifyPassword(string password, string hash, byte[] salt)
+        public static bool VerifyPasswordWithHash(string password, string hash, byte[] salt)
         {
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, ITERATIONS, HASH_ALGORITHM, KEY_SIZE);
 
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
         }
+
+        public static bool VerifyPassword(string passwordToVerify, string hashedPassword)
+        {
+            string[] passwordParts = hashedPassword.Split(":");
+
+            return VerifyPasswordWithHash(passwordToVerify, passwordParts[0], Convert.FromHexString(passwordParts[1]));
+        }
+
         private static string GenerateRandomPassword(string login)
         {
             int min = 0000;

@@ -14,8 +14,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
     /// </summary>
     public partial class AddEmployeeWindow : Window
     {
-        private EmployeeWindow previous;
-        public AddEmployeeWindow(EmployeeWindow employeeWindow)
+        public AddEmployeeWindow()
         {
             InitializeComponent();
 
@@ -28,20 +27,18 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             TextBoxPhoneNumber.GotFocus += TextBox_GotFocus;
             TextBoxPhoneNumber.LostFocus += TextBox_LostFocus;
-
-            ComboboxEmployeeRole.GotFocus += TextBox_GotFocus;
-            ComboboxEmployeeRole.LostFocus += TextBox_LostFocus;
+    
+            TextBoxEmailAddress.GotFocus += TextBox_GotFocus;
+            TextBoxEmailAddress.LostFocus += TextBox_LostFocus;
 
             SetPlaceholderText();
-
-            previous = employeeWindow;
         }
 
         private void InitializeComboBox()
         {
             ComboboxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderEmployeePriority(Session.Instance.CurrentEmployee);
         }
-
+        
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (ComboboxEmployeeRole.SelectedItem == null || TextBoxFirstName.Text == null || TextBoxLastName.Text == null || TextBoxPhoneNumber == null)
@@ -58,7 +55,6 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                     TextBoxPhoneNumber.Text,
                     (ComboboxEmployeeRole.SelectedItem as Role).ID);
 
-                previous.LoadEmployeesFromDB();
                 Close();
             }
         }
@@ -72,7 +68,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             TextBoxFirstName.Text = "Imię";
             TextBoxLastName.Text = "Nazwisko";
             TextBoxPhoneNumber.Text = "Numer telefonu";
-            ComboboxEmployeeRole.Text = "Rola";
+            TextBoxEmailAddress.Text = "Email adres";
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -123,7 +119,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void TextBoxPhoneNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (isUpdating)
+            if (!isUpdating)
             {
                 return;
             }

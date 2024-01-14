@@ -5,30 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.EmployeeOptions"
         mc:Ignorable="d"
-        Title="Edycja" Height="206" Width="350" ResizeMode="NoResize">
+        Title="Edycja" Height="500" Width="460">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Center">
-            <TextBlock Text="Edycja danych pracownika" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <TextBlock Text="Edycja danych pracownika" FontSize="18" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
 
-        <TextBox x:Name="TextBoxFirstName" Grid.Row="1" Margin="10,0,10,0" Tag="Imię" Text="Imię" Foreground="Gray"/>
-        <TextBox x:Name="TextBoxLastName" Grid.Row="2" Margin="10,5,10,0" Tag="Nazwisko" Text="Nazwisko" Foreground="Gray"/>
-        <TextBox x:Name="TextBoxPhoneNumber"  Grid.Row="3" Margin="10,5,10,0" Tag="Numer telefonu" Text="Numer telefonu" Foreground="Gray"/>
-        <ComboBox x:Name="ComboboxEmployeeRole" Grid.Row="4" Margin="10,5,10,0" Tag="Rola" Text="Rola" Foreground="Gray"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Margin="5"/>
-            <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Margin="5"/>
-        </StackPanel>
+            <Grid Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="LabelFirstName" Grid.Row="0" Content="Imię" FontSize="12"/>
+                <TextBox x:Name="TextBoxFirstName" Grid.Row="1" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top" TextChanged="TextBoxFirstName_TextChanged"/>
+                
+                <Label x:Name="LabelLastName" Grid.Row="2" Content="Nazwisko" FontSize="12"/>
+                <TextBox x:Name="TextBoxLastName" Grid.Row="3" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top" TextChanged="TextBoxLastName_TextChanged"/>
+
+                <Label x:Name="LabelPhoneNumber" Grid.Row="4" Content="Numer telefonu" FontSize="12"/>
+                <TextBox x:Name="TextBoxPhoneNumber" Grid.Row="5" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+
+                <Label x:Name="LabelEmail" Grid.Row="6" Content="Email" FontSize="12"/>
+                <TextBox x:Name="TextBoxEmail" Grid.Row="7" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+
+                <Label x:Name="LabelLogin" Grid.Row="8" Content="Login" FontSize="12"/>
+                <TextBox x:Name="TextBoxLogin" Grid.Row="9" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="10,10,10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="80*"/>
+                </Grid.RowDefinitions>
+
+                <Label x:Name="LabelRole" Grid.Row="0" Content="Rola" FontSize="12"/>
+                <ComboBox x:Name="ComboBoxEmployeeRole" Grid.Row="1" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+
+                <DataGrid x:Name="DataGridDepartments" Grid.Row="2" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="#" Width="10*"/>
+                        <DataGridTextColumn Header="Country" Binding="{Binding Country.Name}" Width="30*"/>
+                        <DataGridTextColumn Header="Department" Binding="{Binding Address}" Width="60*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Width="320">
+                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
+                <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonSave_Click"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10" Grid.RowSpan="2" Width="240">
+                <Button x:Name="ButtonPasswordChange" Content="Zmień hasło" Background="#FF797979" Foreground="White" Width="230" Margin="5" Click="ButtonPasswordChange_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -13,10 +13,7 @@ public class Program
         byte[] salt;
         string hash = AccountService.HashPassword("123", out salt);
 
-        string saltString = Convert.ToHexString(salt);
-        Console.WriteLine("Salt string => " + saltString); 
-        Console.WriteLine("Hash => " + hash);
-        Console.WriteLine(AccountService.VerifyPassword("123", hash, Convert.FromHexString(saltString)) ? "Cool" : "Not cool");
+        Console.WriteLine(ValuesValidation.ValidatePassword(null));
 
         using (var context = new AppDBContext())
         {

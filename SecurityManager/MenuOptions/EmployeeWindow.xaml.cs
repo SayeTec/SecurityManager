@@ -1,14 +1,10 @@
-﻿using SecurityManager_GUI.MenuOptions.EmployeeOptions;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
+using SecurityManager_Fun.Model;
+using SecurityManager_GUI.MenuOptions.EmployeeOptions;
 using System.Collections.Generic;
 using System.Windows;
-using Newtonsoft.Json;
-using System.IO;
-using System;
-using System.Text;
 using System.Windows.Markup;
-using SecurityManager_Fun.Model;
-using SecurityManager_Fun.Data.Repositories;
-using System.Linq;
 
 namespace SecurityManager_GUI
 {
@@ -55,7 +51,6 @@ namespace SecurityManager_GUI
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            //SaveEmployeesToJson();
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
             Close();
@@ -63,14 +58,26 @@ namespace SecurityManager_GUI
 
         private void ButtonAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow(this);
-            addEmployeeWindow.Show();
+            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
+            addEmployeeWindow.ShowDialog();
+            DataGridEmployees.SelectedItem = null;
+            LoadEmployeesFromDB();
         }
 
         private void ButtonEditEmployee_Click(object sender, RoutedEventArgs e)
         {
-            /*AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
-            addEmployeeWindow.Show();*/
+            Employee? employeeToEdit = DataGridEmployees.SelectedItem as Employee;
+
+            if (employeeToEdit == null)
+            {
+                MessageBox.Show(DisplayMessages.Error.EMPLOYEE_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(employeeToEdit);
+            editEmployeeWindow.ShowDialog();
+            DataGridEmployees.SelectedItem = null;
+            LoadEmployeesFromDB();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -79,74 +86,4 @@ namespace SecurityManager_GUI
             menuWindow.Show();
         }
     }
-
-    /*private void SaveEmployeesToJson()
-        {
-            string json = JsonConvert.SerializeObject(Employees);
-            File.WriteAllText(_filePath, json, Encoding.UTF8);
-        }
-
-        public List<Employee> SaveEmployeeToJson(string name, string surname, int PhoneNumber)
-        {
-            Employee employee = new Employee();
-            employee.Name = name;
-            employee.Surname = surname;
-            employee.PhoneNumber = PhoneNumber;
-            employee.ID = Employees.Count + 1;
-            employee.Status = "Active";
-            employee.WorkedHours = 0;
-            
-            Employees.Add(employee);
-            string json = JsonConvert.SerializeObject(Employees);
-            File.WriteAllText(_filePath, json, Encoding.UTF8);
-            
-            
-
-            return Employees;
-        }
-
-        private List<Employee> LoadEmployeesFromJson()
-        {
-            if (File.Exists(_filePath))
-            {
-                try
-                {
-                    string json = File.ReadAllText(_filePath, Encoding.UTF8);
-                    List<Employee> loadedEmployees = JsonConvert.DeserializeObject<List<Employee>>(json);
-
-                    if (loadedEmployees != null)
-                    {
-                        Employees = loadedEmployees;
-                        DataGridEmployees.ItemsSource = Employees;
-
-                        return loadedEmployees;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Błąd deserializacji JSON. Lista pracowników jest nullem.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Błąd podczas deserializacji JSON: {ex.Message}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Plik JSON nie istnieje.");
-            }
-
-            return new List<Employee>();
-        }*/
-
-
-    /*public class Employee
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Status { get; set; }
-        public int PhoneNumber { get; set; }
-        public int WorkedHours { get; set; }
-    }*/
 }
