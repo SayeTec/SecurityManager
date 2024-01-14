@@ -33,10 +33,36 @@ namespace SecurityManager_Fun.Data.Repositories
 
         public static void AddNewEmployee(Employee employee)
         {
-            using (var context = new AppDBContext())
+            using (var dbContext = new AppDBContext())
             {
-                context.Employees.Add(employee);
-                context.SaveChanges();
+                dbContext.Employees.Add(employee);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static void UpdateEmployee(Employee employee)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Employees.Update(employee);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static void DeleteEmployee(Employee employee)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Employees.Remove(employee);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static bool CheckIfLoginIsUnique(Employee employee, string login)
+        {
+            using(var dbContext = new AppDBContext())
+            {
+                return !dbContext.Employees.Any(e => e.Login == login && !e.Equals(employee));
             }
         }
     }

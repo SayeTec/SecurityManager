@@ -1,4 +1,5 @@
 ﻿using SecurityManager_Fun.Data;
+using System.Xml.Linq;
 
 namespace SecurityManager_Fun.Model
 {
@@ -20,6 +21,15 @@ namespace SecurityManager_Fun.Model
                     $"{Capacity} Country:" +
                     $"{context.Countries.Find(CountryID)}";
             }
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Department other = (Department)obj;
+            return Address == other.Address && Capacity == other.Capacity && Country.Equals(other.Country);
         }
     }
 }

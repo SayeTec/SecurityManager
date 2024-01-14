@@ -11,5 +11,14 @@
             return $"{ID}: {Name} Symbol: " +
                 $"{Symbol}";
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Country other = (Country)obj;
+            return Name == other.Name && Symbol == other.Symbol;
+        }
     }
 }
