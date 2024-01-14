@@ -27,7 +27,7 @@ namespace SecurityManager_Fun.Data
 
         public static decimal GenerateDefaultEmployeeGrossRate()
         {
-            return 4000m;
+            return ApplicationConstants.DEFAULT_GROSS_RATE;
         }
     }
 }
