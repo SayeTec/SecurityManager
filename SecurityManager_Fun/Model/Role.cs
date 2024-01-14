@@ -18,5 +18,15 @@
         {
             return $"{ID}: {Name} => {Code}";
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Role other = (Role)obj;
+            return Name == other.Name && Code == other.Code && Priority == other.Priority;
+        }
+
     }
 }

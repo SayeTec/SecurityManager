@@ -30,5 +30,20 @@ namespace SecurityManager_Fun.Model
                     $"{DepartmentID}. {context.Departments.Find(DepartmentID)}";
             }
         }
+
+        //TODO: Improve Equals method, it is not working good for now
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Employee other = (Employee)obj;
+            return Name == other.Name && Surname == other.Surname 
+                && Phone == other.Phone && Email == other.Email
+                && Login == other.Login;
+
+            /*Role == other.Role
+                && Department == other.Department*/
+        }
     }
 }
