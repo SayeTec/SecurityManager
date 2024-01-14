@@ -50,6 +50,21 @@ namespace SecurityManager_Fun.Logic
 
         }
 
+        public static void RegisterNewEmployee(Employee newEmployee)
+        {
+            byte[] salt;
+            newEmployee.Login = DefaultValuesGenerator.GenerateDefaultEmployeeLogin(newEmployee.Name, newEmployee.Surname);
+            newEmployee.Email = string.IsNullOrEmpty(newEmployee.Email) ? DefaultValuesGenerator.GenerateDefaultEmployeeEmail(newEmployee.Login) : newEmployee.Email;
+            newEmployee.Password = DefaultValuesGenerator.GenerateDefaultEmployeePassword(HashPassword(GenerateRandomPassword(newEmployee.Login), out salt), salt);
+            newEmployee.GrossRate = DefaultValuesGenerator.GenerateDefaultEmployeeGrossRate();
+
+            //TODO: Add verification of provided data in this class
+
+            if (EmployeeRepository.CheckIfEmployeeAlreadyExistsByLogin(newEmployee.Login)) return;
+
+            EmployeeRepository.AddNewEmployee(newEmployee);
+        }
+
         public static string HashPassword(string password, out byte[] salt)
         {
             salt = RandomNumberGenerator.GetBytes(KEY_SIZE);

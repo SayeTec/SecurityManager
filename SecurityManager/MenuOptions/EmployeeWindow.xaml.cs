@@ -1,6 +1,7 @@
 ﻿using SecurityManager_Fun.Data;
 using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Model;
+using SecurityManager_GUI.MenuOptions;
 using SecurityManager_GUI.MenuOptions.EmployeeOptions;
 using System.Collections.Generic;
 using System.Windows;
@@ -84,6 +85,27 @@ namespace SecurityManager_GUI
         {
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
+        }
+
+        private void ButtonDeleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            Employee? employeeToDelete = DataGridEmployees.SelectedItem as Employee;
+
+            if (employeeToDelete == null)
+            {
+                MessageBox.Show(DisplayMessages.Error.EMPLOYEE_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show(string.Format(DisplayMessages.Confirmation.EMPLOYEE_DELETE_CONFIRMATION, employeeToDelete.GetFullName()), "Potwierdzenie", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                PasswordConfirmation passwordConfirmation = new PasswordConfirmation(employeeToDelete, "deletion");
+                passwordConfirmation.ShowDialog();
+                DataGridEmployees.SelectedItem = null;
+                LoadEmployeesFromDB();
+            }
         }
     }
 }
