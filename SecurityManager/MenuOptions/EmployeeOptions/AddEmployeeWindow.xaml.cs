@@ -57,7 +57,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 RoleID = (ComboboxEmployeeRole.SelectedItem as Role).ID
             };
 
-            PasswordConfirmation passwordConfirmation = new PasswordConfirmation(newEmployee, "add");
+            PasswordConfirmation passwordConfirmation = new PasswordConfirmation(newEmployee, "add", null);
             passwordConfirmation.ShowDialog();
             Close();
 

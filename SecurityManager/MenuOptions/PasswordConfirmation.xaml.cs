@@ -1,6 +1,7 @@
 ﻿using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
+using SecurityManager_GUI.MenuOptions.EmployeeOptions;
 using System.Windows;
 
 namespace SecurityManager_GUI.MenuOptions
@@ -12,15 +13,21 @@ namespace SecurityManager_GUI.MenuOptions
     {
         private Employee employeeToConfirm;
         private string confirmationPurpose;
-        public PasswordConfirmation(Employee employee, string purpose)
+        private Window previousWindow;
+        public PasswordConfirmation(Employee employee, string purpose, Window previous)
         {
             InitializeComponent();
             employeeToConfirm = employee;
             confirmationPurpose = purpose;
+            previousWindow = previous;
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
+            if (previousWindow != null)
+            {
+                previousWindow.Show();
+            }
             Close();
         }
 
@@ -45,6 +52,11 @@ namespace SecurityManager_GUI.MenuOptions
                 case "update":
                     EmployeeRepository.UpdateEmployee(employeeToConfirm);
                     break;
+            }
+
+            if (previousWindow != null)
+            {
+                previousWindow.Close();
             }
 
             Close();

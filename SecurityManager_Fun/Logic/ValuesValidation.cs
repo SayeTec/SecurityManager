@@ -57,7 +57,8 @@ namespace SecurityManager_Fun.Logic
 
         public static bool ValidateLoginMatchesPattern(string login, Employee employee)
         {
-            Regex loginRegex = new Regex($"{employee.Name.ToLower()}.{employee.Surname.ToLower()}*");
+            string possibleLogin = $"{employee.Name.ToLower()}.{employee.Surname.ToLower()}";
+            Regex loginRegex = new Regex(@"^" + possibleLogin + @"([a-z]*\d*)$");
             return loginRegex.IsMatch(login);
         }
 
