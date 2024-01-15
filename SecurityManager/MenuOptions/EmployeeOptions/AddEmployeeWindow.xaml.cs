@@ -14,6 +14,12 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
     /// </summary>
     public partial class AddEmployeeWindow : Window
     {
+        private string firstNamePlaceholder = "Imię";
+        private string lastNamePlaceholder = "Nazwisko";
+        private string phonePlaceholder = "Numer telefonu";
+        private string emailPlaceholder = "Email adres";
+
+
         public AddEmployeeWindow()
         {
             InitializeComponent();
@@ -48,12 +54,32 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 return;
             }
 
+            string errorMessage = "";
+
+            if (!ValuesValidation.ValidatePhoneNumber(TextBoxPhoneNumber.Text))
+                errorMessage += $"{DisplayMessages.Error.PHONE_NUMBER_NOT_VALID}\n";
+
+            if (TextBoxEmailAddress.Text != emailPlaceholder && !ValuesValidation.ValidateEmail(TextBoxEmailAddress.Text))
+                errorMessage += $"{DisplayMessages.Error.EMAIL_NOT_VALID}\n";
+
+            if (!ValuesValidation.ValidateName(TextBoxFirstName.Text))
+                errorMessage += $"{DisplayMessages.Error.NAME_NOT_VALID}\n";
+
+            if (!ValuesValidation.ValidateSurname(TextBoxLastName.Text))
+                errorMessage += $"{DisplayMessages.Error.SURNAME_NOT_VALID}\n";
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show(errorMessage, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             Employee newEmployee = new Employee()
             {
                 Name = TextBoxFirstName.Text,
                 Surname = TextBoxLastName.Text,
                 Phone = TextBoxPhoneNumber.Text,
-                Email = TextBoxEmailAddress.Text == "Email adres" ? string.Empty : TextBoxEmailAddress.Text,
+                Email = TextBoxEmailAddress.Text == emailPlaceholder ? string.Empty : TextBoxEmailAddress.Text,
                 RoleID = (ComboboxEmployeeRole.SelectedItem as Role).ID
             };
 
@@ -69,10 +95,10 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
         }
         private void SetPlaceholderText()
         {
-            TextBoxFirstName.Text = "Imię";
-            TextBoxLastName.Text = "Nazwisko";
-            TextBoxPhoneNumber.Text = "Numer telefonu";
-            TextBoxEmailAddress.Text = "Email adres";
+            TextBoxFirstName.Text = firstNamePlaceholder;
+            TextBoxLastName.Text = lastNamePlaceholder;
+            TextBoxPhoneNumber.Text = phonePlaceholder;
+            TextBoxEmailAddress.Text = emailPlaceholder;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
