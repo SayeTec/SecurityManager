@@ -146,9 +146,8 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 return;
             }
 
-            PasswordConfirmation passwordConfirmation = new PasswordConfirmation(GetEmployeeWithData(), "update");
+            PasswordConfirmation passwordConfirmation = new PasswordConfirmation(GetEmployeeWithData(), "update", this);
             passwordConfirmation.ShowDialog();
-            Close();
         }
     }
 }

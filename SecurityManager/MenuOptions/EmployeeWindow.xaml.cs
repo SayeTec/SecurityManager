@@ -101,7 +101,7 @@ namespace SecurityManager_GUI
 
             if (result == MessageBoxResult.Yes)
             {
-                PasswordConfirmation passwordConfirmation = new PasswordConfirmation(employeeToDelete, "deletion");
+                PasswordConfirmation passwordConfirmation = new PasswordConfirmation(employeeToDelete, "deletion", null);
                 passwordConfirmation.ShowDialog();
                 DataGridEmployees.SelectedItem = null;
                 LoadEmployeesFromDB();
