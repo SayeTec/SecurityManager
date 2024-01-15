@@ -126,8 +126,6 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             string errorMessage = "";
 
-            //TODO: Add name and surname validation
-
             if (!ValuesValidation.ValidateLoginMatchesPattern(login, GetEmployeeWithData()))
                 errorMessage += $"{string.Format(DisplayMessages.Error.LOGIN_NOT_MATCH_PATTERN, login)}\n";
 
@@ -139,6 +137,12 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             if (!ValuesValidation.ValidateEmail(TextBoxEmail.Text))
                 errorMessage += $"{DisplayMessages.Error.EMAIL_NOT_VALID}\n";
+
+            if (!ValuesValidation.ValidateName(TextBoxFirstName.Text))
+                errorMessage += $"{DisplayMessages.Error.NAME_NOT_VALID}\n";
+
+            if (!ValuesValidation.ValidateSurname(TextBoxLastName.Text))
+                errorMessage += $"{DisplayMessages.Error.SURNAME_NOT_VALID}\n";
 
             if (!string.IsNullOrEmpty(errorMessage))
             {

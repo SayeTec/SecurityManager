@@ -78,5 +78,17 @@ namespace SecurityManager_Fun.Logic
             Regex emailRegex = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
             return emailRegex.IsMatch(email);
         }
+
+        public static bool ValidateName(string name)
+        {
+            Regex nameRegex = new Regex(@"^[a-zA-Z]+$");
+            return nameRegex.IsMatch(name);
+        }
+
+        public static bool ValidateSurname(string surname)
+        {
+            Regex surnameRegex = new Regex(@"^[a-zA-Z\s\-]+$");
+            return surnameRegex.IsMatch(surname);
+        }
     }
 }
