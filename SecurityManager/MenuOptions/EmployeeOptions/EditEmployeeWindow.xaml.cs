@@ -138,6 +138,9 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             if (!ValuesValidation.ValidateEmail(TextBoxEmail.Text))
                 errorMessage += $"{DisplayMessages.Error.EMAIL_NOT_VALID}\n";
 
+            if (!ValuesValidation.ValidateEmailIsUnique(TextBoxEmail.Text, employeeToEdit))
+                errorMessage += $"{DisplayMessages.Error.EMAIL_NOT_UNIQUE_IN_DB}\n";
+
             if (!ValuesValidation.ValidateName(TextBoxFirstName.Text))
                 errorMessage += $"{DisplayMessages.Error.NAME_NOT_VALID}\n";
 

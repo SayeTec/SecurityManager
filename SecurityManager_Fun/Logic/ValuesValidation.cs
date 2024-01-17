@@ -79,6 +79,12 @@ namespace SecurityManager_Fun.Logic
             return emailRegex.IsMatch(email);
         }
 
+        public static bool ValidateEmailIsUnique(string login, Employee employee)
+        {
+            return EmployeeRepository.CheckIfEmailIsUnique(employee, login);
+
+        }
+
         public static bool ValidateName(string name)
         {
             Regex nameRegex = new Regex(@"^[a-zA-Z]+$");
@@ -89,6 +95,7 @@ namespace SecurityManager_Fun.Logic
         {
             Regex surnameRegex = new Regex(@"^[a-zA-Z\s\-]+$");
             return surnameRegex.IsMatch(surname);
+
         }
     }
 }

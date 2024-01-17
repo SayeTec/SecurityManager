@@ -1,8 +1,12 @@
-﻿using System;
+﻿using SecurityManager_Fun.Logic;
+using SecurityManager_Fun.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Data
@@ -10,9 +14,16 @@ namespace SecurityManager_Fun.Data
     //TODO: Talk about default values for new Employee
     public class DefaultValuesGenerator
     {
-        public static string GenerateDefaultEmployeeLogin(string firstName, string lastName)
+        public static string GenerateDefaultEmployeeLogin(string firstName, string lastName, Employee employee)
         {
-            return string.Format("{0}.{1}", firstName.ToLower(), lastName.ToLower());
+            string generatedLogin = string.Format("{0}.{1}", firstName.ToLower(), lastName.ToLower());
+
+            while(!ValuesValidation.ValidateLoginIsUnique(generatedLogin, employee))
+            {
+                generatedLogin = $"{Regex.Replace(generatedLogin, @"\d*$", "")}{GenerateNumericSuffix(generatedLogin)}";
+            }
+
+            return generatedLogin;
         }
 
         public static string GenerateDefaultEmployeePassword(string hash, byte[] salt)
@@ -28,6 +39,13 @@ namespace SecurityManager_Fun.Data
         public static decimal GenerateDefaultEmployeeGrossRate()
         {
             return ApplicationConstants.DEFAULT_GROSS_RATE;
+        }
+
+        static string GenerateNumericSuffix(string str)
+        {
+            string numericSuffix = Regex.Match(str, @"\d*$").Value;
+            int newNumericSuffix = string.IsNullOrEmpty(numericSuffix) ? 1 : int.Parse(numericSuffix) + 1;
+            return newNumericSuffix.ToString();
         }
     }
 }

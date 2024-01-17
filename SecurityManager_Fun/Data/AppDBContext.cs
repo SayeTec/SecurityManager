@@ -7,17 +7,19 @@ namespace SecurityManager_Fun.Data
     {
         //Local DB config
         /*private static string server = "localhost";
-        private static string database = "test";
+        private static string database = "SecurityManagerTest";
         private static string user = "root";
-        private static string password = "";*/
+        private static string password = "";
 
+        private static readonly string MYSQL_CONNECTION_CONFIG = $"SERVER={server};DATABASE={database};USER={user};PASSWORD={password}";
+*/
         //Global DB config
         private static string server = "mysqlserver41.database.windows.net,1433";
         private static string database = "SecurityManagerTest";
         private static string user = "tekla";
         private static string password = "Maciek123";
 
-        private static readonly string MYSQL_CONNECTION_CONFIG = $"Server=tcp:{server};Initial Catalog={database};Persist Security Info=False;User ID={user};Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private static readonly string MYSQL_CONNECTION_CONFIG = $"Server=tcp:{server};Initial Catalog={database};Persist Security Info=False;User ID={user};Password={password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=300;";
 
 
         public DbSet<Employee> Employees { get; set; }
