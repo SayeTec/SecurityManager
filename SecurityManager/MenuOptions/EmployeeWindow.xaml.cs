@@ -21,9 +21,6 @@ namespace SecurityManager_GUI
 
     public partial class EmployeeWindow : Window
     {
-        private string _filePath = @"Data\employee.json";
-        private List<Employee> Employees;
-
         private static EmployeeWindow _instance = new EmployeeWindow();
         public static EmployeeWindow Instance
         {

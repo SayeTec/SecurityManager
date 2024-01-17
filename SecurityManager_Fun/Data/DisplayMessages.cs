@@ -26,7 +26,8 @@ namespace SecurityManager_Fun.Data
 
             public static string PHONE_NUMBER_NOT_VALID = "Podany numer telefonu jest niepoprawny! Dopuszczalne są tylko znaki: +, liczby i spacje.";
 
-            public static string EMAIL_NOT_VALID = "Podany adres email jest niepoprawny! Musi być zgodny ze wzorem (example@gmail.com).";           
+            public static string EMAIL_NOT_VALID = "Podany adres email jest niepoprawny! Musi być zgodny ze wzorem (example@gmail.com).";
+            public static string EMAIL_NOT_UNIQUE_IN_DB = "Podany adres email już istnieje! Proszę podać inny adres mail.";
 
             public static string NAME_NOT_VALID = "Podane imię jest niepoprawne! Musi zawierać tylko litery.";
             

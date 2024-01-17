@@ -65,5 +65,13 @@ namespace SecurityManager_Fun.Data.Repositories
                 return !dbContext.Employees.Any(e => e.Login == login && !e.Equals(employee));
             }
         }
+
+        public static bool CheckIfEmailIsUnique(Employee employee, string email)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return !dbContext.Employees.Any(e => e.Email == email && !e.Equals(employee));
+            }
+        }
     }
 }
