@@ -49,8 +49,6 @@ namespace SecurityManager_GUI
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            MenuWindow menuWindow = new MenuWindow();
-            menuWindow.Show();
             Close();
         }
 
