@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SecurityManager_Fun.Model;
-using System.Net.NetworkInformation;
 
 namespace SecurityManager_Fun.Data.Repositories
 {
@@ -8,7 +7,7 @@ namespace SecurityManager_Fun.Data.Repositories
     {
         public static List<Employee> GetAllEmployees()
         {
-            using(var dbContext = new AppDBContext())
+            using (var dbContext = new AppDBContext())
             {
                 return dbContext.Employees
                     .Include(e => e.Role)
@@ -16,6 +15,11 @@ namespace SecurityManager_Fun.Data.Repositories
                         .ThenInclude(d => d.Country)
                     .ToList();
             }
+        }
+
+        public static List<Employee> GetEmployeesUnderPriority(int priority) 
+        {
+            return GetAllEmployees().Where(employee => (int)employee.Role.Priority > priority).ToList();
         }
 
         public static Employee GetEmployeeByLogin(string login)
@@ -60,7 +64,7 @@ namespace SecurityManager_Fun.Data.Repositories
 
         public static bool CheckIfLoginIsUnique(Employee employee, string login)
         {
-            using(var dbContext = new AppDBContext())
+            using (var dbContext = new AppDBContext())
             {
                 return !dbContext.Employees.Any(e => e.Login == login && !e.Equals(employee));
             }
