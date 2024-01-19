@@ -1,11 +1,15 @@
 ﻿using SecurityManager_Fun.Data;
 using SecurityManager_Fun.Data.Repositories;
+using SecurityManager_Fun.Logic;
+using SecurityManager_Fun.Logic.Filters;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions;
 using SecurityManager_GUI.MenuOptions.EmployeeOptions;
-using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace SecurityManager_GUI
 {
@@ -38,13 +42,26 @@ namespace SecurityManager_GUI
         {
             InitializeComponent();
             DataGridEmployees.Language = XmlLanguage.GetLanguage("pl-PL");
-            LoadEmployeesFromDB();
+            LoadDataFromDB();
         }
 
-        public void LoadEmployeesFromDB()
+        private void LoadDataFromDB() 
         {
-            DataGridEmployees.ItemsSource = EmployeeRepository.GetAllEmployees();
+            LoadEmployeesFromDB();
+            LoadFilterComboBoxesFromDB();
+        }
+
+        private void LoadEmployeesFromDB()
+        {
+            DataGridEmployees.ItemsSource = EmployeeRepository.GetEmployeesUnderPriority((int)Session.Instance.CurrentEmployee.Role.Priority);
             DataGridEmployees.Items.Refresh();
+        }
+
+        private void LoadFilterComboBoxesFromDB()
+        {
+            RoleComboBox.ItemsSource = RoleRepository.GetRolesUnderEmployeePriority(Session.Instance.CurrentEmployee);
+            CountryComboBox.ItemsSource = CountryRepository.GetAllCountries();
+            CompanyComboBox.ItemsSource = DepartmentRepository.GetAllDepartments();
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
@@ -57,7 +74,7 @@ namespace SecurityManager_GUI
             AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
             addEmployeeWindow.ShowDialog();
             DataGridEmployees.SelectedItem = null;
-            LoadEmployeesFromDB();
+            LoadDataFromDB();
         }
 
         private void ButtonEditEmployee_Click(object sender, RoutedEventArgs e)
@@ -73,7 +90,7 @@ namespace SecurityManager_GUI
             EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(employeeToEdit);
             editEmployeeWindow.ShowDialog();
             DataGridEmployees.SelectedItem = null;
-            LoadEmployeesFromDB();
+            LoadDataFromDB();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -99,7 +116,52 @@ namespace SecurityManager_GUI
                 PasswordConfirmation passwordConfirmation = new PasswordConfirmation(employeeToDelete, "deletion", null);
                 passwordConfirmation.ShowDialog();
                 DataGridEmployees.SelectedItem = null;
-                LoadEmployeesFromDB();
+                LoadDataFromDB();
+            }
+        }
+
+        private void ButtonFilterEmployees_Click(object sender, RoutedEventArgs e)
+        {
+            DataGridEmployees.ItemsSource = EmployeeFilter.FilterEmployeesUnderPriority((int)Session.Instance.CurrentEmployee.Role.Priority,
+                TextBoxEmployeeNamePattern.Text, TextBoxEmployeeSurnamePattern.Text, RoleComboBox.SelectedItem as Role,
+                CountryComboBox.SelectedItem as Country, CompanyComboBox.SelectedItem as Department);
+            DataGridEmployees.Items.Refresh();
+        }
+
+        private void ButtonClearFilter_Click(object sender, RoutedEventArgs e)
+        {
+            TextBoxEmployeeNamePattern.Text = string.Empty;
+            TextBoxEmployeeSurnamePattern.Text = string.Empty;
+            RoleComboBox.SelectedItem = null;
+            CountryComboBox.SelectedItem = null;
+            CompanyComboBox.SelectedItem = null;
+
+            LoadDataFromDB();
+        }
+
+        private void DataGridEmployees_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DependencyObject element = (UIElement)e.OriginalSource;
+
+            while (element != null && !(element is DataGridRow))
+            {
+                if (element is DataGridColumnHeader)
+                {
+                    return;
+                }
+
+                element = VisualTreeHelper.GetParent(element);
+            }
+
+            DataGridRow clickedRow = (DataGridRow)element;
+
+            if (clickedRow != null)
+            {
+                if (DataGridEmployees.SelectedItem == clickedRow.DataContext)
+                {
+                    DataGridEmployees.SelectedItem = null;
+                    e.Handled = true;
+                }
             }
         }
     }

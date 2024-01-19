@@ -13,7 +13,7 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="10" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
+        <Grid Grid.Row="0" Margin="10,10,10,0" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*"/>
                 <ColumnDefinition Width="25*"/>
@@ -46,7 +46,7 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <Label x:Name="LabelRole" Content="Wybierz rolę:" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                    <ComboBox x:Name="RoleComboBox" MinWidth="100" Margin="0,0,10,0" Height="20"/>
+                    <ComboBox x:Name="RoleComboBox" MinWidth="100" Margin="0,0,10,0" Height="20" DisplayMemberPath="Name"/>
                 </StackPanel>
             </Grid>
 
@@ -58,12 +58,12 @@
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <Label x:Name="LabelCountry" Content="Wybierz kraj:" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                    <ComboBox x:Name="CountryComboBox" MinWidth="100" Margin="0,0,10,0" Height="20"/>
+                    <ComboBox x:Name="CountryComboBox" MinWidth="100" Margin="0,0,10,0" Height="20" DisplayMemberPath="Symbol"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <Label x:Name="LabelCompany" Content="Wybierz obiekt:" FontSize="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                    <ComboBox x:Name="CompanyComboBox" MinWidth="100" Margin="0,0,10,0" Height="20"/>
+                    <ComboBox x:Name="CompanyComboBox" MinWidth="100" Margin="0,0,10,0" Height="20" DisplayMemberPath="Address"/>
                 </StackPanel>
             </Grid>
 
@@ -73,13 +73,13 @@
                     <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="ButtonFilterEmployees" Margin="5" Grid.Row="0" Content="Filtruj" Background="#007ACC" Foreground="White" MinWidth="100" HorizontalAlignment="Right"/>
-                <Button x:Name="ButtonClearFilter" Margin="5" Grid.Row="1" Content="Wyczyść filter" Background="#007ACC" Foreground="White" MinWidth="100" HorizontalAlignment="Right"/>
+                <Button x:Name="ButtonFilterEmployees" Margin="5" Grid.Row="0" Content="Filtruj" Background="#007ACC" Foreground="White" MinWidth="100" HorizontalAlignment="Right" Click="ButtonFilterEmployees_Click"/>
+                <Button x:Name="ButtonClearFilter" Margin="5" Grid.Row="1" Content="Wyczyść filter" Background="#007ACC" Foreground="White" MinWidth="100" HorizontalAlignment="Right" Click="ButtonClearFilter_Click"/>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
-            <DataGrid x:Name="DataGridEmployees" SelectionMode="Single" Margin="10" Grid.Row="1" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" FontFamily="Arial" AutoGenerateColumns="False">
+            <DataGrid x:Name="DataGridEmployees" SelectionMode="Single" Margin="10" Grid.Row="1" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" FontFamily="Arial" AutoGenerateColumns="False" PreviewMouseLeftButtonDown="DataGridEmployees_PreviewMouseLeftButtonDown">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>

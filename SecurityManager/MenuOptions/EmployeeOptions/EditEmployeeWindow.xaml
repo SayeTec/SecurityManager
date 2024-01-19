@@ -63,7 +63,7 @@
                 <Label x:Name="LabelRole" Grid.Row="0" Content="Rola" FontSize="12"/>
                 <ComboBox x:Name="ComboBoxEmployeeRole" Grid.Row="1" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedValuePath="ID"/>
 
-                <DataGrid x:Name="DataGridDepartments" SelectionMode="Single" Grid.Row="2" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                <DataGrid x:Name="DataGridDepartments" SelectionMode="Single" Grid.Row="2" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" PreviewMouseLeftButtonDown="DataGridDepartments_PreviewMouseLeftButtonDown">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Country" Binding="{Binding Country.Name}" Width="*"/>
                         <DataGridTextColumn Header="Department" Binding="{Binding Address}" Width="*"/>
