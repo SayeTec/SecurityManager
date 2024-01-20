@@ -93,7 +93,7 @@ namespace SecurityManager_Fun.Logic
 
         public static bool ValidateSurname(string surname)
         {
-            Regex surnameRegex = new Regex(@"^[a-zA-Z\s\-]+$");
+            Regex surnameRegex = new Regex(@"^[a-zA-Z\s]+(-[a-zA-Z]+)?$");
             return surnameRegex.IsMatch(surname);
 
         }
