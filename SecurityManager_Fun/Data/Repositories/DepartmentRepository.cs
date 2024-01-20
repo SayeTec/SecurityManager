@@ -12,5 +12,10 @@ namespace SecurityManager_Fun.Data.Repositories
                 return dbContext.Departments.Include(d => d.Country).ToList();
             }
         } 
+
+        public static List<Department> GetDepartmentsByCountry(Country country)
+        {
+            return GetAllDepartments().Where(d => d.Country.Equals(country)).ToList();
+        }
     }
 }
