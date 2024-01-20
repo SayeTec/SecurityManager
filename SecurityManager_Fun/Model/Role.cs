@@ -11,7 +11,8 @@
         {
             MainAdmin = 0,
             Admin = 1,
-            Basic = 2
+            Worker = 2,
+            Junior = 3
         }
 
         public override string ToString()

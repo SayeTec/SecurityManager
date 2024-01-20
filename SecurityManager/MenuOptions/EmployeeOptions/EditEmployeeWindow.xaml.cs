@@ -4,6 +4,8 @@ using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 {
@@ -89,11 +91,11 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void ButtonPasswordChange_Click(object sender, RoutedEventArgs e)
         {
-            if (Session.Instance.CurrentEmployee.Role.Priority > employeeToEdit.Role.Priority)
+            /*if (Session.Instance.CurrentEmployee.Role.Priority >= employeeToEdit.Role.Priority)
             {
-                MessageBox.Show(DisplayMessages.Error.ATTEMPT_TO_UPDATE_EMPLOYEE_PASSWORD_WITH_LOWER_ROLE, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(DisplayMessages.Error.ATTEMPT_TO_UPDATE_EMPLOYEE_PASSWORD_WITH_LOWER_ROLE + " Logged: " + Session.Instance.CurrentEmployee.Role + "   -   Changed: " + employeeToEdit.Role, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
+            }*/
             ChangePassword changePassword = new ChangePassword(employeeToEdit);
             changePassword.ShowDialog();
         }
@@ -116,11 +118,11 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (Session.Instance.CurrentEmployee.Role.Priority <= employeeToEdit.Role.Priority && !(ComboBoxEmployeeRole.SelectedItem as Role).Equals(employeeToEdit.Role))
+            /*if (Session.Instance.CurrentEmployee.Role.Priority > employeeToEdit.Role.Priority && !(ComboBoxEmployeeRole.SelectedItem as Role).Equals(employeeToEdit.Role))
             {
                 MessageBox.Show(DisplayMessages.Error.ATTEMPT_TO_UPDATE_EMPLOYEE_WITH_LOWER_ROLE, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
+            }*/
 
             string login = TextBoxLogin.Text;
 
@@ -155,6 +157,32 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             PasswordConfirmation passwordConfirmation = new PasswordConfirmation(GetEmployeeWithData(), "update", this);
             passwordConfirmation.ShowDialog();
+        }
+
+        private void DataGridDepartments_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DependencyObject element = (UIElement)e.OriginalSource;
+
+            while (element != null && !(element is DataGridRow))
+            {
+                if (element is DataGridColumnHeader)
+                {
+                    return;
+                }
+
+                element = VisualTreeHelper.GetParent(element);
+            }
+
+            DataGridRow clickedRow = (DataGridRow)element;
+
+            if (clickedRow != null)
+            {
+                if (DataGridDepartments.SelectedItem == clickedRow.DataContext)
+                {
+                    DataGridDepartments.SelectedItem = null;
+                    e.Handled = true;
+                }
+            }
         }
     }
 }
