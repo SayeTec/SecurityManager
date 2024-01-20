@@ -5,6 +5,7 @@ using SecurityManager_Fun.Logic.Filters;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions;
 using SecurityManager_GUI.MenuOptions.EmployeeOptions;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -47,6 +48,7 @@ namespace SecurityManager_GUI
 
         private void LoadDataFromDB() 
         {
+            ClearFilter();
             LoadEmployeesFromDB();
             LoadFilterComboBoxesFromDB();
         }
@@ -62,6 +64,15 @@ namespace SecurityManager_GUI
             RoleComboBox.ItemsSource = RoleRepository.GetRolesUnderEmployeePriority(Session.Instance.CurrentEmployee);
             CountryComboBox.ItemsSource = CountryRepository.GetAllCountries();
             CompanyComboBox.ItemsSource = DepartmentRepository.GetAllDepartments();
+        }
+
+        private void ClearFilter()
+        {
+            TextBoxEmployeeNamePattern.Text = string.Empty;
+            TextBoxEmployeeSurnamePattern.Text = string.Empty;
+            RoleComboBox.SelectedItem = null;
+            CountryComboBox.SelectedItem = null;
+            CompanyComboBox.SelectedItem = null;
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
@@ -130,12 +141,6 @@ namespace SecurityManager_GUI
 
         private void ButtonClearFilter_Click(object sender, RoutedEventArgs e)
         {
-            TextBoxEmployeeNamePattern.Text = string.Empty;
-            TextBoxEmployeeSurnamePattern.Text = string.Empty;
-            RoleComboBox.SelectedItem = null;
-            CountryComboBox.SelectedItem = null;
-            CompanyComboBox.SelectedItem = null;
-
             LoadDataFromDB();
         }
 
@@ -163,6 +168,21 @@ namespace SecurityManager_GUI
                     e.Handled = true;
                 }
             }
+        }
+
+        private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CompanyComboBox.ItemsSource = null;
+
+            Country selectedCountry = CountryComboBox.SelectedItem as Country;
+
+            if (selectedCountry != null)
+            {
+                CompanyComboBox.ItemsSource = DepartmentRepository.GetDepartmentsByCountry(selectedCountry);
+                return;
+            }
+
+            CompanyComboBox.ItemsSource = DepartmentRepository.GetAllDepartments();
         }
     }
 }
