@@ -56,8 +56,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 Login = TextBoxLogin.Text,
                 RoleID = ComboBoxEmployeeRole.SelectedItem as Role == null ? 
                 employeeToEdit.RoleID : (ComboBoxEmployeeRole.SelectedItem as Role).ID,
-                DepartmentID = DataGridDepartments.SelectedItem as Department == null ? 
-                employeeToEdit.DepartmentID : (DataGridDepartments.SelectedItem as Department).ID,
+                DepartmentID = (DataGridDepartments.SelectedItem as Department)?.ID,
                 Password = employeeToEdit.Password,
                 GrossRate = employeeToEdit.GrossRate
             };

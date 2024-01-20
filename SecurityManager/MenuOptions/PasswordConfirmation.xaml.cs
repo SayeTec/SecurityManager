@@ -36,6 +36,7 @@ namespace SecurityManager_GUI.MenuOptions
             if (!AccountService.VerifyPassword(PasswordBoxLoggedUserPassword.Password, Session.Instance.CurrentEmployee.Password))
             {
                 MessageBox.Show("Proszę podaj swoje poprawne hasło!", "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                PasswordBoxLoggedUserPassword.Password = string.Empty;
                 return;
             }
 
