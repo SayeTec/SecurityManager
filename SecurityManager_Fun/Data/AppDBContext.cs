@@ -25,7 +25,9 @@ namespace SecurityManager_Fun.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Department> Departments { get; set; }
-        public DbSet<Settlement> Settlements { get; set; }
+        public DbSet<Deduction> Deductions { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<PaymentDeduction> PaymentDeductions { get; set; }
         public DbSet<WorkSchedule> WorkSchedules { get; set; }
         public DbSet<Country> Countries { get; set; }
 
@@ -37,8 +39,12 @@ namespace SecurityManager_Fun.Data
                 .Property(e => e.GrossRate)
                 .HasColumnType("decimal(10,2)");
 
-            modelBuilder.Entity<Settlement>()
-                .Property(s => s.Value)
+            modelBuilder.Entity<Deduction>()
+                .Property(d => d.Value)
+                .HasColumnType("decimal(10,4)");
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.Value)
                 .HasColumnType("decimal(10,4)");
 
             base.OnModelCreating(modelBuilder);

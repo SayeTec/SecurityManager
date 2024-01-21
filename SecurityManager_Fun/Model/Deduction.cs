@@ -2,19 +2,19 @@
 
 namespace SecurityManager_Fun.Model
 {
-    public class Settlement
+    public class Deduction
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
-        public SettlementType Type { get; set; }
+        public DeductionType Type { get; set; }
         public bool IsPercentage { get; set; }
         public decimal Value { get; set; }
         public int CountryID { get; set; }
 
-        public enum SettlementType //TODO: Is it appropriate implementation, or must it be a new table?
+        public enum DeductionType 
         {
-            None = 0, Tax = 1, Bonus = 2
+            Tax = 1, Bonus = 2
         }
 
         // Navigation property
