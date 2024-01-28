@@ -11,8 +11,8 @@ namespace SecurityManager_Fun.Data
         private static string user = "root";
         private static string password = "";
 
-        private static readonly string MYSQL_CONNECTION_CONFIG = $"SERVER={server};DATABASE={database};USER={user};PASSWORD={password}";
-*/
+        private static readonly string MYSQL_CONNECTION_CONFIG = $"server={server};database={database};user={user};password={password};";*/
+
         //Global DB config
         private static string server = "mysqlserver41.database.windows.net,1433";
         private static string database = "SecurityManagerTest";
@@ -32,7 +32,7 @@ namespace SecurityManager_Fun.Data
         public DbSet<Country> Countries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer(MYSQL_CONNECTION_CONFIG);
-
+        /*.UseMySQL(MYSQL_CONNECTION_CONFIG);*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Employee>()
@@ -44,7 +44,15 @@ namespace SecurityManager_Fun.Data
                 .HasColumnType("decimal(10,4)");
 
             modelBuilder.Entity<Payment>()
-                .Property(p => p.Value)
+                .Property(p => p.DefaultValue)
+                .HasColumnType("decimal(10,4)");
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.DeductionsValue)
+                .HasColumnType("decimal(10,4)");
+
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.FinalValue)
                 .HasColumnType("decimal(10,4)");
 
             base.OnModelCreating(modelBuilder);

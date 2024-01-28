@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecurityManager_Fun.Data;
 
@@ -11,9 +12,10 @@ using SecurityManager_Fun.Data;
 namespace SecurityManager_Fun.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240125201612_DeductionImprovement")]
+    partial class DeductionImprovement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,20 +171,14 @@ namespace SecurityManager_Fun.Migrations
                     b.Property<DateTime?>("DateOfLatestModification")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("DeductionsValue")
-                        .HasColumnType("decimal(10,4)");
-
-                    b.Property<decimal>("DefaultValue")
-                        .HasColumnType("decimal(10,4)");
-
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("FinalValue")
-                        .HasColumnType("decimal(10,4)");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(10,4)");
 
                     b.HasKey("ID");
 

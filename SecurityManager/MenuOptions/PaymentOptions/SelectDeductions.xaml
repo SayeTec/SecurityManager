@@ -1,0 +1,53 @@
+﻿<Window x:Class="SecurityManager_GUI.MenuOptions.PaymentOptions.SelectDeductions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.PaymentOptions"
+        mc:Ignorable="d"
+        Title="SelectDeductions" Height="480" Width="600">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock x:Name="TextBlockTitle" Text="Wybierz" Height="36" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" TextAlignment="Center" Margin="0,10,0,10"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="10" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ListBox x:Name="ListBoxDeductionsToSelect" MinWidth="200" MaxHeight="200">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding NameAndValue}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="ButtonMove" Content=">" Margin="10,10,10,5" Background="#007ACC" Foreground="White" MinWidth="30" MinHeight="30" Click="ButtonMove_Click"/>
+                    <Button x:Name="ButtonMoveAll" Content=">>" Margin="10,5,10,10" Background="#007ACC" Foreground="White" MinWidth="30" MinHeight="30" Click="ButtonMoveAll_Click"/>
+                    <Button x:Name="ButtonRevert" Content="&lt;" Margin="10,10,10,5" Background="#007ACC" Foreground="White" MinWidth="30" MinHeight="30" Click="ButtonRevert_Click"/>
+                    <Button x:Name="ButtonRevertAll" Content="&lt;&lt;" Margin="10,5,10,10" Background="#007ACC" Foreground="White" MinWidth="30" MinHeight="30" Click="ButtonRevertAll_Click"/>
+                </StackPanel>
+                
+                <ListBox x:Name="ListBoxSelectedDeductions" MinWidth="200" MaxHeight="200">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding NameAndValue}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="0,0,20,5">
+                <Button x:Name="ButtonSelect" Content="Potwierdź" Margin="5" Background="#007ACC" Foreground="White" MinWidth="150" Click="ButtonBack_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

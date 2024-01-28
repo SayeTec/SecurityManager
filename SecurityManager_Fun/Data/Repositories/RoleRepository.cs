@@ -5,6 +5,14 @@ namespace SecurityManager_Fun.Data.Repositories
 {
     public class RoleRepository
     {
+        public static List<Role> GetAllRoles()
+        {
+            using(var dbContext = new AppDBContext())
+            {
+                return dbContext.Roles.ToList();
+            }
+        }
+
         public static List<Role> GetRolesUnderEmployeePriority(Employee employee)
         {
             using (var context = new AppDBContext())

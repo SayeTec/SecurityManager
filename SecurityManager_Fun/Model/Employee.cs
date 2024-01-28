@@ -20,7 +20,7 @@ namespace SecurityManager_Fun.Model
         public Role Role { get; set; }
         public Department Department { get; set; }
 
-        public string GetFullName() => Name + " " + Surname;
+        public string FullName { get => Name + " " + Surname; }
 
         public override string ToString()
         {
@@ -41,7 +41,7 @@ namespace SecurityManager_Fun.Model
                 return false;
 
             Employee other = (Employee)obj;
-            return Name == other.Name && Surname == other.Surname 
+            return ID == other.ID && Name == other.Name && Surname == other.Surname 
                 && Phone == other.Phone && Email == other.Email
                 && Login == other.Login;
 

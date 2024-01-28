@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Google.Protobuf;
+using Microsoft.EntityFrameworkCore;
 using SecurityManager_Fun.Model;
 
 namespace SecurityManager_Fun.Data.Repositories
@@ -13,6 +14,21 @@ namespace SecurityManager_Fun.Data.Repositories
                     .Include(e => e.Role)
                     .Include(e => e.Department)
                         .ThenInclude(d => d.Country)
+                    .ToList();
+            }
+        }
+
+        public static List<Employee> GetUnpaidEmployees()
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return GetAllEmployees().Where(e =>
+                !dbContext.Payments.Any(p =>
+                    p.EmployeeID == e.ID &&
+                    p.DateOfCreation.Month == DateTime.Now.Month &&
+                    p.DateOfCreation.Year == DateTime.Now.Year &&
+                    (p.Status != Payment.StatusType.Canceled ||
+                    p.Status == Payment.StatusType.Done)))
                     .ToList();
             }
         }

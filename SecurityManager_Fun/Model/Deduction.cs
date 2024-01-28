@@ -10,7 +10,7 @@ namespace SecurityManager_Fun.Model
         public DeductionType Type { get; set; }
         public bool IsPercentage { get; set; }
         public decimal Value { get; set; }
-        public int CountryID { get; set; }
+        public int? CountryID { get; set; }
 
         public enum DeductionType 
         {
@@ -18,7 +18,9 @@ namespace SecurityManager_Fun.Model
         }
 
         // Navigation property
-        public Country Country { get; set; }
+        public Country? Country { get; set; }
+
+        public string NameAndValue { get => $"{Name} : {(IsPercentage ? Value.ToString("F3") + "%" : Value.ToString("F2") + "$")}"; }
 
         public override string ToString()
         {
@@ -30,6 +32,18 @@ namespace SecurityManager_Fun.Model
                     $"{Value}{(IsPercentage ? "%" : "$")} Country:" +
                     $"{context.Countries.Find(CountryID)}";
             }
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Deduction deduction &&
+                   ID == deduction.ID &&
+                   Name == deduction.Name &&
+                   Description == deduction.Description &&
+                   Type == deduction.Type &&
+                   IsPercentage == deduction.IsPercentage &&
+                   Value == deduction.Value /*&&
+                   Country?.Equals(deduction.Country) == true*/;
         }
     }
 }

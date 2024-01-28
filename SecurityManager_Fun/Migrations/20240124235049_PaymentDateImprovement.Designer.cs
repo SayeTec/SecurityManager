@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecurityManager_Fun.Data;
 
@@ -11,9 +12,10 @@ using SecurityManager_Fun.Data;
 namespace SecurityManager_Fun.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240124235049_PaymentDateImprovement")]
+    partial class PaymentDateImprovement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +53,7 @@ namespace SecurityManager_Fun.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int?>("CountryID")
+                    b.Property<int>("CountryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -169,20 +171,14 @@ namespace SecurityManager_Fun.Migrations
                     b.Property<DateTime?>("DateOfLatestModification")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("DeductionsValue")
-                        .HasColumnType("decimal(10,4)");
-
-                    b.Property<decimal>("DefaultValue")
-                        .HasColumnType("decimal(10,4)");
-
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("FinalValue")
-                        .HasColumnType("decimal(10,4)");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(10,4)");
 
                     b.HasKey("ID");
 
@@ -269,7 +265,9 @@ namespace SecurityManager_Fun.Migrations
                 {
                     b.HasOne("SecurityManager_Fun.Model.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("CountryID");
+                        .HasForeignKey("CountryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Country");
                 });

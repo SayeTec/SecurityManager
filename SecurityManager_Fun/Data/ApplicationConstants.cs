@@ -11,5 +11,7 @@ namespace SecurityManager_Fun.Data
         public const int MINIMUM_PASSWORD_LENGTH = 8;
 
         public const decimal DEFAULT_GROSS_RATE = 4000m;
+
+        public const decimal RATE_VALUE_DIFFERENCE = 0.75m;
     }
 }

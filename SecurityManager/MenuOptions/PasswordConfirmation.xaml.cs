@@ -2,7 +2,10 @@
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions.EmployeeOptions;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace SecurityManager_GUI.MenuOptions
 {
@@ -11,13 +14,25 @@ namespace SecurityManager_GUI.MenuOptions
     /// </summary>
     public partial class PasswordConfirmation : Window
     {
-        private Employee employeeToConfirm;
+        private object objectToConfirm;
+        private List<object> associatedObjects;
         private string confirmationPurpose;
         private Window previousWindow;
-        public PasswordConfirmation(Employee employee, string purpose, Window previous)
+
+
+        public PasswordConfirmation(object objectToConfirm, string purpose, Window previous)
         {
             InitializeComponent();
-            employeeToConfirm = employee;
+            this.objectToConfirm = objectToConfirm;
+            confirmationPurpose = purpose;
+            previousWindow = previous;
+        }
+
+        public PasswordConfirmation(object objectToConfirm, List<object> associatedObjects, string purpose, Window previous)
+        {
+            InitializeComponent();
+            this.objectToConfirm = objectToConfirm;
+            this.associatedObjects = associatedObjects;
             confirmationPurpose = purpose;
             previousWindow = previous;
         }
@@ -41,18 +56,35 @@ namespace SecurityManager_GUI.MenuOptions
 
             switch (confirmationPurpose)
             {
-                case "deletion":
-                    EmployeeRepository.DeleteEmployee(employeeToConfirm);
+                case "add-employee":
+                    AccountService.RegisterNewEmployee(objectToConfirm as Employee);
                     break;
 
-                case "add":
-                    AccountService.RegisterNewEmployee(employeeToConfirm);
+                case "delete-employee":
+                    EmployeeRepository.DeleteEmployee(objectToConfirm as Employee);
                     break;
 
-                case "update":
-                    EmployeeRepository.UpdateEmployee(employeeToConfirm);
+                case "update-employee":
+                    EmployeeRepository.UpdateEmployee(objectToConfirm as Employee);
                     break;
-            }
+
+                case "add-payment":
+                    PaymentRepository.AddNewPayment(objectToConfirm as Payment, associatedObjects.Cast<Deduction>().ToList());
+                    break;
+
+                case "update-payment":
+                    PaymentDeductionRepository.RemovePaymentDeductionsByPayment(objectToConfirm as Payment);
+                    PaymentRepository.UpdatePaymentWithDeductions(objectToConfirm as Payment, associatedObjects.Cast<Deduction>().ToList());
+                    break;
+
+                case "update-status-payment":
+                    PaymentRepository.UpdatePayment(objectToConfirm as Payment);
+                    break;
+
+                case "delete-payment":
+                    PaymentRepository.UpdatePayment(objectToConfirm as Payment);
+                    break;
+            }       
 
             if (previousWindow != null)
             {
