@@ -43,6 +43,8 @@ namespace SecurityManager_GUI.MenuOptions
                                                               .GetUnpaidEmployees();
                 DataGridEmployees.Items.Refresh();
 
+                DataGridEmployees.Columns[5].Visibility = Visibility.Hidden;
+
                 return;
             }
 

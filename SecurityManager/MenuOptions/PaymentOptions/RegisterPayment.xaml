@@ -42,7 +42,7 @@
                 <Grid Grid.Row="1">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock x:Name="TextBlockTax" Text="Wartość wybranych podatków:" Margin="5,5,10,5" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="TextBlockSelectedTaxValue" Text="" Foreground="#FF9C4B5A" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TextBlockSelectedTaxValue" Text="(0) -0.00$" Foreground="#FF9C4B5A" VerticalAlignment="Center"/>
                         <Button x:Name="ButtonSelectTax" Content="Wybierz podatki" Margin="10,0,0,0" Background="#007ACC" Foreground="White" MinWidth="120" MinHeight="30" Click="ButtonSelectTax_Click"/>
                     </StackPanel>
                 </Grid>
@@ -50,7 +50,7 @@
                 <Grid Grid.Row="2">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock x:Name="TextBlockBonus" Text="Wartość wybranych podwyżek:" Margin="5,5,10,5" FontSize="14" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="TextBlockSelectedBonusValue" Text="" Foreground="Green" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TextBlockSelectedBonusValue" Text="(0) 0.00$" Foreground="Green" VerticalAlignment="Center"/>
                         <Button x:Name="ButtonSelectBonus" Content="Wybierz podwyżki" Margin="10,0,0,0" Background="#007ACC" Foreground="White" MinWidth="120" MinHeight="30" Click="ButtonSelectBonus_Click"/>
                     </StackPanel>
                 </Grid>

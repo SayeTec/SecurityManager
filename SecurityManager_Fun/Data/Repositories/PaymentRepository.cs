@@ -18,6 +18,15 @@ namespace SecurityManager_Fun.Data.Repositories
             }
         }
 
+        public static List<Payment> GetPaymentThisMonthByEmployee(Employee employee)
+        {
+            return GetAllPayments()
+                .Where(payment => payment.EmployeeID == employee.ID &&
+                                payment.DateOfCreation.Month == DateTime.Now.Month &&
+                                payment.DateOfCreation.Year == DateTime.Now.Year)
+                .ToList();
+        }
+
         public static List<Payment> GetActivePayments()
         {
             return GetAllPayments().Where(payment => (int)payment.Status <= 1).ToList();
