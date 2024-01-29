@@ -1,4 +1,5 @@
 ﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using System.Reflection.Metadata.Ecma335;
 
 namespace SecurityManager_Fun.Model
@@ -20,7 +21,16 @@ namespace SecurityManager_Fun.Model
         public Role Role { get; set; }
         public Department Department { get; set; }
 
-        public string GetFullName() => Name + " " + Surname;
+        public string FullName { get => Name + " " + Surname; }
+        public string IsPaid { get{
+                List<Payment> payments = PaymentRepository.GetPaymentThisMonthByEmployee(this);
+                
+                if (payments.Count == 0 || payments.All(p => p.Status == Payment.StatusType.Canceled)) return "Not paid";
+                if (payments.Any(p => p.Status == Payment.StatusType.Done)) return "Paid";
+                if (payments.Any(p => p.Status == Payment.StatusType.Created || p.Status == Payment.StatusType.Commited)) return "Pending";
+
+                return "";
+            }}
 
         public override string ToString()
         {
@@ -41,7 +51,7 @@ namespace SecurityManager_Fun.Model
                 return false;
 
             Employee other = (Employee)obj;
-            return Name == other.Name && Surname == other.Surname 
+            return ID == other.ID && Name == other.Name && Surname == other.Surname 
                 && Phone == other.Phone && Email == other.Email
                 && Login == other.Login;
 

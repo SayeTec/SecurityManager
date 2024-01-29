@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Utilities;
 using SecurityManager_Fun.Data;
 using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Logic;
@@ -50,8 +51,8 @@ public class Program
                         break;
 
                     case 5:
-                        Console.WriteLine("\n\tSettlements:");
-                        context.Settlements.Select(s => s).ToList().ForEach(s => Console.WriteLine("\n" + s + "\n"));
+                        Console.WriteLine("\n\tDeductions:");
+                        context.Deductions.Select(s => s).ToList().ForEach(s => Console.WriteLine("\n" + s + "\n"));
                         break;
 
                     case 0:

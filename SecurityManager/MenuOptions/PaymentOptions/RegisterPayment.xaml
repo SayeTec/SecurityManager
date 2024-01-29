@@ -1,0 +1,74 @@
+﻿<Window x:Class="SecurityManager_GUI.MenuOptions.PaymentOptions.RegisterPayment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.PaymentOptions"
+        mc:Ignorable="d"
+        Title="RegisterPayment" Height="450" Width="800">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock x:Name="TextBlockTitle" Text="Stwórz nową płatność" Height="36" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" TextAlignment="Center" Margin="0,10,0,10"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="10" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65*"/>
+                <ColumnDefinition Width="35*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="TextBlockEmployee" Text="Wybrany pracownik:" Margin="5,5,10,5" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TextBlockSelectedEmployee" Text="wybierz pracownika" Foreground="#FF9C4B5A" VerticalAlignment="Center"/>
+                        <Button x:Name="ButtonSelectEmployee" Content="Wybierz pracownika" Margin="10,0,0,0" Background="#007ACC" Foreground="White" MinWidth="120" MinHeight="30" Click="ButtonSelectEmployee_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="TextBlockTax" Text="Wartość wybranych podatków:" Margin="5,5,10,5" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TextBlockSelectedTaxValue" Text="(0) -0.00$" Foreground="#FF9C4B5A" VerticalAlignment="Center"/>
+                        <Button x:Name="ButtonSelectTax" Content="Wybierz podatki" Margin="10,0,0,0" Background="#007ACC" Foreground="White" MinWidth="120" MinHeight="30" Click="ButtonSelectTax_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="TextBlockBonus" Text="Wartość wybranych podwyżek:" Margin="5,5,10,5" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TextBlockSelectedBonusValue" Text="(0) 0.00$" Foreground="Green" VerticalAlignment="Center"/>
+                        <Button x:Name="ButtonSelectBonus" Content="Wybierz podwyżki" Margin="10,0,0,0" Background="#007ACC" Foreground="White" MinWidth="120" MinHeight="30" Click="ButtonSelectBonus_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="TextBlockSum" Text="Suma wynosi: " Margin="5,0,10,0" FontSize="14" VerticalAlignment="Bottom"/>
+                        <TextBlock x:Name="TextBlockSumValue" Text="0.00$" Margin="0,5,0,0" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="0,0,20,5">
+                <Button x:Name="ButtonCreate" Content="Stwórz" Margin="5" Background="#007ACC" Foreground="White" MinWidth="150" Click="ButtonCreate_Click"/>
+                <Button x:Name="ButtonBack" Content="Wróć" Margin="0,5,5,5" Background="#FF9C4B5A" Foreground="White" MinWidth="100" Click="ButtonBack_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

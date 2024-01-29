@@ -9,11 +9,23 @@ namespace SecurityManager_Fun.Logic.Filters
         {
             return EmployeeRepository.GetAllEmployees()
                 .Where(emp =>
-                (string.IsNullOrEmpty(name) || emp.Name.ToLower().Contains(name.ToLower())) &&
-                (string.IsNullOrEmpty(surname) || emp.Surname.ToLower().Contains(surname.ToLower())) &&
-                (department == null || emp.Department.Equals(department)) &&
-                (country == null || emp.Department.Country.Equals(country)) &&
-                (role == null || emp.Role.Equals(role)))
+                (string.IsNullOrEmpty(name) || emp.Name?.ToLower().Contains(name.ToLower()) == true) &&
+                (string.IsNullOrEmpty(surname) || emp.Surname?.ToLower().Contains(surname.ToLower()) == true) &&
+                (department == null || emp.Department?.Equals(department) == true) &&
+                (country == null || emp.Department?.Country?.Equals(country) == true) &&
+                (role == null || emp.Role?.Equals(role) == true))
+                .ToList();
+        }
+
+        public static List<Employee> FilterEmployeesForPaymentCreation(string name, string surname, Role role, Country country, Department department)
+        {
+            return EmployeeRepository.GetUnpaidEmployees()
+                .Where(emp =>
+                (string.IsNullOrEmpty(name) || emp.Name?.ToLower().Contains(name.ToLower()) == true) &&
+                (string.IsNullOrEmpty(surname) || emp.Surname?.ToLower().Contains(surname.ToLower()) == true) &&
+                (department == null || emp.Department?.Equals(department) == true) &&
+                (country == null || emp.Department?.Country?.Equals(country) == true) &&
+                (role == null || emp.Role?.Equals(role) == true))
                 .ToList();
         }
 

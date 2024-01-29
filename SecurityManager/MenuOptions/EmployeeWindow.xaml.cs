@@ -120,11 +120,11 @@ namespace SecurityManager_GUI
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show(string.Format(DisplayMessages.Confirmation.EMPLOYEE_DELETE_CONFIRMATION, employeeToDelete.GetFullName()), "Potwierdzenie", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show(string.Format(DisplayMessages.Confirmation.EMPLOYEE_DELETE_CONFIRMATION, employeeToDelete.FullName), "Potwierdzenie", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
-                PasswordConfirmation passwordConfirmation = new PasswordConfirmation(employeeToDelete, "deletion", null);
+                PasswordConfirmation passwordConfirmation = new PasswordConfirmation(employeeToDelete, "delete-employee", null);
                 passwordConfirmation.ShowDialog();
                 DataGridEmployees.SelectedItem = null;
                 LoadDataFromDB();
