@@ -101,7 +101,7 @@
                                     <DataTrigger Binding="{Binding IsPaid}" Value="Pending">
                                         <Setter Property="Foreground" Value="Orange"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsPaid}" Value="Not paid">
+                                    <DataTrigger Binding="{Binding IsPaid}" Value="Not Paid">
                                         <Setter Property="Foreground" Value="#FF9C4B5A"/>
                                     </DataTrigger>
                                 </Style.Triggers>

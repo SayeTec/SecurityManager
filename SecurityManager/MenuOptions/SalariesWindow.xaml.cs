@@ -1,4 +1,6 @@
-﻿using SecurityManager_Fun.Data.Repositories;
+﻿
+using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions.PaymentOptions;
 using System;
@@ -43,13 +45,13 @@ namespace SecurityManager_GUI.MenuOptions
 
             if (payment == null)
             {
-                MessageBox.Show("Wybierz płatność!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (payment.Status != Payment.StatusType.Created)
             {
-                MessageBox.Show("Nie ma możliwości!");
+                MessageBox.Show(string.Format(DisplayMessages.Error.PAYMENT_HAS_INAPPROPRIATE_STATUS, Payment.StatusType.Created), "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -65,13 +67,13 @@ namespace SecurityManager_GUI.MenuOptions
 
             if (payment == null)
             {
-                MessageBox.Show("Wybierz płatność!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (payment.Status != Payment.StatusType.Commited)
             {
-                MessageBox.Show("Nie ma możliwości!");
+                MessageBox.Show(string.Format(DisplayMessages.Error.PAYMENT_HAS_INAPPROPRIATE_STATUS, Payment.StatusType.Commited), "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -91,13 +93,13 @@ namespace SecurityManager_GUI.MenuOptions
 
             if (payment == null)
             {
-                MessageBox.Show("Wybierz płatność!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (payment.Status == Payment.StatusType.Created)
             {
-                MessageBox.Show("Nie ma możliwości!");
+                MessageBox.Show(string.Format(DisplayMessages.Error.PAYMENT_HAS_INAPPROPRIATE_STATUS, Payment.StatusType.Commited), "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -113,7 +115,13 @@ namespace SecurityManager_GUI.MenuOptions
 
             if (payment == null)
             {
-                MessageBox.Show("Wybierz płatność!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (payment.Status != Payment.StatusType.Created)
+            {
+                MessageBox.Show(string.Format(DisplayMessages.Error.PAYMENT_HAS_INAPPROPRIATE_STATUS, Payment.StatusType.Created), "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -140,7 +148,13 @@ namespace SecurityManager_GUI.MenuOptions
 
             if (payment == null)
             {
-                MessageBox.Show("Nie ma możliwości!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (payment.Status != Payment.StatusType.Created)
+            {
+                MessageBox.Show(string.Format(DisplayMessages.Error.PAYMENT_HAS_INAPPROPRIATE_STATUS, Payment.StatusType.Created), "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

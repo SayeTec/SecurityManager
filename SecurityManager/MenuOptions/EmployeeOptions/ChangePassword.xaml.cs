@@ -29,7 +29,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
         {
             if (!AccountService.VerifyPassword(PasswordBoxLoggedUserPassword.Password, Session.Instance.CurrentEmployee.Password))
             {
-                MessageBox.Show("Proszę podaj swoje poprawne hasło!", "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(DisplayMessages.Error.LOGGED_USER_PASSWORD_CONFIRMATION_ERROR, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -40,7 +40,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 string.IsNullOrEmpty(newPassword) ||
                 string.IsNullOrEmpty(passwordRepeat))
             {
-                MessageBox.Show("Proszę wprowadić i potem powtórzyć nowe hasło!", "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(DisplayMessages.Error.PASSWORD_REPEAT_CONFIRMATION_ERROR, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

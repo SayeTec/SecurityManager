@@ -1,4 +1,5 @@
-﻿using SecurityManager_Fun.Data.Repositories;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Model;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,8 +15,6 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
     {
         private RegisterPayment registerPayment;
         private Deduction.DeductionType selectedDeductionType;
-
-        List<Deduction> deductions;
         
         public SelectDeductions(RegisterPayment register, Deduction.DeductionType deductionType) 
         {
@@ -50,14 +49,8 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
                 registerPayment.selectedDeductions);
         }
 
-        private void ButtonSelect_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO:Implement deduction selection
-        }
-
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Confirm if anything is selected
             Close();
         }
 
@@ -67,7 +60,7 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
 
             if (deduction == null) 
             {
-                MessageBox.Show("Nie wolno!");
+                MessageBox.Show(DisplayMessages.Error.DEDUCTION_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             
@@ -93,12 +86,9 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
 
             if (deduction == null)
             {
-                MessageBox.Show("Nie wolno!");
+                MessageBox.Show(DisplayMessages.Error.DEDUCTION_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
-            //In Revert functions there might be not returning deductions, 
-            //but removing them and loading from DB
 
             registerPayment.selectedDeductions.Remove(deduction);
             LoadDataForDeduction();
