@@ -90,21 +90,31 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Confirm if anything is selected
-            Close();
+            if (selectedEmployee == null && selectedDeductions.Count == 0) 
+            {
+                Close();
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show(DisplayMessages.Confirmation.EXIT_WITHOUT_SAVE_CONFIRAMTION, "Potwierdzenie", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                Close();
+            }
         }
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
             if (selectedEmployee == null)
             {
-                MessageBox.Show("Najpierw podaj pracownika!");
+                MessageBox.Show(DisplayMessages.Error.EMPLOYEE_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (CalculateSum() < selectedEmployee.GrossRate * (1 - ApplicationConstants.RATE_VALUE_DIFFERENCE) || CalculateSum() > selectedEmployee.GrossRate * (1 + ApplicationConstants.RATE_VALUE_DIFFERENCE))
             {
-                MessageBox.Show("Niepoprawna wartość!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_AMOUNT_IS_OUT_OF_RANGE, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -126,13 +136,13 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
         {
             if (selectedEmployee == null)
             {
-                MessageBox.Show("Najpierw podaj pracownika!");
+                MessageBox.Show(DisplayMessages.Error.EMPLOYEE_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (CalculateSum() < selectedEmployee.GrossRate * (1 - ApplicationConstants.RATE_VALUE_DIFFERENCE) || CalculateSum() > selectedEmployee.GrossRate * (1 + ApplicationConstants.RATE_VALUE_DIFFERENCE))
             {
-                MessageBox.Show("Niepoprawna wartość!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_AMOUNT_IS_OUT_OF_RANGE, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

@@ -1,4 +1,5 @@
-﻿using SecurityManager_Fun.Data.Repositories;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Logic.Filters;
 using SecurityManager_Fun.Model;
@@ -16,8 +17,6 @@ namespace SecurityManager_GUI.MenuOptions
     /// </summary>
     public partial class SelectEmployee : Window
     {
-        //TODO: Implement "Paid in this month" Column
-
         private Window previousWindow;
 
         public SelectEmployee(Window window)
@@ -39,8 +38,7 @@ namespace SecurityManager_GUI.MenuOptions
         {
             if (previousWindow is SalariesWindow)
             {
-                DataGridEmployees.ItemsSource = EmployeeRepository/*.GetEmployeesUnderPriority((int)Session.Instance.CurrentEmployee.Role.Priority);*/
-                                                              .GetUnpaidEmployees();
+                DataGridEmployees.ItemsSource = EmployeeRepository.GetUnpaidEmployees();
                 DataGridEmployees.Items.Refresh();
 
                 DataGridEmployees.Columns[5].Visibility = Visibility.Hidden;
@@ -48,15 +46,13 @@ namespace SecurityManager_GUI.MenuOptions
                 return;
             }
 
-            DataGridEmployees.ItemsSource = EmployeeRepository/*.GetEmployeesUnderPriority((int)Session.Instance.CurrentEmployee.Role.Priority);*/
-                                                              .GetAllEmployees();
+            DataGridEmployees.ItemsSource = EmployeeRepository.GetAllEmployees();
             DataGridEmployees.Items.Refresh();
         }
 
         private void LoadFilterComboBoxesFromDB()
         {
-            RoleComboBox.ItemsSource = RoleRepository/*.GetRolesUnderEmployeePriority(Session.Instance.CurrentEmployee);*/
-                                                     .GetAllRoles();
+            RoleComboBox.ItemsSource = RoleRepository.GetAllRoles();
             CountryComboBox.ItemsSource = CountryRepository.GetAllCountries();
             CompanyComboBox.ItemsSource = DepartmentRepository.GetAllDepartments();
         }
@@ -76,14 +72,22 @@ namespace SecurityManager_GUI.MenuOptions
 
             if (employee == null)
             {
-                MessageBox.Show("Nie wolno!");
+                MessageBox.Show(DisplayMessages.Error.EMPLOYEE_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            //TODO: Add confirmation if Employee was paid for this month
-
             if (previousWindow is RegisterPayment)
             {
+                if (employee.IsPaid == ApplicationConstants.EMPLOYEE_IS_PAID || employee.IsPaid == ApplicationConstants.EMPLOYEE_IS_PENDING)
+                {
+                    MessageBoxResult result = MessageBox.Show(string.Format(DisplayMessages.Confirmation.EMPLOYEE_IS_PAID_IN_THIS_MONTH, employee.FullName), "Potwierdzenie", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (result == MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                }
+
                 (previousWindow as RegisterPayment).selectedEmployee = employee;
                 (previousWindow as RegisterPayment).selectedDeductions.RemoveAll(d =>
                 {

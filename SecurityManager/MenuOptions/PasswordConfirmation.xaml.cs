@@ -1,4 +1,5 @@
-﻿using SecurityManager_Fun.Data.Repositories;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions.EmployeeOptions;
@@ -50,7 +51,7 @@ namespace SecurityManager_GUI.MenuOptions
         {
             if (!AccountService.VerifyPassword(PasswordBoxLoggedUserPassword.Password, Session.Instance.CurrentEmployee.Password))
             {
-                MessageBox.Show("Proszę podaj swoje poprawne hasło!", "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(DisplayMessages.Error.LOGGED_USER_PASSWORD_CONFIRMATION_ERROR, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 PasswordBoxLoggedUserPassword.Password = string.Empty;
                 return;
             }

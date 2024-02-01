@@ -1,4 +1,5 @@
-﻿using SecurityManager_Fun.Data.Repositories;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Model;
 using System.Windows;
 
@@ -38,7 +39,7 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
 
             if (payment == null)
             {
-                MessageBox.Show("Nie wolno!");
+                MessageBox.Show(DisplayMessages.Error.PAYMENT_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
