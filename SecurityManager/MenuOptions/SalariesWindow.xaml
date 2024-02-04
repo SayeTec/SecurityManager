@@ -28,7 +28,7 @@
 
             <Grid Grid.Column="0">
                 <StackPanel Orientation="Vertical">
-                    <Label x:Name="LabelCalendar" Content="Wybierz daty:" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-5"/>
+                    <Label x:Name="LabelCalendar" Content="Wybierz daty: " FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-5"/>
                     <Calendar x:Name="CalendarDateFilter" SelectionMode="SingleRange"/>
                 </StackPanel>
             </Grid>
