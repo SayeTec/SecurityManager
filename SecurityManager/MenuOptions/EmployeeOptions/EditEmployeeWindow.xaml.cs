@@ -41,7 +41,6 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             ComboBoxEmployeeRole.SelectedItem = employeeToEdit.Role;
             DataGridDepartments.SelectedItem = employeeToEdit.Department;
-            //TODO: Add possibility to change employee's department
         }
 
         private Employee GetEmployeeWithData()
@@ -89,12 +88,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
         }
 
         private void ButtonPasswordChange_Click(object sender, RoutedEventArgs e)
-        {
-            /*if (Session.Instance.CurrentEmployee.Role.Priority >= employeeToEdit.Role.Priority)
-            {
-                MessageBox.Show(DisplayMessages.Error.ATTEMPT_TO_UPDATE_EMPLOYEE_PASSWORD_WITH_LOWER_ROLE + " Logged: " + Session.Instance.CurrentEmployee.Role + "   -   Changed: " + employeeToEdit.Role, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }*/
+        { 
             ChangePassword changePassword = new ChangePassword(employeeToEdit);
             changePassword.ShowDialog();
         }
@@ -117,12 +111,6 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            /*if (Session.Instance.CurrentEmployee.Role.Priority > employeeToEdit.Role.Priority && !(ComboBoxEmployeeRole.SelectedItem as Role).Equals(employeeToEdit.Role))
-            {
-                MessageBox.Show(DisplayMessages.Error.ATTEMPT_TO_UPDATE_EMPLOYEE_WITH_LOWER_ROLE, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }*/
-
             string login = TextBoxLogin.Text;
 
             string errorMessage = "";
