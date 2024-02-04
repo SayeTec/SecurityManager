@@ -46,6 +46,22 @@ namespace SecurityManager_Fun.Data.Repositories
             }
         }
 
+        public static List<Employee> GetEmployeesByDepartment(Department department)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return GetAllEmployees().Where(employee => employee.Department?.Equals(department) == true).ToList();
+            }
+        }
+
+        public static List<Employee> GetEmployeesByCountry(Country country)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return GetAllEmployees().Where(employee => employee.Department?.Country.Equals(country) == true).ToList();
+            }
+        }
+
         public static bool CheckIfEmployeeAlreadyExistsByLogin(string login)
         {
             return GetEmployeeByLogin(login) != null;
