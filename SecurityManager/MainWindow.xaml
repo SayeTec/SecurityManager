@@ -9,30 +9,26 @@
 
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="90*"/>
         </Grid.RowDefinitions>
 
-        <!-- Nagłówek -->
         <Border Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="5">
             <TextBlock Text="Security Manager" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         </Border>
 
-        <!-- Treść -->
-        <StackPanel Grid.Row="1" Margin="10">
-            <!-- Pole loginu -->
-            <TextBlock Text="Login:" VerticalAlignment="Center"/>
-            <TextBox x:Name="TextBoxLogin" Margin="5" MaxWidth="200"/>
+        <Grid Grid.Row="1">
+            <StackPanel Grid.Row="1" Margin="10" VerticalAlignment="Center">
+                <TextBlock Text="Login:" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox x:Name="TextBoxLogin" Margin="5" FontSize="18" MaxWidth="200"/>
 
-            <!-- Pole hasła -->
-            <TextBlock Text="Password:" VerticalAlignment="Center"/>
-            <PasswordBox x:Name="TextBoxPassword" Margin="5" MaxWidth="200"/>
+                <TextBlock Text="Password:" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <PasswordBox x:Name="TextBoxPassword" Margin="5" FontSize="18" MaxWidth="200"/>
 
-            <!-- Przycisk logowania -->
-            <Button x:Name="ButtonLogin" Content="Login" HorizontalAlignment="Center" Margin="5" Click="ButtonLogin_Click"/>
+                <Button x:Name="ButtonLogin" Content="Login" HorizontalAlignment="Center" Margin="10,50" FontSize="18" Background="#007ACC" Foreground="White" MinWidth="200" MinHeight="40" Click="ButtonLogin_Click"/>
 
-            <!-- Dodatkowe opcje, na przykład: "Zapomniałeś hasła?" -->
-            <TextBlock Text="Forgot your password?" HorizontalAlignment="Center" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" Margin="5"/>
-        </StackPanel>
+                <!-- <TextBlock Text="Forgot your password?" HorizontalAlignment="Center" VerticalAlignment="Center" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" Margin="5"/> -->
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -13,6 +13,8 @@ namespace SecurityManager_Fun.Data
             //Application
             public const string LOGGED_USER_PASSWORD_CONFIRMATION_ERROR = "Proszę podaj swoje poprawne hasło!";
             public const string PASSWORD_REPEAT_CONFIRMATION_ERROR = "Proszę wprowadić i potem powtórzyć nowe hasło!";
+            public const string LOGGING_IN_ERROR = "Podałeś nieprawidłowy login lub hasło!";
+
 
             //Password
             public const string PASSWORD_NOT_HAS_UPPERCASE = "Hasło powinno zawierać co najmniej jedną wielką literę.";
