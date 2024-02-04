@@ -29,6 +29,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
         {
             if (!AccountService.VerifyPassword(PasswordBoxLoggedUserPassword.Password, Session.Instance.CurrentEmployee.Password))
             {
+                ClearTextBoxes();
                 MessageBox.Show(DisplayMessages.Error.LOGGED_USER_PASSWORD_CONFIRMATION_ERROR, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -40,6 +41,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 string.IsNullOrEmpty(newPassword) ||
                 string.IsNullOrEmpty(passwordRepeat))
             {
+                ClearTextBoxes();
                 MessageBox.Show(DisplayMessages.Error.PASSWORD_REPEAT_CONFIRMATION_ERROR, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -63,6 +65,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
             if (!string.IsNullOrEmpty(errorMessage))
             {
+                ClearTextBoxes();
                 MessageBox.Show(errorMessage, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -76,5 +79,11 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             Close();
         }
 
+        private void ClearTextBoxes()
+        {
+            PasswordBoxLoggedUserPassword.Password = string.Empty;
+            PasswordBoxNewPassword.Password = string.Empty;
+            PasswordBoxRepeatPassword.Password = string.Empty;
+        }
     }
 }

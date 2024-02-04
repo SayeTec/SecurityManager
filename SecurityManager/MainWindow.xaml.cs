@@ -1,4 +1,5 @@
-﻿using SecurityManager_Fun.Logic;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI;
 using System.Windows;
@@ -39,7 +40,11 @@ namespace SecurityManager
         {
             Employee employee = AccountService.LogIn(TextBoxLogin.Text, TextBoxPassword.Password);
             
-            if (employee == null) { CleanTextBoxes(); return; }
+            if (employee == null) {
+                CleanTextBoxes();
+                MessageBox.Show(DisplayMessages.Error.LOGGING_IN_ERROR, "Błąd Logowania", MessageBoxButton.OK, MessageBoxImage.Error);
+                return; 
+            }
 
             Session.Instance.SetCurrentEmployee(employee);
             
