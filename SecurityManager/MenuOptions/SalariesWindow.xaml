@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions"
         mc:Ignorable="d"
-        Title="SalariesWindow" Height="475" Width="1000" Closing="Window_Closing">
+        Title="SalariesWindow" Height="750" Width="1100" Closing="Window_Closing">
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -19,27 +19,82 @@
         </Grid>
 
         <Grid Grid.Row="1" Margin="10,0" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <ComboBox x:Name="ComboBoxObject" Height="25" Width="150" Margin="10" SelectedIndex="0">
-                    <ComboBoxItem>Wybierz obiekt</ComboBoxItem>
-                </ComboBox>
-                <ComboBox x:Name="ComboBoxCompany" Height="25" Width="150" Margin="10" SelectedIndex="0">
-                    <ComboBoxItem>Wybierz firmę</ComboBoxItem>
-                </ComboBox>
-                <ComboBox x:Name="ComboBoxEmployee" Height="25" Width="150" Margin="10" SelectedIndex="0">
-                    <ComboBoxItem>Wybierz pracownika</ComboBoxItem>
-                </ComboBox>
-                <ComboBox x:Name="ComboBoxPayStatus" Height="25" Width="150" Margin="10" SelectedIndex="0">
-                    <ComboBoxItem>Wybierz status płatności</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical">
+                    <Label x:Name="LabelCalendar" Content="Wybierz daty:" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-5"/>
+                    <Calendar x:Name="CalendarDateFilter" SelectionMode="SingleRange"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label x:Name="LabelCountry" Content="Wybierz kraj:" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        <ComboBox x:Name="ComboBoxCountry" FontSize="14" VerticalContentAlignment="Center" MinWidth="150" MaxHeight="40" Margin="5,0" DisplayMemberPath="Symbol" SelectionChanged="ComboBoxCountry_SelectionChanged"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label x:Name="LabelCompany" Content="Wybierz obiekt:" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        <ComboBox x:Name="ComboBoxCompany" FontSize="14" VerticalContentAlignment="Center" MinWidth="150" MaxHeight="40" Margin="5,0" DisplayMemberPath="Address" SelectionChanged="ComboBoxCompany_SelectionChanged"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label x:Name="LabelEmployee" Content="Wybierz pracownika:" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        <ComboBox x:Name="ComboBoxEmployee" FontSize="14" VerticalContentAlignment="Center" MinWidth="150" MaxHeight="40" Margin="5,0" DisplayMemberPath="FullName"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label x:Name="LabelPayStatus" Content="Wybierz status:" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        <ComboBox x:Name="ComboBoxPayStatus" FontSize="14" VerticalContentAlignment="Center" MinWidth="150" MaxHeight="40" Margin="5,0"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="25*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="ButtonFilterEmployees" Margin="5" Grid.Row="0" Content="Filtruj" Background="#007ACC" Foreground="White" MinWidth="100" HorizontalAlignment="Right" Click="ButtonFilterEmployees_Click"/>
+                <Button x:Name="ButtonClearFilter" Margin="5" Grid.Row="1" Content="Wyczyść filter" Background="#007ACC" Foreground="White" MinWidth="100" HorizontalAlignment="Right" Click="ButtonClearFilter_Click"/>
+
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="2">
             <DataGrid x:Name="DataGridPayments" Margin="10" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date of creation" Binding="{Binding DateOfCreation, StringFormat={}{0:dd/MM/yyyy}}" Width="*"/>
-                    <DataGridTextColumn Header="Date of latest modification" Binding="{Binding DateOfLatestModification, StringFormat={}{0:dd/MM/yyyy}}" Width="*"/>
+                    <DataGridTextColumn Header="Date of modification" Binding="{Binding DateOfLatestModification, StringFormat={}{0:dd/MM/yyyy}}" Width="*"/>
                     <DataGridTextColumn Header="Employee" Binding="{Binding Employee.FullName}" Width="*"/>
                     <DataGridTextColumn Header="Department" Binding="{Binding Employee.Department.Address}" Width="*"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
@@ -74,9 +129,7 @@
                         <Button x:Name="ButtonArchivedPayment" Content="Zarchiwizowane płatności" Margin="5,5,5,5" Background="#007ACC" Foreground="White" MinWidth="160" Click="ButtonArchivedPayment_Click"/>
                         <Button x:Name="ButtonDeletePayment" Content="Usuń płatność" Margin="0,5,5,5" Background="#FF9C4B5A" Foreground="White" MinWidth="120" Click="ButtonDeletePayment_Click"/>
                     </StackPanel>
-                    
                 </Grid>
-
             </Grid>
             
             <Grid Grid.Column="1">
@@ -96,7 +149,7 @@
 
                 <Grid Grid.Row="1">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button x:Name="ButtonBack" Content="Wróć" Margin="0,5,25,10" Background="#FF9C4B5A" Foreground="White" MinWidth="100" MinHeight="30" Click="ButtonBack_Click" Height="15"/>
+                        <Button x:Name="ButtonBack" Content="Wróć" Margin="0,5,25,5" Background="#FF9C4B5A" Foreground="White" MinWidth="100" MinHeight="30" Click="ButtonBack_Click" Height="15"/>
                     </StackPanel>
                 </Grid>
             </Grid>
