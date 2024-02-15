@@ -86,6 +86,54 @@ namespace SecurityManager_GUI.MenuOptions
                 case "delete-payment":
                     PaymentRepository.UpdatePayment(objectToConfirm as Payment);
                     break;
+
+                case "add-country":
+                    CountryRepository.AddCountry(objectToConfirm as Country);
+                    break;
+
+                case "update-country":
+                    CountryRepository.UpdateCountry(objectToConfirm as Country);
+                    break;
+
+                case "delete-country":
+                    CountryRepository.DeleteCountry(objectToConfirm as Country);
+                    break;
+
+                case "add-department":
+                    DepartmentRepository.AddDepartment(objectToConfirm as Department);
+                    break;
+
+                case "update-department":
+                    DepartmentRepository.UpdateDepartment(objectToConfirm as Department);
+                    break;
+
+                case "delete-department":
+                    DepartmentRepository.DeleteDepartment(objectToConfirm as Department);
+                    break;
+
+                case "add-role":
+                    RoleRepository.AddNewRole(objectToConfirm as Role);
+                    break;
+
+                case "update-role":
+                    RoleRepository.UpdateRole(objectToConfirm as Role);
+                    break;
+
+                case "delete-role":
+                    RoleRepository.DeleteRole(objectToConfirm as Role);
+                    break;
+
+                case "add-deduction":
+                    DeductionRepository.AddNewDeduction(objectToConfirm as Deduction);
+                    break;
+
+                case "update-deduction":
+                    DeductionRepository.UpdateDeduction(objectToConfirm as Deduction);
+                    break;
+
+                case "delete-deduction":
+                    DeductionRepository.DeleteDeduction(objectToConfirm as Deduction);
+                    break;
             }       
 
             if (previousWindow != null)

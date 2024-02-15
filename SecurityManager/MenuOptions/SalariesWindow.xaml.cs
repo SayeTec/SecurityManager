@@ -7,6 +7,9 @@ using SecurityManager_GUI.MenuOptions.PaymentOptions;
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SecurityManager_GUI.MenuOptions
 {
@@ -18,6 +21,13 @@ namespace SecurityManager_GUI.MenuOptions
         public SalariesWindow()
         {
             InitializeComponent();
+
+            ButtonCommitPayment.Visibility = Visibility.Collapsed;
+            ButtonSolvePayment.Visibility = Visibility.Collapsed;
+            ButtonRevert.Visibility = Visibility.Collapsed;
+            ButtonEditPayment.Visibility = Visibility.Collapsed;
+            ButtonDeletePayment.Visibility = Visibility.Collapsed;
+
             LoadData();
         }
 
@@ -247,6 +257,51 @@ namespace SecurityManager_GUI.MenuOptions
             }
 
             ComboBoxEmployee.ItemsSource = EmployeeRepository.GetAllEmployees();
+        }
+
+        private void DataGridPayments_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (DataGridPayments.SelectedItem != null)
+            {
+                ButtonCommitPayment.Visibility = Visibility.Visible;
+                ButtonSolvePayment.Visibility = Visibility.Visible;
+                ButtonRevert.Visibility = Visibility.Visible;
+                ButtonEditPayment.Visibility = Visibility.Visible;
+                ButtonDeletePayment.Visibility = Visibility.Visible;
+                return;
+            }
+
+            ButtonCommitPayment.Visibility = Visibility.Collapsed;
+            ButtonSolvePayment.Visibility = Visibility.Collapsed;
+            ButtonRevert.Visibility = Visibility.Collapsed;
+            ButtonEditPayment.Visibility = Visibility.Collapsed;
+            ButtonDeletePayment.Visibility = Visibility.Collapsed;
+        }
+
+        private void DataGridPayments_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DependencyObject element = (UIElement)e.OriginalSource;
+
+            while (element != null && !(element is DataGridRow))
+            {
+                if (element is DataGridColumnHeader)
+                {
+                    return;
+                }
+
+                element = VisualTreeHelper.GetParent(element);
+            }
+
+            DataGridRow clickedRow = (DataGridRow)element;
+
+            if (clickedRow != null)
+            {
+                if (DataGridPayments.SelectedItem == clickedRow.DataContext)
+                {
+                    DataGridPayments.SelectedItem = null;
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

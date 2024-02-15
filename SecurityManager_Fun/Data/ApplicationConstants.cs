@@ -14,6 +14,8 @@ namespace SecurityManager_Fun.Data
 
         public const decimal RATE_VALUE_DIFFERENCE = 0.75m;
 
+        public const decimal MAX_PERCENTAGE_DEDUCTION_VALUE = 1m;
+
         public const string EMPLOYEE_IS_NOT_PAID = "Not Paid";
        
         public const string EMPLOYEE_IS_PAID = "Paid";

@@ -50,7 +50,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             if (ComboboxEmployeeRole.SelectedItem == null || string.IsNullOrEmpty(TextBoxFirstName.Text)
                 || string.IsNullOrEmpty(TextBoxLastName.Text) || string.IsNullOrEmpty(TextBoxPhoneNumber.Text))
             {
-                MessageBox.Show(DisplayMessages.Error.REQUIRED_DATA_NOT_PROVIDED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(DisplayMessages.Error.EMPLOYEE_REQUIRED_DATA_NOT_PROVIDED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

@@ -27,7 +27,7 @@ namespace SecurityManager_Fun.Logic
             byte[] salt;
             newEmployee.Login = DefaultValuesGenerator.GenerateDefaultEmployeeLogin(newEmployee.Name, newEmployee.Surname, newEmployee);
             newEmployee.Email = string.IsNullOrEmpty(newEmployee.Email) ? DefaultValuesGenerator.GenerateDefaultEmployeeEmail(newEmployee.Login) : newEmployee.Email;
-            newEmployee.Password = DefaultValuesGenerator.GenerateDefaultEmployeePassword(HashPassword(GenerateRandomPassword(newEmployee.Login), out salt), salt);
+            newEmployee.Password = DefaultValuesGenerator.GenerateDefaultEmployeePassword(HashPassword(GeneratePassword(newEmployee.Login), out salt), salt);
             newEmployee.GrossRate = DefaultValuesGenerator.GenerateDefaultEmployeeGrossRate();
 
             //TODO: Add verification of provided data in this class
@@ -59,14 +59,9 @@ namespace SecurityManager_Fun.Logic
             return VerifyPasswordWithHash(passwordToVerify, passwordParts[0], Convert.FromHexString(passwordParts[1]));
         }
 
-        private static string GenerateRandomPassword(string login)
+        private static string GeneratePassword(string login)
         {
-            int min = 0000;
-            int max = 9999;
-
-            Random random = new Random();
-            string password = "u" + login + random.Next(min, max).ToString();
-            return password;
+            return login + "_SM";
         }
     }
 }

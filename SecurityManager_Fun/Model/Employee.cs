@@ -26,7 +26,7 @@ namespace SecurityManager_Fun.Model
                 List<Payment> payments = PaymentRepository.GetPaymentThisMonthByEmployee(this);
                 
                 if (payments.Count == 0 || payments.All(p => p.Status == Payment.StatusType.Canceled)) return ApplicationConstants.EMPLOYEE_IS_NOT_PAID;
-                if (payments.Any(p => p.Status == Payment.StatusType.Done)) return ApplicationConstants.EMPLOYEE_IS_NOT_PAID;
+                if (payments.Any(p => p.Status == Payment.StatusType.Done)) return ApplicationConstants.EMPLOYEE_IS_PAID;
                 if (payments.Any(p => p.Status == Payment.StatusType.Created || p.Status == Payment.StatusType.Commited)) return ApplicationConstants.EMPLOYEE_IS_PENDING;
 
                 return "";

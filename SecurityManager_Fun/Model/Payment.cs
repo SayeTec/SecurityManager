@@ -22,6 +22,9 @@ namespace SecurityManager_Fun.Model
         // Navigation property
         public Employee Employee { get; set; }
         public ICollection<PaymentDeduction> PaymentDeductions { get; set; }
+        public bool IsActive { get{
+                return Status == StatusType.Created || Status == StatusType.Commited;
+            }}
 
         //public decimal DeductionsValue { get { return DeductionRepository.GetDeductionAmount(this); } }
 
