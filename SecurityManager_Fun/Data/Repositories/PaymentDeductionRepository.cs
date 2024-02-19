@@ -18,7 +18,7 @@ namespace SecurityManager_Fun.Data.Repositories
         {
             using (var dbContext = new AppDBContext())
             {
-                
+
                 dbContext.SaveChanges();
             }
         }

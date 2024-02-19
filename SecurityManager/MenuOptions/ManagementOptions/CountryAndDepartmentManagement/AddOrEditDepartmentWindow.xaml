@@ -1,0 +1,50 @@
+﻿<Window x:Class="SecurityManager_GUI.MenuOptions.ManagementOptions.CountryAndDepartmentManagement.AddOrEditDepartmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.ManagementOptions.CountryAndDepartmentManagement"
+        mc:Ignorable="d"
+        Title="AddOrEditDepartmentWindow" Height="350" Width="250">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock Text="Dodawanie biura" FontSize="18" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="20,5" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Center" Grid.Row="0">
+                <Label x:Name="LabelAddress" Content="Adres biura" FontSize="12"/>
+                <TextBox x:Name="TextBoxAddress" FontSize="12" MinWidth="150" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Grid.Row="1">
+                <Label x:Name="LabelCapacity" Content="Pojemność biura" FontSize="12"/>
+                <TextBox x:Name="TextBoxCapacity" FontSize="14" MinWidth="150" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Grid.Row="2">
+                <Label x:Name="LabelCountrySelection" Content="Wybierz kraj" FontSize="12"/>
+                <ComboBox x:Name="ComboboxCountry" FontSize="14" VerticalContentAlignment="Center" MinWidth="150" VerticalAlignment="Center" DisplayMemberPath="Name"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,5">
+            <StackPanel Grid.Row="5" Orientation="Vertical" HorizontalAlignment="Center">
+                <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

@@ -35,7 +35,7 @@ namespace SecurityManager_Fun.Data.Repositories
 
         public static List<Employee> GetEmployeesUnderPriority(int priority) 
         {
-            return GetAllEmployees().Where(employee => (int)employee.Role.Priority > priority).ToList();
+            return GetAllEmployees().Where(employee => employee.Role.Priority > priority).ToList();
         }
 
         public static Employee GetEmployeeByLogin(string login)

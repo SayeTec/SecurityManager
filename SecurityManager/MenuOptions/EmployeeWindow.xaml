@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI"
         mc:Ignorable="d"
-        Title="Lista pracowników" Height="522" Width="840" Closing="Window_Closing">
+        Title="Lista pracowników" Height="550" Width="850" Closing="Window_Closing">
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
@@ -79,7 +79,7 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <DataGrid x:Name="DataGridEmployees" SelectionMode="Single" Margin="10" Grid.Row="1" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" FontFamily="Arial" AutoGenerateColumns="False" PreviewMouseLeftButtonDown="DataGridEmployees_PreviewMouseLeftButtonDown">
+            <DataGrid x:Name="DataGridEmployees" SelectionMode="Single" Margin="10" Grid.Row="1" CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" FontFamily="Arial" AutoGenerateColumns="False" PreviewMouseLeftButtonDown="DataGridEmployees_PreviewMouseLeftButtonDown" SelectionChanged="DataGridEmployees_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>

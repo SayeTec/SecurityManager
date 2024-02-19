@@ -21,6 +21,7 @@ namespace SecurityManager_Fun.Model
         public Country? Country { get; set; }
 
         public string NameAndValue { get => $"{Name} : {(IsPercentage ? Value.ToString("F3") + "%" : Value.ToString("F2") + "$")}"; }
+        public string ProperValueView { get => $"{(IsPercentage ? Value.ToString("F3") + "%" : Value.ToString("F2") + "$")}"; }
 
         public override string ToString()
         {
@@ -36,14 +37,16 @@ namespace SecurityManager_Fun.Model
 
         public override bool Equals(object? obj)
         {
-            return obj is Deduction deduction &&
-                   ID == deduction.ID &&
-                   Name == deduction.Name &&
-                   Description == deduction.Description &&
-                   Type == deduction.Type &&
-                   IsPercentage == deduction.IsPercentage &&
-                   Value == deduction.Value /*&&
-                   Country?.Equals(deduction.Country) == true*/;
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Deduction other = (Deduction)obj;
+            return Name == other.Name &&
+                   Description == other.Description &&
+                   Type == other.Type &&
+                   IsPercentage == other.IsPercentage &&
+                   Value == other.Value &&
+                   CountryID == other.CountryID;
         }
     }
 }

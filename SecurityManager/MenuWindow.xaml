@@ -5,33 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="800" SizeChanged="Window_SizeChanged">
+        Title="Menu" Height="500" Width="800" SizeChanged="Window_SizeChanged">
 
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Nagłówek -->
-        <Border Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="5">
-           
-        </Border>
+        <Grid Grid.Column="0" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75*"/>
+                <RowDefinition Height="25*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Treść -->
-        <StackPanel Grid.Column="0" Margin="10">
-            <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="18" Foreground="White" FontWeight="Bold"/>
+            <StackPanel Grid.Row="0" Margin="10">
+                <TextBlock Text="Wybierz opcję:" Margin="0,0,0,10" FontSize="18" Foreground="White" FontWeight="Bold"/>
 
-            <!-- Przyciski -->
-            <Button x:Name="ButtonEmployeeManagement" Content="Pracownicy" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonEmployeeManagement_Click"/>
-            <Button x:Name="ButtonStatistics" Content="Wynagrodzenia" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonStatistics_Click"/>
-            <Button x:Name="ButtonDutiesManagement" Content="Dyżury" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonDutiesManagement_Click"/>
-            <Button x:Name="buttonScheduleDesigner" Content="Grafik dyżurów" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="buttonScheduleDesigner_Click"/>
-            <Button x:Name="ButtonBack" Content="Wyloguj" Margin="0,120,0,0" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonBack_Click"/>
+                <Button x:Name="ButtonEmployeeManagement" Content="Pracownicy" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonEmployeeManagement_Click"/>
+                <Button x:Name="ButtonStatistics" Content="Wynagrodzenia" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonStatistics_Click"/>
+                <Button x:Name="ButtonDutiesManagement" Content="Dyżury" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Visibility="Collapsed" Click="ButtonDutiesManagement_Click"/>
+                <Button x:Name="buttonScheduleDesigner" Content="Grafik dyżurów" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Visibility="Collapsed" Click="buttonScheduleDesigner_Click"/>
+            </StackPanel>
 
-        </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" Grid.Row="1" Margin="10">
+                <Button x:Name="ButtonBack" Content="Wyloguj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonBack_Click"/>
+            </StackPanel>
+        </Grid>
 
-        <!-- Etykieta -->
-        <Label x:Name="EmployeeLabel" Grid.Column="1" Content="Panel Administratora" Margin="10" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="EmployeeLabel" Grid.Row="0" Content="Panel Administratora" Margin="10" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
+
+            <Grid x:Name="GridMainAdmin" Grid.Row="1" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="15,5">
+                <StackPanel Orientation="Vertical">
+                    <Label x:Name="LabelSelection" Content="Wybierz opcję do zarządzania:" Margin="5" FontWeight="DemiBold" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
+                    <StackPanel Margin="0" Orientation="Vertical" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="ButtonCountryAndDepartmentManagement" Content="Kraje i Biura" Margin="10,10,0,0" Background="#007ACC" Foreground="White" MinWidth="310" MinHeight="50" Click="ButtonCountryAndDepartmentManagement_Click"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="ButtonRoleManagement" Content="Role" Margin="10,10,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="50" Click="ButtonRoleManagement_Click"/>
+                            <Button x:Name="ButtonDeductionManagement" Content="Należności" Margin="10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="50" Click="ButtonDeductionManagement_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -17,5 +17,48 @@ namespace SecurityManager_Fun.Data.Repositories
         {
             return GetAllDepartments().Where(d => d.Country.Equals(country)).ToList();
         }
+
+        public static void AddDepartment(Department department)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Departments.Add(department);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static void UpdateDepartment(Department department)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Departments.Update(department);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static void DeleteDepartment(Department department)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Departments.Remove(department);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static bool CheckIfDepartmentHasEmployees(Department department)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return dbContext.Employees.Where(employee => employee.DepartmentID == department.ID).Count() > 0;
+            }
+        }
+
+        public static bool CheckIfDepartmentIsUnique(Department department)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return !dbContext.Departments.Any(d => d.Equals(department));
+            }
+        }
     }
 }

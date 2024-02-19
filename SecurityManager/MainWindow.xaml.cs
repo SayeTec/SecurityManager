@@ -39,15 +39,15 @@ namespace SecurityManager
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             Employee employee = AccountService.LogIn(TextBoxLogin.Text, TextBoxPassword.Password);
-            
+
             if (employee == null) {
                 CleanTextBoxes();
                 MessageBox.Show(DisplayMessages.Error.LOGGING_IN_ERROR, "Błąd Logowania", MessageBoxButton.OK, MessageBoxImage.Error);
-                return; 
+                return;
             }
 
             Session.Instance.SetCurrentEmployee(employee);
-            
+
             MenuWindow menuWindow = new MenuWindow();
             menuWindow.Show();
             Close();

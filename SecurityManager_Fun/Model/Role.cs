@@ -5,7 +5,7 @@
         public int ID { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-        public PriorityType Priority { get; set; }
+        public int Priority { get; set; }
 
         public enum PriorityType
         {
@@ -14,6 +14,8 @@
             Worker = 2,
             Junior = 3
         }
+
+        public string PriorityView { get => Priority.ToString(); }
 
         public override string ToString()
         {

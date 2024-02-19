@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace SecurityManager_Fun.Data
 {
-    //TODO: Talk about default values for new Employee
     public class DefaultValuesGenerator
     {
         public static string GenerateDefaultEmployeeLogin(string firstName, string lastName, Employee employee)
@@ -33,7 +32,7 @@ namespace SecurityManager_Fun.Data
 
         public static string GenerateDefaultEmployeeEmail(string login)
         {
-            return string.Format("{0}@gmail.com", login); //TODO: talk about email domain
+            return string.Format("{0}@gmail.com", login);
         }
 
         public static decimal GenerateDefaultEmployeeGrossRate()

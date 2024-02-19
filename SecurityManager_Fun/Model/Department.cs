@@ -29,7 +29,7 @@ namespace SecurityManager_Fun.Model
                 return false;
 
             Department other = (Department)obj;
-            return Address == other.Address && Capacity == other.Capacity && Country.Equals(other.Country);
+            return Address == other.Address && Capacity == other.Capacity && CountryID == other.CountryID;
         }
     }
 }

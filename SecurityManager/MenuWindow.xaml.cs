@@ -2,6 +2,10 @@
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions;
+using SecurityManager_GUI.MenuOptions.ManagementOptions.CountryAndDepartmentManagement;
+using SecurityManager_GUI.MenuOptions.ManagementOptions.DeductionManagement;
+using SecurityManager_GUI.MenuOptions.ManagementOptions.RoleManagement;
+using SecurityManager_GUI.MenuOptions.PaymentOptions;
 using System.Windows;
 
 namespace SecurityManager_GUI
@@ -19,7 +23,17 @@ namespace SecurityManager_GUI
             SizeChanged += Window_SizeChanged;
             loggedEmployee = Session.Instance.CurrentEmployee;
 
-            EmployeeLabel.Content = loggedEmployee.ToString();
+            EmployeeLabel.Content = "Logged in User: " + loggedEmployee.FullName + " : " + loggedEmployee.Role.Name;
+
+            if (Session.Instance.CurrentEmployee.Role.Priority != 0)
+            {
+                GridMainAdmin.Visibility = Visibility.Collapsed;
+            }
+
+            if (Session.Instance.CurrentEmployee.Role.Priority > 1)
+            {
+                ButtonEmployeeManagement.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -80,6 +94,35 @@ namespace SecurityManager_GUI
         {
             DutyWindow dutyWindow = new DutyWindow();
             dutyWindow.Show();
+            Close();
+        }
+
+        private void ButtonRoleManagement_Click(object sender, RoutedEventArgs e)
+        {
+            RolesWindow rolesWindow = new RolesWindow();
+            rolesWindow.Show();
+            Close();
+        }
+
+        private void ButtonDeductionManagement_Click(object sender, RoutedEventArgs e)
+        {
+            if (Session.Instance.CurrentEmployee.Role.Priority > 1)
+            {
+                ArchivedPayments archivedPayments = new ArchivedPayments();
+                archivedPayments.Show();
+            }
+            else
+            {
+                DeductionsWindow deductionsWindow = new DeductionsWindow();
+                deductionsWindow.Show();
+            }
+            Close();
+        }
+
+        private void ButtonCountryAndDepartmentManagement_Click(object sender, RoutedEventArgs e)
+        {
+            CountryWindow countryWindow = new CountryWindow();
+            countryWindow.Show();
             Close();
         }
     }

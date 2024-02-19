@@ -42,6 +42,10 @@ namespace SecurityManager_GUI
         public EmployeeWindow()
         {
             InitializeComponent();
+
+            ButtonEditEmployee.Visibility = Visibility.Collapsed;
+            ButtonDeleteEmployee.Visibility = Visibility.Collapsed;
+
             DataGridEmployees.Language = XmlLanguage.GetLanguage("pl-PL");
             LoadDataFromDB();
         }
@@ -55,7 +59,7 @@ namespace SecurityManager_GUI
 
         private void LoadEmployeesFromDB()
         {
-            DataGridEmployees.ItemsSource = EmployeeRepository.GetEmployeesUnderPriority((int)Session.Instance.CurrentEmployee.Role.Priority);
+            DataGridEmployees.ItemsSource = EmployeeRepository.GetEmployeesUnderPriority(Session.Instance.CurrentEmployee.Role.Priority);
             DataGridEmployees.Items.Refresh();
         }
 
@@ -133,7 +137,7 @@ namespace SecurityManager_GUI
 
         private void ButtonFilterEmployees_Click(object sender, RoutedEventArgs e)
         {
-            DataGridEmployees.ItemsSource = EmployeeFilter.FilterEmployeesUnderPriority((int)Session.Instance.CurrentEmployee.Role.Priority,
+            DataGridEmployees.ItemsSource = EmployeeFilter.FilterEmployeesUnderPriority(Session.Instance.CurrentEmployee.Role.Priority,
                 TextBoxEmployeeNamePattern.Text, TextBoxEmployeeSurnamePattern.Text, RoleComboBox.SelectedItem as Role,
                 CountryComboBox.SelectedItem as Country, CompanyComboBox.SelectedItem as Department);
             DataGridEmployees.Items.Refresh();
@@ -183,6 +187,19 @@ namespace SecurityManager_GUI
             }
 
             CompanyComboBox.ItemsSource = DepartmentRepository.GetAllDepartments();
+        }
+
+        private void DataGridEmployees_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGridEmployees.SelectedItem != null)
+            {
+                ButtonEditEmployee.Visibility = Visibility.Visible;
+                ButtonDeleteEmployee.Visibility = Visibility.Visible;
+                return;
+            }
+
+            ButtonEditEmployee.Visibility = Visibility.Collapsed;
+            ButtonDeleteEmployee.Visibility = Visibility.Collapsed;
         }
     }
 }

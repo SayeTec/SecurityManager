@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SecurityManager_Fun.Model;
+using System.Data;
+using System.Diagnostics.Metrics;
 
 namespace SecurityManager_Fun.Data.Repositories
 {
@@ -89,6 +91,49 @@ namespace SecurityManager_Fun.Data.Repositories
                 .Where(d => d.Type == deductionType)
                 .Where(d => !deductionsToExclude.Contains(d))
                 .ToList();
+        }
+
+        public static void AddNewDeduction(Deduction deduction)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Deductions.Add(deduction);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static void UpdateDeduction(Deduction deduction)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Deductions.Update(deduction);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static void DeleteDeduction(Deduction deduction)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                dbContext.Deductions.Remove(deduction);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public static bool CheckIfDeductionHasAttachedToPayments(Deduction deduction)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return dbContext.PaymentDeductions.Any(pd => pd.DeductionID == deduction.ID);
+            }
+        }
+
+        public static bool CheckIfDeductionIsUnique(Deduction deduction)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return !dbContext.Deductions.Any(d => d.Equals(deduction));
+            }
         }
     }
 }

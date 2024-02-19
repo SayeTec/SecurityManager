@@ -97,5 +97,59 @@ namespace SecurityManager_Fun.Logic
             return surnameRegex.IsMatch(surname);
 
         }
+
+        public static bool ValidateCountrySymbol(string symbol)
+        {
+            Regex symbolRegex = new Regex(@"^[A-Z]+$");
+            return symbolRegex.IsMatch(symbol);
+        }
+
+        public static bool ValidateCountryName(string name)
+        {
+            Regex nameRegex = new Regex(@"^[A-Za-z]+$");
+            return nameRegex.IsMatch(name);
+        }
+
+        public static bool ValidateDepartmentAddress(string address)
+        {
+            Regex addressRegex = new Regex(@"^[a-zA-Z0-9\s.,/-]*$");
+            return addressRegex.IsMatch(address);
+        }
+
+        public static bool ValidateDepartmentCapacity(string capacity)
+        {
+            Regex capacityRegex = new Regex(@"^[0-9]+$");
+            return capacityRegex.IsMatch(capacity);
+        }
+
+        public static bool ValidateRoleCode(string code)
+        {
+            Regex codeRegex = new Regex(@"^[A-Z]+$");
+            return codeRegex.IsMatch(code);
+        }
+
+        public static bool ValidateRoleName(string name)
+        {
+            Regex nameRegex = new Regex(@"^[a-zA-Z\s]+(-[a-zA-Z]+)?$");
+            return nameRegex.IsMatch(name);
+        }
+
+        public static bool ValidateRolePriority(string priority)
+        {
+            Regex codeRegex = new Regex(@"^[0-9]+$");
+            return codeRegex.IsMatch(priority);
+        }
+
+        public static bool ValidateDeductionName(string name)
+        {
+            Regex nameRegex = new Regex(@"^[A-Za-z0-9\s\/\-\\]+$");
+            return nameRegex.IsMatch(name);
+        }
+
+        public static bool ValidateDeductionValue(string value)
+        {
+            Regex valueRegex = new Regex(@"^\d+(\,\d{0,10})?$");
+            return valueRegex.IsMatch(value);
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
 
         private void InitializeComboBox()
         {
-            ComboBoxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderOrEqualsEmployeePriority(employeeToEdit);
+            ComboBoxEmployeeRole.ItemsSource = RoleRepository.GetRolesUnderEmployeePriority(Session.Instance.CurrentEmployee);
             DataGridDepartments.ItemsSource = DepartmentRepository.GetAllDepartments();
         }
 
