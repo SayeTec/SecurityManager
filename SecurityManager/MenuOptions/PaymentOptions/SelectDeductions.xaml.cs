@@ -1,7 +1,6 @@
 ﻿using SecurityManager_Fun.Data;
 using SecurityManager_Fun.Data.Repositories;
 using SecurityManager_Fun.Model;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -15,14 +14,15 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
     {
         private RegisterPayment registerPayment;
         private Deduction.DeductionType selectedDeductionType;
-        
-        public SelectDeductions(RegisterPayment register, Deduction.DeductionType deductionType) 
+
+        public SelectDeductions(RegisterPayment register, Deduction.DeductionType deductionType)
         {
             InitializeComponent();
             registerPayment = register;
             selectedDeductionType = deductionType;
 
-            switch (selectedDeductionType) {
+            switch (selectedDeductionType)
+            {
                 case Deduction.DeductionType.Tax:
                     TextBlockTitle.Text += " podatki";
                     break;
@@ -58,12 +58,12 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
         {
             Deduction? deduction = ListBoxDeductionsToSelect.SelectedItem as Deduction;
 
-            if (deduction == null) 
+            if (deduction == null)
             {
                 MessageBox.Show(DisplayMessages.Error.DEDUCTION_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            
+
             registerPayment.selectedDeductions.Add(deduction);
             LoadDataForDeduction();
 

@@ -115,6 +115,7 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
                 Session.Instance.CurrentEmployee?.Department?.Country, Session.Instance.CurrentEmployee.Department,
                 (Payment.StatusType?)ComboBoxPayStatus.SelectedItem, Session.Instance.CurrentEmployee);
                 DataGridPayments.Items.Refresh();
+                return;
             }
 
             DataGridPayments.ItemsSource = PaymentFilter.FilterArchivisedPayments(startDate, endDate,

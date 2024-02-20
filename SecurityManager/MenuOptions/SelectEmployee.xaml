@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions"
         mc:Ignorable="d"
-        Title="SelectEmployee" Height="500" Width="800">
+        Title="SelectEmployee" Height="550" Width="800">
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
