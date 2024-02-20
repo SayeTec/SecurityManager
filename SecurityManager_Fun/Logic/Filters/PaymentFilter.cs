@@ -13,8 +13,8 @@ namespace SecurityManager_Fun.Logic.Filters
                 (country == null || pay.Employee.Department?.Country.Equals(country) == true) &&
                 (employee == null || pay.Employee.Equals(employee) == true) &&
                 (status == null || pay.Status == status) &&
-                (startDate == null || pay.DateOfCreation.CompareTo(startDate) >= 0) &&
-                (endDate == null || pay.DateOfCreation.CompareTo(endDate) <= 0))
+                (startDate == null || pay.DateOfCreation.Date.CompareTo(((DateTime)startDate).Date) >= 0) &&
+                (endDate == null || pay.DateOfCreation.Date.CompareTo(((DateTime)endDate).Date) <= 0))
                 .ToList();
         }
 
@@ -26,8 +26,8 @@ namespace SecurityManager_Fun.Logic.Filters
                 (country == null || pay.Employee.Department?.Country.Equals(country) == true) &&
                 (employee == null || pay.Employee.Equals(employee) == true) &&
                 (status == null || pay.Status == status) &&
-                (startDate == null || ((DateTime)pay.DateOfEnd).CompareTo(startDate) >= 0) &&
-                (endDate == null || ((DateTime)pay.DateOfEnd).CompareTo(endDate) <= 0))
+                (startDate == null || ((DateTime)pay.DateOfEnd).Date.CompareTo(((DateTime)startDate).Date) >= 0) &&
+                (endDate == null || ((DateTime)pay.DateOfEnd).Date.CompareTo(((DateTime)endDate).Date) <= 0))
                 .ToList();
         }
     }

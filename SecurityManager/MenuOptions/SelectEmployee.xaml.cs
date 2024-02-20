@@ -1,6 +1,5 @@
 ﻿using SecurityManager_Fun.Data;
 using SecurityManager_Fun.Data.Repositories;
-using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Logic.Filters;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions.PaymentOptions;
@@ -136,7 +135,7 @@ namespace SecurityManager_GUI.MenuOptions
 
         private void ButtonFilterEmployees_Click(object sender, RoutedEventArgs e)
         {
-            if (previousWindow is RegisterPayment) 
+            if (previousWindow is RegisterPayment)
             {
                 DataGridEmployees.ItemsSource = EmployeeFilter.FilterEmployees(TextBoxEmployeeNamePattern.Text, TextBoxEmployeeSurnamePattern.Text, RoleComboBox.SelectedItem as Role,
                 CountryComboBox.SelectedItem as Country, CompanyComboBox.SelectedItem as Department);

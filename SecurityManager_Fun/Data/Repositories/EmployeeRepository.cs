@@ -22,14 +22,19 @@ namespace SecurityManager_Fun.Data.Repositories
         {
             using (var dbContext = new AppDBContext())
             {
+                DateTime now = DateTime.Now;
+                DateTime startDateOfMonth = new DateTime(now.Year, now.Month, 1);
+                DateTime endDateOfMonth = startDateOfMonth.AddMonths(1).AddDays(-1);
+
                 return GetAllEmployees().Where(e =>
-                !dbContext.Payments.Any(p =>
-                    p.EmployeeID == e.ID &&
-                    p.DateOfCreation.Month == DateTime.Now.Month &&
-                    p.DateOfCreation.Year == DateTime.Now.Year &&
-                    (p.Status != Payment.StatusType.Canceled ||
-                    p.Status == Payment.StatusType.Done)))
+                    !dbContext.Payments.Any(p =>
+                        p.EmployeeID == e.ID &&
+                        p.DateOfCreation >= startDateOfMonth &&
+                        p.DateOfCreation <= endDateOfMonth &&
+                        (p.Status != Payment.StatusType.Canceled ||
+                        p.Status == Payment.StatusType.Done)))
                     .ToList();
+
             }
         }
 
