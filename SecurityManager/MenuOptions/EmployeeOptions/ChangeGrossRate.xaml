@@ -1,49 +1,43 @@
-﻿<Window x:Class="SecurityManager_GUI.MenuOptions.EmployeeOptions.ChangePassword"
+﻿<Window x:Class="SecurityManager_GUI.MenuOptions.EmployeeOptions.ChangeGrossRate"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.EmployeeOptions"
         mc:Ignorable="d"
-        Title="Edycja" Height="300" Width="300" ResizeMode="NoResize">
+            Title="Edycja" Height="300" Width="300" ResizeMode="NoResize">
     <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="60*"/>
-            <RowDefinition Height="15*"/>
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <TextBlock Text="Edycja hasła pracownika" FontSize="18" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="Edycja pensji pracownika" FontSize="18" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
         <Grid Grid.Row="1" Margin="20,5" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40*"/>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="30*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label x:Name="LabelUserPassword" Content="Wprowadź swoje hasło" FontSize="12"/>
                 <PasswordBox x:Name="PasswordBoxLoggedUserPassword" Margin="0" MinWidth="150" FontSize="14" VerticalContentAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
-                <Label x:Name="LabelNewPassword" Content="Nowe hasło" FontSize="12"/>
-                <PasswordBox x:Name="PasswordBoxNewPassword" Margin="0" MinWidth="150" FontSize="14" VerticalContentAlignment="Center"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center">
-                <Label x:Name="LabelRepeatPassword" Content="Powtórz hasło" FontSize="12"/>
-                <PasswordBox x:Name="PasswordBoxRepeatPassword" Margin="0"  MinWidth="150" FontSize="14" VerticalContentAlignment="Center"/>
+                <Label x:Name="LabelNewGrossRate" Content="Nowa pensja" FontSize="12"/>
+                <TextBox x:Name="TextBoxNewGrossRate" Margin="0" MinWidth="150" FontSize="14" VerticalContentAlignment="Center"/>
             </StackPanel>
         </Grid>
 
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="100" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
                 <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="100" MinHeight="30" Margin="5" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="100" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

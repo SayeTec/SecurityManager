@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Controls;
 using System.Windows.Media;
+using SecurityManager_Fun.Logic;
 
 namespace SecurityManager_GUI.MenuOptions
 {
@@ -302,6 +303,12 @@ namespace SecurityManager_GUI.MenuOptions
                     e.Handled = true;
                 }
             }
+        }
+
+        private void ButtonLoggedUserPayments_Click(object sender, RoutedEventArgs e)
+        {
+            ArchivedPayments archivedPayments = new ArchivedPayments(Session.Instance.CurrentEmployee, this);
+            archivedPayments.Show();
         }
     }
 }

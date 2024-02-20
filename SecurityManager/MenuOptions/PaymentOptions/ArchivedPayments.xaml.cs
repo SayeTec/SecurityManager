@@ -1,5 +1,6 @@
 ﻿using SecurityManager_Fun.Data;
 using SecurityManager_Fun.Data.Repositories;
+using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Logic.Filters;
 using SecurityManager_Fun.Model;
 using System;
@@ -14,12 +15,22 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
     public partial class ArchivedPayments : Window
     {
         private SalariesWindow previousWindow;
+        private Employee employee;
 
         public ArchivedPayments()
         {
             InitializeComponent();
 
             LoadData();
+        }
+
+        public ArchivedPayments(Employee employee, SalariesWindow window = null)
+        {
+            InitializeComponent();
+
+            this.employee = employee;
+            previousWindow = window;
+            LoadDataForEmployee(employee);
         }
 
         public ArchivedPayments(SalariesWindow salaries)
@@ -46,6 +57,21 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
             ComboBoxPayStatus.ItemsSource = new List<Payment.StatusType> { Payment.StatusType.Done, Payment.StatusType.Canceled };
         }
 
+        private void LoadDataForEmployee(Employee employee)
+        {
+            DataGridPayments.ItemsSource = PaymentRepository.GetInactivePaymentsForEmployee(employee);
+            
+            LabelCountry.Visibility = Visibility.Collapsed;
+            ComboBoxCountry.Visibility = Visibility.Collapsed;
+            LabelCompany.Visibility = Visibility.Collapsed;
+            ComboBoxCompany.Visibility = Visibility.Collapsed;
+            LabelEmployee.Visibility = Visibility.Collapsed;
+            ComboBoxEmployee.Visibility = Visibility.Collapsed;
+            ButtonRepeatPayment.Visibility = Visibility.Collapsed;
+
+            ComboBoxPayStatus.ItemsSource = new List<Payment.StatusType> { Payment.StatusType.Done, Payment.StatusType.Canceled };
+        }
+
         private void ButtonRepeatPayment_Click(object sender, RoutedEventArgs e)
         {
             Payment? payment = DataGridPayments.SelectedItem as Payment;
@@ -63,6 +89,12 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
+            if (employee != null && previousWindow == null)
+            {
+                MenuWindow menuWindow = new MenuWindow();
+                menuWindow.Show();
+            }
+
             Close();
         }
 
@@ -75,6 +107,14 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
             {
                 startDate = CalendarDateFilter.SelectedDates[0];
                 endDate = CalendarDateFilter.SelectedDates[CalendarDateFilter.SelectedDates.Count - 1];
+            }
+
+            if (employee != null)
+            {
+                DataGridPayments.ItemsSource = PaymentFilter.FilterArchivisedPayments(startDate, endDate,
+                Session.Instance.CurrentEmployee?.Department?.Country, Session.Instance.CurrentEmployee.Department,
+                (Payment.StatusType?)ComboBoxPayStatus.SelectedItem, Session.Instance.CurrentEmployee);
+                DataGridPayments.Items.Refresh();
             }
 
             DataGridPayments.ItemsSource = PaymentFilter.FilterArchivisedPayments(startDate, endDate,

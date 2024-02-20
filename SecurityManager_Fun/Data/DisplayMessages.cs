@@ -15,6 +15,8 @@ namespace SecurityManager_Fun.Data
             public const string PASSWORD_REPEAT_CONFIRMATION_ERROR = "Proszę wprowadić i potem powtórzyć nowe hasło!";
             public const string LOGGING_IN_ERROR = "Podałeś nieprawidłowy login lub hasło!";
             public const string OPERATION_CANNOT_BE_APPLIED = "Nie wolno wykonać operacji:";
+            public const string GROSSRATE_VALUE_NOT_VALID = "Podana wartość odliczenia jest niepoprawna! Dopuszczalne są tylko liczby oraz ,.";
+            public const string GROSSRATE_VALUE_DATA_NOT_PROVIDED = "Dla zmiany pensji pracownika trzeba podać nową wartość!";
 
 
             //Password
@@ -41,7 +43,7 @@ namespace SecurityManager_Fun.Data
             public const string NAME_NOT_VALID = "Podane imię jest niepoprawne! Musi zawierać tylko litery.";
 
             public const string SURNAME_NOT_VALID = "Podane nazwisko jest niepoprawne! Może zawierać tylko litery, spacje oraz -.";
-
+           
             //Payment
             public const string PAYMENT_FROM_LIST_MUST_BE_SELECTED = "Przed wykonaniem tej operacji trzeba najpierw wybrać płatność z listy.";
             public static string PAYMENT_HAS_INAPPROPRIATE_STATUS = "Płatność posiada nieodpowiedni dla tej operacji status! Potrzebny status: {0}";

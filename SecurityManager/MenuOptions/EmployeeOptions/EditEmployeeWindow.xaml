@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.EmployeeOptions"
         mc:Ignorable="d"
         Title="Edycja" Height="500" Width="460">
-    <Grid>
+    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="60*"/>
@@ -17,7 +17,7 @@
             <TextBlock Text="Edycja danych pracownika" FontSize="18" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="20,5" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -25,48 +25,54 @@
 
             <Grid Grid.Column="0" Margin="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
 
-                <Label x:Name="LabelFirstName" Grid.Row="0" Content="Imię" FontSize="12"/>
-                <TextBox x:Name="TextBoxFirstName" Grid.Row="1" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top" TextChanged="TextBoxFirstName_TextChanged"/>
-                
-                <Label x:Name="LabelLastName" Grid.Row="2" Content="Nazwisko" FontSize="12"/>
-                <TextBox x:Name="TextBoxLastName" Grid.Row="3" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top" TextChanged="TextBoxLastName_TextChanged"/>
+                <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="LabelFirstName" Content="Imię" FontSize="12"/>
+                    <TextBox x:Name="TextBoxFirstName" FontSize="14" MinWidth="150" VerticalContentAlignment="Center" TextChanged="TextBoxFirstName_TextChanged"/>
+                </StackPanel>
 
-                <Label x:Name="LabelPhoneNumber" Grid.Row="4" Content="Numer telefonu" FontSize="12"/>
-                <TextBox x:Name="TextBoxPhoneNumber" Grid.Row="5" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="LabelLastName" Content="Nazwisko" FontSize="12"/>
+                    <TextBox x:Name="TextBoxLastName" FontSize="14" MinWidth="150" VerticalContentAlignment="Center" TextChanged="TextBoxLastName_TextChanged"/>
+                </StackPanel>
 
-                <Label x:Name="LabelEmail" Grid.Row="6" Content="Email" FontSize="12"/>
-                <TextBox x:Name="TextBoxEmail" Grid.Row="7" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="LabelPhoneNumber" Content="Numer telefonu" FontSize="12"/>
+                    <TextBox x:Name="TextBoxPhoneNumber" FontSize="14" MinWidth="150" VerticalContentAlignment="Center"/>
+                </StackPanel>
 
-                <Label x:Name="LabelLogin" Grid.Row="8" Content="Login" FontSize="12"/>
-                <TextBox x:Name="TextBoxLogin" Grid.Row="9" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
+                <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="LabelEmail" Content="Email" FontSize="12"/>
+                    <TextBox x:Name="TextBoxEmail" FontSize="14" MinWidth="150" VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="LabelLogin" Content="Login" FontSize="12"/>
+                    <TextBox x:Name="TextBoxLogin" FontSize="14" MinWidth="150" VerticalContentAlignment="Center"/>
+                </StackPanel>
             </Grid>
 
             <Grid Grid.Column="1" Margin="10,10,10,10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="20*"/>
                     <RowDefinition Height="80*"/>
                 </Grid.RowDefinitions>
 
-                <Label x:Name="LabelRole" Grid.Row="0" Content="Rola" FontSize="12"/>
-                <ComboBox x:Name="ComboBoxEmployeeRole" Grid.Row="1" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Top" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+                <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label x:Name="LabelRole" Grid.Row="0" Content="Rola" FontSize="12"/>
+                    <ComboBox x:Name="ComboBoxEmployeeRole" FontSize="14" MinWidth="150" VerticalContentAlignment="Center" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+                </StackPanel>
 
-                <DataGrid x:Name="DataGridDepartments" SelectionMode="Single" Grid.Row="2" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" PreviewMouseLeftButtonDown="DataGridDepartments_PreviewMouseLeftButtonDown">
+                <DataGrid x:Name="DataGridDepartments" SelectionMode="Single" Grid.Row="1" Margin="5,10" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" PreviewMouseLeftButtonDown="DataGridDepartments_PreviewMouseLeftButtonDown">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Country.Name}" Width="*"/>
-                        <DataGridTextColumn Header="Department" Binding="{Binding Address}" Width="*"/>
+                        <DataGridTextColumn Header="Country" Binding="{Binding Country.Name}" Width="40*"/>
+                        <DataGridTextColumn Header="Department" Binding="{Binding Address}" Width="60*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -79,11 +85,12 @@
             </Grid.RowDefinitions>
             
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Width="320">
-                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
                 <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10" Grid.RowSpan="2" Width="240">
-                <Button x:Name="ButtonPasswordChange" Content="Zmień hasło" Background="#FF797979" Foreground="White" Width="230" Margin="5" Click="ButtonPasswordChange_Click"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10" Grid.RowSpan="2" Width="320">
+                <Button x:Name="ButtonPasswordChange" Content="Zmień hasło" Background="#FF797979" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonPasswordChange_Click"/>
+                <Button x:Name="ButtonGrossRateChange" Content="Zmień pensję" Background="#FF797979" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonGrossRateChange_Click"/>
             </StackPanel>
         </Grid>
     </Grid>
