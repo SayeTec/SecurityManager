@@ -78,8 +78,16 @@ namespace SecurityManager_GUI
 
         private void ButtonStatistics_Click(object sender, RoutedEventArgs e)
         {
-            SalariesWindow salariesWindow = new SalariesWindow();
-            salariesWindow.Show();
+            if (Session.Instance.CurrentEmployee.Role.Priority > 1)
+            {
+                ArchivedPayments archivedPayments = new ArchivedPayments(Session.Instance.CurrentEmployee);
+                archivedPayments.Show();
+            }
+            else
+            {
+                SalariesWindow salariesWindow = new SalariesWindow();
+                salariesWindow.Show();
+            }
             Close();
         }
 
@@ -105,17 +113,9 @@ namespace SecurityManager_GUI
         }
 
         private void ButtonDeductionManagement_Click(object sender, RoutedEventArgs e)
-        {
-            if (Session.Instance.CurrentEmployee.Role.Priority > 1)
-            {
-                ArchivedPayments archivedPayments = new ArchivedPayments();
-                archivedPayments.Show();
-            }
-            else
-            {
-                DeductionsWindow deductionsWindow = new DeductionsWindow();
-                deductionsWindow.Show();
-            }
+        {   
+            DeductionsWindow deductionsWindow = new DeductionsWindow();
+            deductionsWindow.Show();
             Close();
         }
 

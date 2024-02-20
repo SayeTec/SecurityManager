@@ -171,5 +171,11 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
                 }
             }
         }
+
+        private void ButtonGrossRateChange_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeGrossRate changeGrossRate = new ChangeGrossRate(employeeToEdit);
+            changeGrossRate.ShowDialog();
+        }
     }
 }

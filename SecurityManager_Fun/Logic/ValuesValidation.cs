@@ -151,5 +151,11 @@ namespace SecurityManager_Fun.Logic
             Regex valueRegex = new Regex(@"^\d+(\,\d{0,10})?$");
             return valueRegex.IsMatch(value);
         }
+
+        public static bool ValidateGrossRateValue(string value)
+        {
+            Regex valueRegex = new Regex(@"^\d+(\,\d{0,10})?$");
+            return valueRegex.IsMatch(value);
+        }
     }
 }

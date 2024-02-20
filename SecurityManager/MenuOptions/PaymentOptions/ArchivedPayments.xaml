@@ -107,8 +107,8 @@
         <Grid Grid.Row="3">
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="0,0,20,5">
-                    <Button x:Name="ButtonRepeatPayment" Content="Powtórz płatność"  Margin="5,5,5,5" Background="#007ACC" Foreground="White" MinWidth="120" Click="ButtonRepeatPayment_Click"/>
-                    <Button x:Name="ButtonBack" Content="Wróć" Margin="0,5,5,5" Background="#FF9C4B5A" Foreground="White" MinWidth="100" MinHeight="30" Click="ButtonBack_Click"/>
+                    <Button x:Name="ButtonRepeatPayment" Content="Powtórz płatność"  Margin="5,5,0,5" Background="#007ACC" Foreground="White" MinWidth="120" Click="ButtonRepeatPayment_Click"/>
+                    <Button x:Name="ButtonBack" Content="Wróć" Margin="5" Background="#FF9C4B5A" Foreground="White" MinWidth="100" MinHeight="30" Click="ButtonBack_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

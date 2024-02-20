@@ -40,10 +40,10 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0,5">
+        <Grid Grid.Row="2">
             <StackPanel Grid.Row="5" Orientation="Vertical" HorizontalAlignment="Center">
-                <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonSave_Click"/>
-                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
+                <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="35" Margin="5" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="35" Margin="5" Click="ButtonBack_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

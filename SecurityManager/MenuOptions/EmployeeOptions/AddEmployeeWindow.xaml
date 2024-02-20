@@ -5,39 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityManager_GUI.MenuOptions.EmployeeOptions"
         mc:Ignorable="d"
-        Title="Tworzenie nowego pracownika" Height="250" Width="350" ResizeMode="NoResize">
-    <Grid>
+        Title="Tworzenie nowego pracownika" Height="350" Width="300" ResizeMode="NoResize">
+    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <TextBlock Text="Dodawanie pracownika" FontSize="18" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20*"/>
-                <RowDefinition Height="20*"/>
-                <RowDefinition Height="20*"/>
-                <RowDefinition Height="20*"/>
-                <RowDefinition Height="20*"/>
-            </Grid.RowDefinitions>
-
-            <TextBox x:Name="TextBoxFirstName" Grid.Row="0" Tag="Imię" Text="Imię" Foreground="Gray" VerticalAlignment="Center" TextChanged="TextBoxFirstName_TextChanged"/>
-            <TextBox x:Name="TextBoxLastName" Grid.Row="1" Tag="Nazwisko" Text="Nazwisko" Foreground="Gray" VerticalAlignment="Center" TextChanged="TextBoxLastName_TextChanged"/>
-            <TextBox x:Name="TextBoxPhoneNumber"  Grid.Row="2" Tag="Numer telefonu" Text="Numer telefonu" Foreground="Gray" VerticalAlignment="Center" TextChanged="TextBoxPhoneNumber_TextChanged"/>
-            <TextBox x:Name="TextBoxEmailAddress"  Grid.Row="3"  Tag="Email adres" Text="Email adres" Foreground="Gray" VerticalAlignment="Center"/>
-
-            <ComboBox x:Name="ComboboxEmployeeRole" Grid.Row="4" FontSize="12" VerticalContentAlignment="Center" VerticalAlignment="Center" DisplayMemberPath="Name"/>
+        <Grid Grid.Row="1" Margin="20,5" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="180">
+                <TextBox x:Name="TextBoxFirstName" Tag="Imię" Text="Imię" Foreground="Gray" Margin="5" FontSize="14" VerticalAlignment="Center" TextChanged="TextBoxFirstName_TextChanged"/>
+                <TextBox x:Name="TextBoxLastName" Tag="Nazwisko" Text="Nazwisko" Foreground="Gray" Margin="5" FontSize="14" VerticalAlignment="Center" TextChanged="TextBoxLastName_TextChanged"/>
+                <TextBox x:Name="TextBoxPhoneNumber" Tag="Numer telefonu" Text="Numer telefonu" Foreground="Gray" Margin="5" FontSize="14" VerticalAlignment="Center" TextChanged="TextBoxPhoneNumber_TextChanged"/>
+                <TextBox x:Name="TextBoxEmailAddress" Tag="Email adres" Text="Email adres" Foreground="Gray" Margin="5" FontSize="14" VerticalAlignment="Center"/>
+                <ComboBox x:Name="ComboboxEmployeeRole" Margin="5" FontSize="14" VerticalContentAlignment="Center" VerticalAlignment="Center" DisplayMemberPath="Name"/>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="2" Margin="0,5">
             <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
-                <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="150" MinHeight="30" Margin="5" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonSave" Content="Zapisz" Background="#FF678C59" Foreground="White" MinWidth="100" MinHeight="30" Margin="5" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonBack" Content="Anuluj" Background="#FF9C4B5A" Foreground="White" MinWidth="100" MinHeight="30" Margin="5" Click="ButtonBack_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -37,6 +37,11 @@ namespace SecurityManager_Fun.Data.Repositories
             return GetAllPayments().Where(payment => (int)payment.Status >= 2).ToList();
         }
 
+        public static List<Payment> GetInactivePaymentsForEmployee(Employee employee)
+        {
+            return GetInactivePayments().Where(payment => payment.EmployeeID == employee.ID).ToList();
+        }
+
         public static void AddNewPayment(Payment payment, List<Deduction> associatedDeductions)
         {
             using (var dbContext = new AppDBContext())
