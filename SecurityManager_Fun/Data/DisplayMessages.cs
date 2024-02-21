@@ -69,6 +69,8 @@
 
             public const string DEPARTMENT_FROM_LIST_MUST_BE_SELECTED = "Przed wykonaniem operacji trzeba najpierw wybrać biuro z listy.";
 
+            public const string DEPARTMENT_HAVE_NOT_CAPACITY_FOR_EMPLOYEE = "Ilość pracowników w biurze osiągnęła maksimum. Wybierz inne biuro!";
+
             //Role
             public const string ROLE_HAS_EMPLOYEES = "Rola ma przypisanych pracowników!";
 
