@@ -136,7 +136,10 @@ namespace SecurityManager_GUI.MenuOptions.EmployeeOptions
             if (!ValuesValidation.ValidateSurname(TextBoxLastName.Text))
                 errorMessage += $"{DisplayMessages.Error.SURNAME_NOT_VALID}\n";
 
-            if (!string.IsNullOrEmpty(errorMessage))
+            if (!DepartmentRepository.CheckIfDepartmentHavePlaceForEmployee(DataGridDepartments.SelectedItem as Department))
+                errorMessage += $"{DisplayMessages.Error.DEPARTMENT_HAVE_NOT_CAPACITY_FOR_EMPLOYEE}\n";
+
+                if (!string.IsNullOrEmpty(errorMessage))
             {
                 MessageBox.Show(errorMessage, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;

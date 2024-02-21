@@ -60,5 +60,13 @@ namespace SecurityManager_Fun.Data.Repositories
                 return !dbContext.Departments.Any(d => d.Equals(department));
             }
         }
+
+        public static bool CheckIfDepartmentHavePlaceForEmployee(Department department)
+        {
+            using (var dbContext = new AppDBContext())
+            {
+                return dbContext.Departments.Find(department.ID).Capacity > dbContext.Employees.Where(employee => employee.DepartmentID != null && employee.DepartmentID == department.ID).Count();
+            }
+        }
     }
 }
