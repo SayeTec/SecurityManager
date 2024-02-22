@@ -4,6 +4,7 @@ using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Logic.Filters;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions;
+using SecurityManager_GUI.MenuOptions.CalendarOptions;
 using SecurityManager_GUI.MenuOptions.EmployeeOptions;
 using System.Collections.Generic;
 using System.Windows;
@@ -45,6 +46,7 @@ namespace SecurityManager_GUI
 
             ButtonEditEmployee.Visibility = Visibility.Collapsed;
             ButtonDeleteEmployee.Visibility = Visibility.Collapsed;
+            PanelEmployeeCalendar.Visibility = Visibility.Collapsed;
 
             DataGridEmployees.Language = XmlLanguage.GetLanguage("pl-PL");
             LoadDataFromDB();
@@ -195,11 +197,32 @@ namespace SecurityManager_GUI
             {
                 ButtonEditEmployee.Visibility = Visibility.Visible;
                 ButtonDeleteEmployee.Visibility = Visibility.Visible;
+                PanelEmployeeCalendar.Visibility = Visibility.Visible;
                 return;
             }
 
             ButtonEditEmployee.Visibility = Visibility.Collapsed;
             ButtonDeleteEmployee.Visibility = Visibility.Collapsed;
+            PanelEmployeeCalendar.Visibility = Visibility.Collapsed;
+        }
+
+        private void ButtonShowEmployeeCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            Employee? employeeToShow = DataGridEmployees.SelectedItem as Employee;
+
+            if (employeeToShow == null)
+            {
+                MessageBox.Show(DisplayMessages.Error.EMPLOYEE_FROM_LIST_MUST_BE_SELECTED, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //TODO: Add validation Employee not to be an Admin
+
+            CalenderWindow calenderWindow = new CalenderWindow(employeeToShow);
+            calenderWindow.ShowDialog();
+            DataGridEmployees.SelectedItem = null;
+            LoadDataFromDB();
+            
         }
     }
 }

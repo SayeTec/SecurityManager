@@ -4,17 +4,9 @@
     {
         public int ID { get; set; }
         public DateTime Day { get; set; }
-        public int WorkHours { get; set; } //TODO: Needs to be regulated, is not it just StartTime and EndTime
+        public TimeOnly StartTime { get; set; } 
+        public int WorkHours { get; set; } 
         public int EmployeeID { get; set; }
-        public WorkDayType DayType { get; set; }
-
-        public enum WorkDayType
-        {
-            None = 0,
-            Work = 1,
-            Illness = 2,
-            Vacation = 3
-        }
 
         // Navigation property
         public Employee Employee { get; set; }

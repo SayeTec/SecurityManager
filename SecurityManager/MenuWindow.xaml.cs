@@ -2,6 +2,7 @@
 using SecurityManager_Fun.Logic;
 using SecurityManager_Fun.Model;
 using SecurityManager_GUI.MenuOptions;
+using SecurityManager_GUI.MenuOptions.CalendarOptions;
 using SecurityManager_GUI.MenuOptions.ManagementOptions.CountryAndDepartmentManagement;
 using SecurityManager_GUI.MenuOptions.ManagementOptions.DeductionManagement;
 using SecurityManager_GUI.MenuOptions.ManagementOptions.RoleManagement;
@@ -93,8 +94,16 @@ namespace SecurityManager_GUI
 
         private void buttonScheduleDesigner_Click(object sender, RoutedEventArgs e)
         {
-            DutyScheduleWindow dutyScheduleWindow = new DutyScheduleWindow();
-            dutyScheduleWindow.Show();
+            if (Session.Instance.CurrentEmployee.Role.Priority > 1)
+            {
+                CalenderWindow calenderWindow = new CalenderWindow(Session.Instance.CurrentEmployee);
+                calenderWindow.Show();
+            }
+            else
+            {
+                CalenderCreationWindow calenderCreationWindow = new CalenderCreationWindow();
+                calenderCreationWindow.Show();
+            }
             Close();
         }
 

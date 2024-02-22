@@ -99,6 +99,10 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
+                <StackPanel x:Name="PanelEmployeeCalendar" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" HorizontalAlignment="Left" Orientation="Horizontal" Margin="20,0,0,0">
+                    <Button x:Name="ButtonShowEmployeeCalendar" Content="Zobacz rozkład pracownika" Margin="5" Background="#007ACC" Foreground="White" MinWidth="180" Click="ButtonShowEmployeeCalendar_Click"/>
+                </StackPanel>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="0,0,20,0">
                     <Button x:Name="ButtonAddEmployee" Content="Dodaj pracownika" Margin="5" Background="#007ACC" Foreground="White" MinWidth="150" Click="ButtonAddEmployee_Click"/>
                     <Button x:Name="ButtonEditEmployee" Content="Edytuj"  Margin="0,5,5,5" Background="#007ACC" Foreground="White" MinWidth="100" Click="ButtonEditEmployee_Click"/>
