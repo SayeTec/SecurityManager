@@ -25,7 +25,7 @@
                 <Button x:Name="ButtonEmployeeManagement" Content="Pracownicy" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonEmployeeManagement_Click"/>
                 <Button x:Name="ButtonStatistics" Content="Wynagrodzenia" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="ButtonStatistics_Click"/>
                 <Button x:Name="ButtonDutiesManagement" Content="Dyżury" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Visibility="Collapsed" Click="ButtonDutiesManagement_Click"/>
-                <Button x:Name="buttonScheduleDesigner" Content="Grafik dyżurów" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Visibility="Collapsed" Click="buttonScheduleDesigner_Click"/>
+                <Button x:Name="buttonScheduleDesigner" Content="Grafik dyżurów" Margin="0,0,0,10" Background="#007ACC" Foreground="White" MinWidth="150" MinHeight="40" Click="buttonScheduleDesigner_Click"/>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Bottom" Grid.Row="1" Margin="10">
