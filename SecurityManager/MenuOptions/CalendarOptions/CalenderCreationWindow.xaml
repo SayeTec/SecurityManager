@@ -75,7 +75,7 @@
                     </Grid>
 
                     <StackPanel Margin="15" Orientation="Vertical">
-                        <Label x:Name="LabelNotAppliedDates" HorizontalAlignment="Center" Content="Puste dni w miesiącu" FontSize="14"/>
+                        <Label x:Name="LabelNotAppliedDates" HorizontalAlignment="Center" Content="Dni wolne od pracy" FontSize="14"/>
                         <ListBox x:Name="ListBoxEmptyDates" MinHeight="250"/> <!--Could be changed to the 150-->
                     </StackPanel>
                 </StackPanel>
@@ -83,7 +83,7 @@
 
             <Grid Grid.Column="1" Margin="5">
                 <StackPanel Orientation="Vertical">
-                    <Label x:Name="LabelWorkschedule" Content="Przypisane rozkłady do wybranego dnia" FontSize="14"/>
+                    <Label x:Name="LabelWorkschedule" Content="Zaplanowane dyżury" FontSize="14"/>
                     <ListBox x:Name="ListBoxDateWorkschedules" MinHeight="290"/>
                 </StackPanel>
             </Grid>
