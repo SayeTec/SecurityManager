@@ -112,7 +112,7 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
                 return;
             }
 
-            if (CalculateSum() < selectedEmployee.GrossRate * (1 - ApplicationConstants.RATE_VALUE_DIFFERENCE) || CalculateSum() > selectedEmployee.GrossRate * (1 + ApplicationConstants.RATE_VALUE_DIFFERENCE))
+            if (CalculateSum() < 0)
             {
                 MessageBox.Show(DisplayMessages.Error.PAYMENT_AMOUNT_IS_OUT_OF_RANGE, "Błąd Walidacji", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -122,7 +122,7 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
             {
                 DateOfCreation = DateTime.Now,
                 Status = 0,
-                DefaultValue = selectedEmployee.GrossRate,
+                DefaultValue = selectedEmployee.GrossRate * CalculateFactor(),
                 DeductionsValue = -CalculateDeductions(Deduction.DeductionType.Tax) + CalculateDeductions(Deduction.DeductionType.Bonus),
                 FinalValue = CalculateSum(),
                 EmployeeID = selectedEmployee.ID
@@ -147,7 +147,7 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
             }
 
             paymentToEdit.Employee = selectedEmployee;
-            paymentToEdit.DefaultValue = selectedEmployee.GrossRate;
+            paymentToEdit.DefaultValue = selectedEmployee.GrossRate * CalculateFactor();
             paymentToEdit.DeductionsValue = -CalculateDeductions(Deduction.DeductionType.Tax) + CalculateDeductions(Deduction.DeductionType.Bonus);
             paymentToEdit.FinalValue = CalculateSum();
 
@@ -192,12 +192,25 @@ namespace SecurityManager_GUI.MenuOptions.PaymentOptions
 
         private decimal CalculateDeductions(Deduction.DeductionType type)
         {
-            return selectedDeductions.Where(d => d.Type == type).Sum(d => d.IsPercentage ? d.Value * selectedEmployee.GrossRate : d.Value);
+            return selectedDeductions
+                .Where(d => d.Type == type)
+                .Sum(d => d.IsPercentage ? d.Value * selectedEmployee.GrossRate : d.Value);
+        }
+
+        private decimal CalculateFactor()
+        {
+            bool editionOfPayment = paymentToEdit != null;
+            return WorkScheduleRepository.GetSumHoursInWorkForEmployeeByMonth(
+                editionOfPayment ? paymentToEdit.DateOfCreation : DateTime.Now,
+                selectedEmployee);
         }
 
         private decimal CalculateSum()
         {
-            return selectedEmployee.GrossRate - CalculateDeductions(Deduction.DeductionType.Tax) + CalculateDeductions(Deduction.DeductionType.Bonus);
+            return selectedEmployee.GrossRate *
+                CalculateFactor() - 
+                CalculateDeductions(Deduction.DeductionType.Tax) + 
+                CalculateDeductions(Deduction.DeductionType.Bonus);
         }
 
         private string ShowSum()

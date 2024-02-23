@@ -42,7 +42,7 @@
             public const string PAYMENT_FROM_LIST_MUST_BE_SELECTED = "Przed wykonaniem tej operacji trzeba najpierw wybrać płatność z listy.";
             public static string PAYMENT_HAS_INAPPROPRIATE_STATUS = "Płatność posiada nieodpowiedni dla tej operacji status! Potrzebny status: {0}";
 
-            public static string PAYMENT_AMOUNT_IS_OUT_OF_RANGE = $"Wartość płatności przekracza ustalony limit w {ApplicationConstants.RATE_VALUE_DIFFERENCE * 100}% odchylenia od podstawowej pensii!";
+            public static string PAYMENT_AMOUNT_IS_OUT_OF_RANGE = $"Wartość płatności przekracza ustalony limit i nie może być ujemna!";
 
             //Country
             public const string COUNTRY_HAS_DEPARTMENTS = "Kraj ma przypisane biura!";
@@ -99,6 +99,13 @@
             public const string DEDUCTION_REQUIRED_DATA_NOT_PROVIDED = "Dla dodania nowego obliczenia trzeba wypełnić wszystkie wymagane pola: Nazwa, Wartość oraz Typ obliczenia.";
 
             public const string DEDUCTION_IS_NOT_UNIQUE = "Obliczenie z podanymi danymi już istnieje!";
+
+            //WorkSchedule
+            public const string WORK_HOURS_NOT_VALID = "Podany priorytet roli jest niepoprawny! Dopuszczalne są tylko liczby.";
+            
+            public const string WORK_SCHEDULE_DATA_NOT_PROVIDED = "Dla dodania nowego planu pracy trzeba wypełnić wszystkie wymagane pola: Godzina rozpoczęcia oraz Ilość godzin w pracy.";           
+            
+            public const string WORK_SCHEDULE_HAS_ACTIVE_PAYMENTS = "Dla danego planu pracy istnieją aktywne płatności. Najpierw trzeba ich rozliczyć!";           
         }
 
         public static class Confirmation
@@ -110,6 +117,8 @@
             public const string ROLE_DELETE_CONFIRMATION = "Czy napewno chcesz usunąć rolę: {0}?";
             public const string DEDUCTION_DELETE_CONFIRMATION = "Czy napewno chcesz usunąć obliczenia: {0}?";
             public static string EMPLOYEE_IS_PAID_IN_THIS_MONTH = "Podany pracownik {0} posiada już aktywne lub rozliczone płatności. Czy napewno chcesz kontynuować?";
+            public const string WORK_SCHEDULE_EDIT_CONFIRMATION = "Czy napewno chcesz wprowadzić plan pracy w terminie: {0}?";
+            public const string WORK_SCHEDULE_DELETE_CONFIRMATION = "Czy napewno chcesz usunąć plan pracy w terminie: {0}?";
         }
     }
 }

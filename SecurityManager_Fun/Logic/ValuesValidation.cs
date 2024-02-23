@@ -157,5 +157,11 @@ namespace SecurityManager_Fun.Logic
             Regex valueRegex = new Regex(@"^\d+(\,\d{0,10})?$");
             return valueRegex.IsMatch(value);
         }
+
+        public static bool ValidateWorkHours(string value)
+        {
+            Regex valueRegex = new Regex(@"^[0-9]+$");
+            return valueRegex.IsMatch(value);
+        }
     }
 }

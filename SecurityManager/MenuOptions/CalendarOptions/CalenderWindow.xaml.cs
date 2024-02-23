@@ -1,4 +1,6 @@
-﻿using SecurityManager_Fun.Model;
+﻿using SecurityManager_Fun.Data;
+using SecurityManager_Fun.Data.Repositories;
+using SecurityManager_Fun.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,20 +23,43 @@ namespace SecurityManager_GUI.MenuOptions.CalendarOptions
     public partial class CalenderWindow : Window
     {
         Employee selectedEmployee;
-        int selectedMonth;
+        DateTime selectedDate;
         public CalenderWindow(Employee employee)
         {
             InitializeComponent();
 
             selectedEmployee = employee;
-            selectedMonth = DateTime.Now.Date.Month;
-            TextBoxSelectedMonth.Text += DateTime.Now.Date.Month.ToString();
+            selectedDate = DateTime.Now;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            TextBoxSelectedMonthValue.Text = string.Empty;
+            TextBoxSelectedMonthValue.Text += $"{ApplicationConstants.MONTH_LIST[selectedDate.Month]} {selectedDate.Year}";
             LabelSelectedEmployeeValue.Content = selectedEmployee.FullName;
+
+            ListBoxWorkscheduleDays.ItemsSource = WorkScheduleRepository.GetWorkSchedulesForEmployeeByMonth(selectedDate, selectedEmployee);
+
+            LabelTotalWorkDaysInMonthValue.Content = WorkScheduleRepository.GetSumDaysInWorkForEmployeeByMonth(selectedDate, selectedEmployee).ToString();
+            LabelTotalWorkHoursInMonthValue.Content = WorkScheduleRepository.GetSumHoursInWorkForEmployeeByMonth(selectedDate, selectedEmployee).ToString();
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ButtonPreviousMonth_Click(object sender, RoutedEventArgs e)
+        {
+            selectedDate = selectedDate.AddMonths(-1);
+            LoadData();
+        }
+
+        private void ButtonNextMonth_Click(object sender, RoutedEventArgs e)
+        {
+            selectedDate = selectedDate.AddMonths(1);
+            LoadData();
         }
     }
 }
