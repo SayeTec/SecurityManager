@@ -32,6 +32,11 @@ namespace SecurityManager_Fun.Data.Repositories
             return GetAllPayments().Where(payment => (int)payment.Status <= 1).ToList();
         }
 
+        public static bool CheckIfActivePaymentsForEmployeeExist(Employee employee)
+        {
+            return GetActivePayments().Where(payment => payment.EmployeeID == employee.ID).Any();
+        }
+
         public static List<Payment> GetInactivePayments()
         {
             return GetAllPayments().Where(payment => (int)payment.Status >= 2).ToList();

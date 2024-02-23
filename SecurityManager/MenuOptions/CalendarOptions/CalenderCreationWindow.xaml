@@ -27,7 +27,7 @@
             <Grid Grid.Column="0" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical">
                     <Label x:Name="LabelCalendar" Content="Wybierz datę: " FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,-5"/>
-                    <Calendar x:Name="CalendarDateFilter" SelectionMode="SingleDate"/>
+                    <Calendar x:Name="CalendarDateSelection" SelectionMode="SingleDate" SelectedDatesChanged="CalendarDateSelection_SelectedDatesChanged"/>
                 </StackPanel>
             </Grid>
 
@@ -36,17 +36,17 @@
                     <Label x:Name="LabelTotalInfo" Content="Podaj informacje do stworzenia planu" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                         <Label x:Name="LabelCountrySelection" Content="Wybierz kraj: " FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0"/>
-                        <ComboBox x:Name="ComboBoxCountrySelection" FontSize="14" MinWidth="100" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0"/>
+                        <ComboBox x:Name="ComboBoxCountrySelection" FontSize="14" MinWidth="100" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0" DisplayMemberPath="Symbol" SelectionChanged="ComboBoxCountrySelection_SelectionChanged"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                         <Label x:Name="LabelDepartmentSelection" Content="Wybierz biuro: " FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0"/>
-                        <ComboBox x:Name="ComboBoxDepartmentSelection" FontSize="14" MinWidth="100" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0"/>
+                        <ComboBox x:Name="ComboBoxDepartmentSelection" FontSize="14" MinWidth="150" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0" DisplayMemberPath="Address" SelectionChanged="ComboBoxDepartmentSelection_SelectionChanged"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                         <Label x:Name="LabelEmployeeSelection" Content="Wybierz pracownika: " FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0"/>
-                        <ComboBox x:Name="ComboBoxEmployeeSelection" FontSize="14" MinWidth="100" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0"/>
+                        <ComboBox x:Name="ComboBoxEmployeeSelection" FontSize="14" MinWidth="100" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0" DisplayMemberPath="FullName" SelectionChanged="ComboBoxEmployeeSelection_SelectionChanged"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -64,34 +64,38 @@
                         <StackPanel>
                             <StackPanel Margin="0,0,0,10" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Label x:Name="LabelStartOfDay" Content="Godzina rozpoczęcia: " FontSize="14"/>
-                                <ComboBox x:Name="ComboBoxStartTimeofDay" FontSize="14" MinWidth="100"/>
+                                <ComboBox x:Name="ComboBoxStartTimeofDay" FontSize="14" MinWidth="100" DisplayMemberPath="HourString"/>
                             </StackPanel>
 
                             <StackPanel Margin="10" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Label x:Name="LabelEndOfDay" Content="Godzina zakończenia: " FontSize="14"/>
-                                <TextBox x:Name="Text" FontSize="14" MinWidth="100"/>
+                                <Label x:Name="LabelAmountOfWorkHours" Content="Ilość godzin w pracy: " FontSize="14"/>
+                                <TextBox x:Name="TextAmountOfWorkHours" FontSize="14" MinWidth="50" VerticalContentAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
 
                     <StackPanel Margin="15" Orientation="Vertical">
-                        <Label x:Name="LabelNotAppliedDates" HorizontalAlignment="Center" Content="Dni wolne od pracy" FontSize="14"/>
-                        <ListBox x:Name="ListBoxEmptyDates" MinHeight="250"/> <!--Could be changed to the 150-->
+                        <Label x:Name="LabelAppliedDates" HorizontalAlignment="Center" Content="Dni pracy w miesiącu" FontSize="14"/>
+                        <ListBox x:Name="ListBoxWorkDates" MinHeight="250"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Column="1" Margin="5">
                 <StackPanel Orientation="Vertical">
-                    <Label x:Name="LabelWorkschedule" Content="Zaplanowane dyżury" FontSize="14"/>
+                    <Label x:Name="LabelWorkschedule" Content="Zaplanowane dyżury w miesiącu" FontSize="14"/>
                     <ListBox x:Name="ListBoxDateWorkschedules" MinHeight="290"/>
                 </StackPanel>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="3">
+            <StackPanel x:Name="PanelWorkScheduleDeletion" Orientation="Horizontal" HorizontalAlignment="Left" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="20,0,0,10" Visibility="Collapsed">
+                <Button x:Name="ButtonDelete" Content="Usuń wybrany plan" Margin="5" Background="#FF9C4B5A" Foreground="White" FontSize="14" MinWidth="150" Click="ButtonDelete_Click"/>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" Margin="0,0,20,10">
-                <Button x:Name="ButtonSave" Content="Zapisz" Margin="5,5,0,5" Background="#007ACC" Foreground="White" FontSize="14" MinWidth="150" Visibility="Collapsed"/>
+                <Button x:Name="ButtonSave" Content="Zapisz" Margin="5,5,0,5" Background="#007ACC" Foreground="White" FontSize="14" MinWidth="150" Visibility="Collapsed" Click="ButtonSave_Click"/>
                 <Button x:Name="ButtonBack" Content="Wróć" Margin="5" Background="#FF9C4B5A" Foreground="White" FontSize="14" MinWidth="100" Click="ButtonBack_Click"/>
             </StackPanel>
         </Grid>

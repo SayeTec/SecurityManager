@@ -29,7 +29,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
-                <Label x:Name="LabelNewGrossRate" Content="Nowa pensja" FontSize="12"/>
+                <Label x:Name="LabelNewGrossRate" Content="Nowa stawka godzinowa" FontSize="12"/>
                 <TextBox x:Name="TextBoxNewGrossRate" Margin="0" MinWidth="150" FontSize="14" VerticalContentAlignment="Center"/>
             </StackPanel>
         </Grid>
